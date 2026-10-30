@@ -1,0 +1,179 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 트렌드 노트 — 10월 30일 (금)</title><style>/* 주간 보고서 — 도감(field guide) 도판. 방향: ../.impeccable/surfaces/02-report-css.md */
+:root {
+  --paper: #F1F3EE; --sheet: #FBFCF9; --ink: #1D241F; --ink-2: #3E4A42; --ink-3: #5E6A61;
+  --rule: #CBD2CA; --tag: #E9C64B; --tag-ink: #1D241F; --link: #1F5E7A;
+  --code-bg: #E6EAE3;
+  --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "D2Coding", Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151916; --sheet: #1B201C; --ink: #EEF1EC; --ink-2: #C9D1C8; --ink-3: #9AA59C;
+    --rule: #333C35; --link: #8CC4DB; --code-bg: #232A25;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); scrollbar-color: var(--ink-3) var(--paper); }
+body {
+  margin: 0; color: var(--ink); font: 400 17px/1.8 var(--sans);
+  word-break: keep-all; overflow-wrap: anywhere; text-align: left;
+  -webkit-font-smoothing: antialiased; caret-color: var(--tag);
+}
+::selection { background: var(--tag); color: var(--tag-ink); }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+code { font: 500 .88em/1.5 var(--mono); }
+strong { font-weight: 700; }
+
+/* 표제 — 도감의 속표지 */
+.mast { max-width: 76rem; margin: 0 auto; padding: 4.5rem 2rem 3rem; }
+.mast h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 .6rem; }
+.dateline { margin: 0 0 1.8rem; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.22rem; line-height: 1.7; color: var(--ink-2); max-width: 44rem; margin: 0 0 3rem; }
+
+/* 도판 목록 */
+.index { list-style: none; margin: 0; padding: .3rem 0 0; border-top: 1.5px solid var(--ink); max-width: 56rem; }
+.index a { display: grid; grid-template-columns: 2.6rem minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding: .85rem .25rem; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: .22em; }
+.index .nm { font-weight: 700; }
+.index .ol { color: var(--ink-3); font-size: .95rem; }
+
+/* 도판 번호표 — 노란 표지는 여기와 식별 포인트에만 쓴다 */
+.tag { display: inline-grid; place-items: center; min-width: 1.9rem; height: 1.9rem; padding: 0 .4rem;
+  background: var(--tag); color: var(--tag-ink); font: 800 .95rem/1 var(--sans); font-variant-numeric: tabular-nums; border-radius: 2px; }
+
+/* 도판 */
+main { max-width: 76rem; margin: 0 auto; padding: 0 2rem; }
+.plate { padding: 4.5rem 0 3.5rem; border-top: 1.5px solid var(--ink); scroll-margin-top: 1rem; }
+.plate > header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.plate h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.25; letter-spacing: -0.02em; font-weight: 800; margin: 0; }
+.cols { display: grid; grid-template-columns: minmax(0, 42rem) minmax(13rem, 17rem); gap: 4rem; }
+.main h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; margin: 2.4rem 0 .5rem; }
+.main p { margin: 0 0 1rem; }
+.summary { font-size: 1.08rem; }
+.summary.external, .summary.opinion { color: var(--ink-3); }
+.prov { font-weight: 700; color: var(--ink); margin-right: .5em; }
+
+/* 표본 사진 */
+.specimen { margin: 0 0 2rem; }
+.specimen img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  background: var(--code-bg); border: 1px solid var(--rule); border-radius: 3px; }
+figcaption { font-size: .8rem; color: var(--ink-3); margin-top: .5rem; }
+
+/* 식별 포인트 — 주간 설치 막대 */
+.chart { margin: 1.4rem 0 .4rem; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .mark { stroke-dasharray: 200; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .chart:not(.seen) .mark { stroke-dashoffset: 200; }
+  .chart .mark { transition: stroke-dashoffset 900ms cubic-bezier(.16, 1, .3, 1); }
+  .chart:not(.seen) .lab { opacity: 0; }
+  .chart .lab { transition: opacity 500ms 500ms ease-out; }
+}
+
+/* 설치 명령 */
+.cmd { position: relative; }
+pre { margin: 0 0 1rem; padding: 1rem 1.1rem; background: var(--code-bg); border-radius: 4px; overflow-x: auto; }
+pre code { font-size: .9rem; white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+.prompt code { font-family: var(--sans); }
+.cmd pre { padding-right: 5rem; }
+.copy { position: absolute; top: .55rem; right: .55rem; font: 700 .82rem/1 var(--sans); color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .7rem; cursor: pointer; }
+.copy:hover { border-color: var(--ink-3); }
+.copy:active { transform: translateY(1px); }
+.prompt { background: transparent; border: 1px dashed var(--rule); }
+
+.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+.steps li { margin-bottom: .45rem; padding-left: .2rem; }
+.steps li::marker { font-weight: 800; color: var(--ink-3); }
+.caution { margin-top: 1.6rem !important; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .95rem; }
+
+/* 다이어그램 */
+.diagram { margin: 1.8rem 0; padding: 1.4rem 1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
+.diagram pre.mermaid { background: none; margin: 0; padding: 0; text-align: center; font: 500 .85rem/1.5 var(--mono); color: var(--ink-3); }
+.diagram svg { display: block; margin: 0 auto; max-width: none; height: auto; }
+.diagram pre.mermaid:not([data-processed]) { visibility: hidden; }
+.no-mermaid .diagram { display: none; }
+
+/* 여백 난 — 숫자와 출처 */
+.rail { font-size: .88rem; line-height: 1.6; color: var(--ink-2); padding-top: .3rem; }
+.rail > * { margin: 0 0 1.1rem; }
+.rail .cls { font-weight: 800; color: var(--ink); font-size: .95rem; }
+.rail dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; padding: .9rem 0; border-block: 1px solid var(--rule); }
+.rail dt { color: var(--ink-3); }
+.rail dd { margin: 0; text-align: right; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rail .claim.external, .rail .claim.opinion { display: inline-block; padding: .1rem .5rem; border: 1px solid var(--ink-3); border-radius: 2px; }
+.rail .claim.official { font-weight: 700; color: var(--ink); }
+.rail .vf { color: var(--ink-3); }
+.rail ul { list-style: none; padding: 0; }
+.rail li { margin-bottom: .4rem; }
+.rail a { overflow-wrap: anywhere; }
+
+/* 실무 가이드 */
+.part { padding: 5rem 0 1rem; border-top: 3px solid var(--ink); }
+.part h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 800; margin: 0 0 .6rem; }
+.part p { margin: 0; color: var(--ink-2); font-size: 1.08rem; }
+.index-part { font-size: 1.3rem; font-weight: 800; margin: 2.4rem 0 .8rem; }
+.plabel { font-weight: 700; margin: 1.4rem 0 .4rem !important; }
+.trouble { margin: 0 0 1rem; }
+.trouble dt { font-weight: 700; margin-top: 1rem; }
+.trouble dd { margin: .2rem 0 0; color: var(--ink-2); }
+.rail .who { display: block; }
+.rail .who dd { text-align: left; font-weight: 400; color: var(--ink-2); margin-bottom: .6rem; }
+
+/* 수집 메모 */
+.memo { max-width: 72rem; margin: 2rem auto 0; padding: 2.5rem 0 5rem; border-top: 1.5px solid var(--ink); color: var(--ink-3); font-size: .88rem; }
+.memo h2 { font-size: 1.6rem; color: var(--ink); margin: 0 0 .8rem; }
+.memo ul { padding-left: 1.1rem; max-width: 52rem; }
+
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .mast { padding: 2.6rem 1.25rem 2rem; }
+  main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .memo { margin-inline: 1.25rem; }
+  .cols { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .rail { border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+  .index a { grid-template-columns: 2.4rem 1fr; }
+  .index .ol { grid-column: 2; }
+  .plate { padding-top: 3rem; }
+}
+@media print {
+  .copy { display: none; }
+  .chart .mark { stroke-dashoffset: 0 !important; }
+  .chart .lab { opacity: 1 !important; }
+  .plate { break-before: page; }
+}
+</style></head><body>
+<header class="mast"><h1>AI 트렌드 노트</h1><p class="dateline">2026년 10월 30일 금요일 · 6건</p><p class="lede">Anthropic이 신약 개발사 6곳과 Claude를 실제 개발 과정에 넣은 중간 결과를 공개했다. 모델 가격 인하가 이어지는 가운데, 이번 주에는 에이전트를 샌드박스에 가두는 OpenShell과 Claude Code의 과잉 구현을 줄이는 CLAUDE.md 하나를 직접 깔아 볼 만하다.</p>
+<nav aria-label="도판 목록"><ol class="index"><li><a href="#p1"><span class="tag">1</span><span class="nm">Anthropic, Claude로 신약 개발 가속한 초기 성과 공개</span><span class="ol">신약 개발사 6곳이 Claude Code로 설계부터 서류까지</span></a></li><li><a href="#p2"><span class="tag">2</span><span class="nm">OpenAI와 Anthropic은 왜 몇 달 만에 LLM 값을 최대 80% 내렸나</span><span class="ol">가격 인하의 이유, 캐시 읽기가 비용의 96~99%</span></a></li><li><a href="#p3"><span class="tag">3</span><span class="nm">Mistral Large 4 가중치 공개, 100만 토큰당 입력 $0.70</span><span class="ol">1T 파라미터 오픈 웨이트, 코딩·보안 강화</span></a></li><li><a href="#p4"><span class="tag">4</span><span class="nm">NVIDIA OpenShell: 자율 에이전트를 정책으로 가두는 샌드박스 런타임</span><span class="ol">에이전트별 샌드박스, 실제 자격 증명은 안 보여 준다</span></a></li></ol><h2 class="index-part">실무 가이드</h2><ol class="index"><li><a href="#p5"><span class="tag">5</span><span class="nm">OpenShell 설치 · 사용법: 에이전트를 샌드박스에 넣고 접근을 하나씩 승인하기</span><span class="ol">에이전트 접근을 정책으로 막고 필요한 것만 허용</span></a></li><li><a href="#p6"><span class="tag">6</span><span class="nm">andrej-karpathy-skills 설치 · 사용법: Claude Code의 과잉 구현을 CLAUDE.md 하나로 줄이기</span><span class="ol">가정 확인·단순함·최소 수정을 Claude Code에 심는다</span></a></li></ol></nav></header>
+<main><article class="plate" id="p1"><header><span class="tag">1</span><h2>Anthropic, Claude로 신약 개발 가속한 초기 성과 공개</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://www-cdn.anthropic.com/images/4zrzovbb/website/6a50f5ba4c0931f8d2c411f26d860955c1efeae7-1200x630.jpg" alt="Anthropic, Claude로 신약 개발 가속한 초기 성과 공개 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · www-cdn.anthropic.com</figcaption></figure><p class="summary official">Anthropic 생명과학팀이 10월 27일 신약 개발사 6곳과의 협업 결과를 발표했다. Generate Biomedicines에서는 과학자 6명이 Claude Code로 CAR-T 설계를 제안했고, 표준보다 약 70% 짧은 설계가 실험에서 수용체를 약 10배 더 만들었다. Enveda에서는 1,061쪽 서류에서 사람이 찾은 문제 11개를 모두 잡고 7개를 더 찾았으며, 검토 시간이 25시간 넘게에서 3시간 미만으로 89% 줄었다. Anthropic은 아직 초기이고 대부분 전임상 단계라고 밝혔다.</p><h3>그래서 무엇을 하나</h3><p>Claude Code를 코드 밖 업무(대량 설계 탐색, 긴 문서 검토)에 쓰는 사례로 읽어 볼 만하다. 내 업무에서 사람이 검토하던 긴 문서 하나를 골라 Claude가 찾은 문제와 사람이 찾은 문제를 나란히 비교해 보자.</p></div><aside class="rail"><p class="cls">실무 · 관점</p><p class="claim official">공식 발표</p><ul><li><a href="https://www.anthropic.com/research/early-progress-drug-development">anthropic.com/research/early-progress-drug-development</a></li><li><a href="https://news.ycombinator.com/item?id=50265609">news.ycombinator.com/item?id=50265609</a></li></ul></aside></div></article><article class="plate" id="p2"><header><span class="tag">2</span><h2>OpenAI와 Anthropic은 왜 몇 달 만에 LLM 값을 최대 80% 내렸나</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://minimaxir.com/2026/10/cheap-llms/vercel.png" alt="OpenAI와 Anthropic은 왜 몇 달 만에 LLM 값을 최대 80% 내렸나 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · minimaxir.com</figcaption></figure><p class="summary opinion"><span class="prov">의견 · 칼럼</span>Max Woolf가 6월부터 9월까지 OpenAI와 Anthropic의 가격 인하를 표로 정리했다. Claude Opus 5.5는 입력 $4, 출력 $20, 캐시 읽기 $0.20(100만 토큰당)이고, Fable 5.1은 캐시 읽기를 $1에서 $0.25로 75% 내렸다. 글쓴이는 모델 전환 비용이 거의 없고 오픈 웨이트 모델이 압박하기 때문에 값이 다시 오르기 어렵다고 본다. 에이전트 코딩에서는 캐시 읽기가 토큰 비용의 96~99%라서, 캐시 가격 75% 인하가 실제 비용을 약 70~75% 줄인다고 설명한다.</p><h3>그래서 무엇을 하나</h3><p>에이전트 코딩 비용을 볼 때는 입출력 단가보다 캐시 읽기 단가를 먼저 비교하자. 지금 쓰는 모델의 캐시 읽기 가격을 한 번 확인해 두면 모델 선택 기준이 분명해진다.</p></div><aside class="rail"><p class="cls">실무 · 관점</p><p class="claim opinion">의견 · 칼럼</p><ul><li><a href="https://minimaxir.com/2026/10/cheap-llms/">minimaxir.com/2026/10/cheap-llms</a></li><li><a href="https://news.ycombinator.com/item?id=50236102">news.ycombinator.com/item?id=50236102</a></li></ul></aside></div></article><article class="plate" id="p3"><header><span class="tag">3</span><h2>Mistral Large 4 가중치 공개, 100만 토큰당 입력 $0.70</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://mistral.ai/cms-media/api/media/file/cover-mistral-sovereign%20copie.webp" alt="Mistral Large 4 가중치 공개, 100만 토큰당 입력 $0.70 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · mistral.ai</figcaption></figure><p class="summary official">Mistral이 이달 초 공개 프리뷰 뒤 강화학습을 더한 Mistral Large 4 가중치를 공개했다. 1조 파라미터의 멀티모달 MoE 모델이고, 추론 모드는 Low, Medium, High(기본) 세 가지다. API 가격은 100만 토큰당 입력 $0.70, 캐시 입력 $0.07, 출력 $2.10이다. Terminal-Bench 4.0은 41%로 프리뷰 28%보다 13점 올랐고, 블라인드 비교에서 Claude Opus 5.5 상대 승률은 22%다. 라이선스는 수정 MIT이며, 모델을 서비스로 파는 회사는 별도 상업 라이선스가 필요하다.</p><h3>그래서 무엇을 하나</h3><p>싼 보조 모델이나 자체 호스팅 후보를 찾는다면 OpenRouter의 <code>mistralai/mistral-large-4-0</code>으로 평소 작업 하나를 돌려 비교해 보자.</p><ul class="steps"><li>API 모델 ID: mistral-large-4-0</li><li>OpenRouter 모델 ID: mistralai/mistral-large-4-0</li><li>Hugging Face: mistralai/Mistral-Large-4-1T-A52B (vLLM, SGLang으로 자체 호스팅)</li></ul></div><aside class="rail"><p class="cls">출시 · 업데이트</p><p class="claim official">공식 발표</p><ul><li><a href="https://mistral.ai/news/mistral-large-4-oss/">mistral.ai/news/mistral-large-4-oss</a></li><li><a href="https://news.hada.io/topic?id=36233">news.hada.io/topic?id=36233</a></li></ul></aside></div></article><article class="plate" id="p4"><header><span class="tag">4</span><h2>NVIDIA OpenShell: 자율 에이전트를 정책으로 가두는 샌드박스 런타임</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/NVIDIA/OpenShell" alt="NVIDIA OpenShell: 자율 에이전트를 정책으로 가두는 샌드박스 런타임 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><p class="summary official">NVIDIA가 자율 에이전트용 런타임 OpenShell을 Apache-2.0으로 공개했고, HN에서 508점을 받았다. 에이전트마다 별도 샌드박스에서 돌리고, 파일 접근과 시스템 호출을 제한하며, 나가는 연결을 모두 정책과 대조한다. 에이전트는 실제 자격 증명을 보지 못하고, OpenShell이 승인된 엔드포인트로 가는 요청에만 넣어 준다. 새 호스트 같은 위험한 접근 추가는 형식 검증으로 표시해 사람이 먼저 검토한다.</p><h3>그래서 무엇을 하나</h3><p>에이전트를 무인으로 오래 돌리고 싶은데 권한이 걱정된다면 아래 실무 가이드로 30분 안에 첫 샌드박스를 띄워 보자.</p></div><aside class="rail"><p class="cls">도구 사용법</p><p class="claim official">공식 발표</p><ul><li><a href="https://github.com/NVIDIA/OpenShell">github.com/NVIDIA/OpenShell</a></li><li><a href="https://news.ycombinator.com/item?id=50198675">news.ycombinator.com/item?id=50198675</a></li><li><a href="https://docs.nvidia.com/openshell/latest/about/run-your-first-agent">docs.nvidia.com/openshell/latest/about/run-your-first-agent</a></li></ul></aside></div></article><header class="part" id="guides"><h2>실무 가이드</h2><p>이번 주 직접 해 볼 만한 것. 설치부터 실습, 막힐 때까지.</p></header><article class="plate" id="p5"><header><span class="tag">5</span><h2>OpenShell 설치 · 사용법: 에이전트를 샌드박스에 넣고 접근을 하나씩 승인하기</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://docs.nvidia.com/openshell/api/fern-docs/og?slug=openshell%2Flatest%2Fabout%2Frun-your-first-agent" alt="OpenShell 설치 · 사용법: 에이전트를 샌드박스에 넣고 접근을 하나씩 승인하기 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · docs.nvidia.com</figcaption></figure><p class="summary">OpenShell은 NVIDIA가 공개한 자율 에이전트용 런타임이다. 에이전트마다 샌드박스를 만들고, 파일·네트워크·프로세스 규칙을 정책으로 강제한다. API 키는 OpenShell의 자격 증명 저장소에 두고 승인된 엔드포인트로 가는 요청에만 넣으므로 에이전트는 실제 키를 보지 못한다. 공식 첫 실습은 OpenCode와 OpenRouter 무료 모델을 쓰므로 비용 없이 따라 할 수 있다.</p><h3>설치 · 설정</h3><div class="cmd"><pre><code>curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh</code></pre><button type="button" class="copy">복사</button></div><ol class="steps"><li>Linux 또는 Apple Silicon macOS에 Docker나 Podman이 있는지 확인한다.</li><li>설치 스크립트를 실행한다. CLI와 로컬 게이트웨이가 함께 설치된다.</li><li>openshell sandbox create --name demo 로 빈 Ubuntu 샌드박스가 뜨는지 확인한다.</li><li>OpenRouter API 키를 OPENROUTER_API_KEY 환경 변수에 넣는다.</li><li>(선택) npx skills add NVIDIA/OpenShell 로 코딩 에이전트에 OpenShell CLI·정책 작성 스킬을 넣는다.</li></ol><h3>실습</h3><p>OpenCode 에이전트를 샌드박스에서 돌리고, 정책에 막힌 접근을 직접 승인해 본다.</p><ol class="steps"><li>openshell profile import --url https://raw.githubusercontent.com/NVIDIA/OpenShell/main/providers/openrouter.yaml</li><li>openshell provider create --name openrouter --type openrouter --from-existing</li><li>openshell sandbox create --name my-agent --from ghcr.io/anomalyco/opencode:latest --provider openrouter -- opencode -m openrouter/nvidia/nemotron-3.5-lightning:free</li><li>샌드박스 안의 OpenCode에 인터넷에서 무언가를 받아 오는 작업을 시켜 정책에 막히게 한다.</li><li>다른 터미널에서 openshell rule get my-agent --status pending 으로 대기 중인 규칙 제안을 본다.</li><li>필요한 것만 openshell rule approve my-agent --chunk-id &lt;chunk-id&gt; 로 승인한다.</li><li>필요 없는 것은 openshell rule reject my-agent --chunk-id &lt;chunk-id&gt; --reason &quot;Not needed for this task.&quot; 로 거절한다.</li><li>승인한 규칙은 실행 중인 샌드박스에 바로 반영되므로 에이전트에게 다시 시도하게 한다.</li></ol><figure class="diagram"><pre class="mermaid">flowchart TD
+  A[에이전트 요청] --&gt; B[정책 검사]
+  B --&gt;|차단| C[규칙 제안·검증]
+  C --&gt; D[사람이 승인]
+  D --&gt;|즉시 반영| B</pre></figure><h3>바로 쓰는 프롬프트</h3><p class="plabel">스킬 설치 뒤 개념 파악</p><div class="cmd"><pre class="prompt"><code>OpenShell 스킬을 참고해서, 지금 내 머신의 OpenShell 샌드박스 목록과 각 샌드박스에 걸린 정책을 요약해 줘. 명령은 실행 전에 먼저 보여 줘.</code></pre><button type="button" class="copy">복사</button></div><p class="plabel">대기 중인 규칙 검토</p><div class="cmd"><pre class="prompt"><code>openshell rule get &lt;샌드박스 이름&gt; --status pending 결과를 보고, 각 제안이 어떤 호스트·경로를 여는지, &lt;이번 작업 목적&gt;에 꼭 필요한지 표로 정리해 줘. 승인은 내가 직접 할게.</code></pre><button type="button" class="copy">복사</button></div><p class="plabel">프로젝트용 정책 초안</p><div class="cmd"><pre class="prompt"><code>&lt;프로젝트 경로&gt;에서 에이전트가 해야 할 일은 &lt;작업 설명&gt;이야. OpenShell 스킬을 참고해 이 작업에 필요한 최소한의 파일·네트워크 접근만 허용하는 샌드박스 정책 초안을 써 줘. 적용은 하지 말고 파일로만 저장해 줘.</code></pre><button type="button" class="copy">복사</button></div><h3>안 될 때</h3><dl class="trouble"><dt>openshell rule approve-all 을 실행했는데 일부 제안이 승인되지 않고 남는다.</dt><dd>보안 표시가 붙은 제안은 기본으로 건너뛴다. 내용을 확인한 뒤 정말 필요하면 --include-security-flagged 를 붙인다.</dd><dt>제안 하나를 승인한 뒤 나머지 제안 목록이 달라졌다.</dt><dd>승인할 때마다 남은 제안을 다시 검사한다. 다음 승인 전에 openshell rule get &lt;샌드박스&gt; --status pending 으로 목록을 다시 본다.</dd></dl><p class="caution"><strong>주의.</strong> WSL 2 지원은 실험 단계다. 익명 텔레메트리가 기본으로 켜져 있으며, 게이트웨이에 OPENSHELL_TELEMETRY_ENABLED=false 를 주면 끈다. README에는 Claude Code를 샌드박스에서 돌리는 절차가 없으므로 공식 실습은 OpenCode로 한다.</p></div><aside class="rail"><p class="cls">실무 가이드</p><dl class="who"><dt>이런 분께</dt><dd>에이전트를 오래 돌려 두고 싶은데 파일·네트워크·키 권한이 걱정되는 분께</dd><dt>읽고 나면</dt><dd>에이전트가 막힌 곳에 닿을 때마다 규칙 제안을 받아 직접 승인하는 흐름을 손에 익힌다.</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://docs.nvidia.com/openshell/latest/about/run-your-first-agent">docs.nvidia.com/openshell/latest/about/run-your-first-agent</a></li><li><a href="https://github.com/NVIDIA/OpenShell">github.com/NVIDIA/OpenShell</a></li></ul></aside></div></article><article class="plate" id="p6"><header><span class="tag">6</span><h2>andrej-karpathy-skills 설치 · 사용법: Claude Code의 과잉 구현을 CLAUDE.md 하나로 줄이기</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/multica-ai/andrej-karpathy-skills" alt="andrej-karpathy-skills 설치 · 사용법: Claude Code의 과잉 구현을 CLAUDE.md 하나로 줄이기 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><p class="summary">Andrej Karpathy가 지적한 LLM 코딩의 흔한 실수를 바탕으로 만든 CLAUDE.md 한 개다. 생각 먼저, 단순함 먼저, 외과적 수정, 목표 중심 실행의 네 원칙을 담았다. 이번 주 GitHub 트렌딩에서 주간 별 4,250개를 받았다. 플러그인으로 모든 프로젝트에 깔거나, 한 프로젝트의 CLAUDE.md에만 붙일 수 있다.</p><h3>설치 · 설정</h3><div class="cmd"><pre><code>/plugin marketplace add forrestchang/andrej-karpathy-skills</code></pre><button type="button" class="copy">복사</button></div><ol class="steps"><li>Claude Code를 연다.</li><li>/plugin marketplace add forrestchang/andrej-karpathy-skills 로 마켓플레이스를 추가한다.</li><li>/plugin install andrej-karpathy-skills@karpathy-skills 로 플러그인을 설치한다.</li><li>한 프로젝트에만 쓰려면 플러그인 대신 curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md 를 쓴다.</li><li>이미 CLAUDE.md가 있으면 echo &quot;&quot; &gt;&gt; CLAUDE.md 뒤에 curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md &gt;&gt; CLAUDE.md 로 끝에 붙인다.</li></ol><h3>실습</h3><p>같은 버그 수정 요청을 설치 전후로 시켜 diff 크기와 확인 질문을 비교한다.</p><ol class="steps"><li>작은 버그 하나가 있는 브랜치를 고른다.</li><li>설치 전에 버그 수정을 요청하고 git diff --stat 결과를 적어 둔다.</li><li>git stash 로 변경을 치운다.</li><li>플러그인을 설치하거나 CLAUDE.md에 내용을 붙인다.</li><li>새 세션에서 같은 요청을 다시 한다.</li><li>수정 전에 가정이나 해석을 먼저 말하는지 본다.</li><li>git diff --stat 으로 바뀐 파일 수와 줄 수를 설치 전과 비교한다.</li></ol><h3>바로 쓰는 프롬프트</h3><p class="plabel">가정 먼저 꺼내게 하기</p><div class="cmd"><pre class="prompt"><code>&lt;기능 설명&gt;을 추가하고 싶어. 코드를 쓰기 전에 네가 하는 가정과, 요청을 다르게 읽을 수 있는 방식을 먼저 나열해 줘.</code></pre><button type="button" class="copy">복사</button></div><p class="plabel">재현 테스트부터 고치기</p><div class="cmd"><pre class="prompt"><code>&lt;버그 증상&gt;이 있어. 먼저 이 버그를 재현하는 테스트를 쓰고 실패하는지 확인한 다음, 그 테스트를 통과시키는 최소한의 수정만 해 줘.</code></pre><button type="button" class="copy">복사</button></div><p class="plabel">외과적 수정 점검</p><div class="cmd"><pre class="prompt"><code>방금 변경한 git diff를 보고, &lt;작업 목표&gt;에 꼭 필요하지 않은 수정이 섞였는지 줄 단위로 짚어 줘. 관련 없는 죽은 코드는 지우지 말고 목록으로만 알려 줘.</code></pre><button type="button" class="copy">복사</button></div><p class="caution"><strong>주의.</strong> README는 이 지침이 속도보다 신중함을 우선한다고 밝힌다. 오타 수정 같은 사소한 작업에는 전 과정을 다 밟을 필요가 없다. 프로젝트 고유 규칙은 따로 CLAUDE.md에 함께 적어야 한다.</p></div><aside class="rail"><p class="cls">실무 가이드</p><dl class="who"><dt>이런 분께</dt><dd>Claude Code가 묻지 않고 가정하거나, 요청보다 큰 diff를 내놓아 매번 되돌리는 분께</dd><dt>읽고 나면</dt><dd>작업 전에 확인 질문이 먼저 나오고, 요청과 상관없는 수정이 줄어든 diff를 받는다.</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/multica-ai/andrej-karpathy-skills">github.com/multica-ai/andrej-karpathy-skills</a></li></ul></aside></div></article></main>
+<footer class="memo"><h2>수집 메모</h2><ul><li>스킬 순위 데이터: Best Skills (https://github.com/LinklyAI/best-skills) by @BlueeonY — CC BY 4.0</li><li>그림은 각 출처의 공개 미리보기 이미지(Open Graph)다. 막대 그림은 skills.sh 주간 설치 수로 그렸다.</li><li>&#x27;검증&#x27;은 설치 명령이 공식 문서 · README 본문에 글자 그대로 있는지 확인했다는 뜻이다. 실행해 본 것은 아니다.</li></ul></footer>
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.previousElementSibling.innerText);b.textContent='복사됨';}
+  catch(e){b.textContent='복사 안 됨';}
+  setTimeout(()=>b.textContent='복사',1600);}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.chart').forEach(c=>io.observe(c));
+</script>
+<script type="module">
+if(document.querySelector('.mermaid')){
+  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
+  try{const m=(await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')).default;
+    m.initialize({startOnLoad:false,theme:'base',flowchart:{useMaxWidth:false},themeVariables:{edgeLabelBackground:dark?'#1B201C':'#FBFCF9',fontFamily:'Pretendard, Noto Sans KR, sans-serif',fontSize:'14px',
+      primaryColor:dark?'#232A25':'#FBFCF9',primaryBorderColor:dark?'#DDE3DC':'#1D241F',primaryTextColor:dark?'#EEF1EC':'#1D241F',
+      lineColor:dark?'#AEB8AF':'#3E4A42',secondaryColor:dark?'#232A25':'#E6EAE3',tertiaryColor:dark?'#161A17':'#F1F3EE'}});
+    await m.run({querySelector:'.mermaid'});}catch(e){document.documentElement.classList.add('no-mermaid');}
+}
+</script></body></html>
