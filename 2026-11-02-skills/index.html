@@ -1,0 +1,187 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스킬 도감 — 11월 2일 (월)</title><style>/* 주간 보고서 — 도감(field guide) 도판. 방향: ../.impeccable/surfaces/02-report-css.md */
+:root {
+  --paper: #F1F3EE; --sheet: #FBFCF9; --ink: #1D241F; --ink-2: #3E4A42; --ink-3: #5E6A61;
+  --rule: #CBD2CA; --tag: #E9C64B; --tag-ink: #1D241F; --link: #1F5E7A;
+  --code-bg: #E6EAE3;
+  --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "D2Coding", Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151916; --sheet: #1B201C; --ink: #EEF1EC; --ink-2: #C9D1C8; --ink-3: #9AA59C;
+    --rule: #333C35; --link: #8CC4DB; --code-bg: #232A25;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); scrollbar-color: var(--ink-3) var(--paper); }
+body {
+  margin: 0; color: var(--ink); font: 400 17px/1.8 var(--sans);
+  word-break: keep-all; overflow-wrap: anywhere; text-align: left;
+  -webkit-font-smoothing: antialiased; caret-color: var(--tag);
+}
+::selection { background: var(--tag); color: var(--tag-ink); }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+code { font: 500 .88em/1.5 var(--mono); }
+strong { font-weight: 700; }
+
+/* 표제 — 도감의 속표지 */
+.mast { max-width: 76rem; margin: 0 auto; padding: 4.5rem 2rem 3rem; }
+.mast h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 .6rem; }
+.dateline { margin: 0 0 1.8rem; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.22rem; line-height: 1.7; color: var(--ink-2); max-width: 44rem; margin: 0 0 3rem; }
+
+/* 도판 목록 */
+.index { list-style: none; margin: 0; padding: .3rem 0 0; border-top: 1.5px solid var(--ink); max-width: 56rem; }
+.index a { display: grid; grid-template-columns: 2.6rem minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding: .85rem .25rem; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: .22em; }
+.index .nm { font-weight: 700; }
+.index .ol { color: var(--ink-3); font-size: .95rem; }
+
+/* 도판 번호표 — 노란 표지는 여기와 식별 포인트에만 쓴다 */
+.tag { display: inline-grid; place-items: center; min-width: 1.9rem; height: 1.9rem; padding: 0 .4rem;
+  background: var(--tag); color: var(--tag-ink); font: 800 .95rem/1 var(--sans); font-variant-numeric: tabular-nums; border-radius: 2px; }
+
+/* 도판 */
+main { max-width: 76rem; margin: 0 auto; padding: 0 2rem; }
+.plate { padding: 4.5rem 0 3.5rem; border-top: 1.5px solid var(--ink); scroll-margin-top: 1rem; }
+.plate > header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.plate h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.25; letter-spacing: -0.02em; font-weight: 800; margin: 0; }
+.cols { display: grid; grid-template-columns: minmax(0, 42rem) minmax(13rem, 17rem); gap: 4rem; }
+.main h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; margin: 2.4rem 0 .5rem; }
+.main p { margin: 0 0 1rem; }
+.summary { font-size: 1.08rem; }
+.summary.external, .summary.opinion { color: var(--ink-3); }
+.prov { font-weight: 700; color: var(--ink); margin-right: .5em; }
+
+/* 표본 사진 */
+.specimen { margin: 0 0 2rem; }
+.specimen img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  background: var(--code-bg); border: 1px solid var(--rule); border-radius: 3px; }
+figcaption { font-size: .8rem; color: var(--ink-3); margin-top: .5rem; }
+
+/* 식별 포인트 — 주간 설치 막대 */
+.chart { margin: 1.4rem 0 .4rem; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .mark { stroke-dasharray: 200; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .chart:not(.seen) .mark { stroke-dashoffset: 200; }
+  .chart .mark { transition: stroke-dashoffset 900ms cubic-bezier(.16, 1, .3, 1); }
+  .chart:not(.seen) .lab { opacity: 0; }
+  .chart .lab { transition: opacity 500ms 500ms ease-out; }
+}
+
+/* 설치 명령 */
+.cmd { position: relative; }
+pre { margin: 0 0 1rem; padding: 1rem 1.1rem; background: var(--code-bg); border-radius: 4px; overflow-x: auto; }
+pre code { font-size: .9rem; white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+.prompt code { font-family: var(--sans); }
+.cmd pre { padding-right: 5rem; }
+.copy { position: absolute; top: .55rem; right: .55rem; font: 700 .82rem/1 var(--sans); color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .7rem; cursor: pointer; }
+.copy:hover { border-color: var(--ink-3); }
+.copy:active { transform: translateY(1px); }
+.prompt { background: transparent; border: 1px dashed var(--rule); }
+
+.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+.steps li { margin-bottom: .45rem; padding-left: .2rem; }
+.steps li::marker { font-weight: 800; color: var(--ink-3); }
+.caution { margin-top: 1.6rem !important; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .95rem; }
+
+/* 다이어그램 */
+.diagram { margin: 1.8rem 0; padding: 1.4rem 1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
+.diagram pre.mermaid { background: none; margin: 0; padding: 0; text-align: center; font: 500 .85rem/1.5 var(--mono); color: var(--ink-3); }
+.diagram svg { display: block; margin: 0 auto; max-width: none; height: auto; }
+.diagram pre.mermaid:not([data-processed]) { visibility: hidden; }
+.no-mermaid .diagram { display: none; }
+
+/* 여백 난 — 숫자와 출처 */
+.rail { font-size: .88rem; line-height: 1.6; color: var(--ink-2); padding-top: .3rem; }
+.rail > * { margin: 0 0 1.1rem; }
+.rail .cls { font-weight: 800; color: var(--ink); font-size: .95rem; }
+.rail dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; padding: .9rem 0; border-block: 1px solid var(--rule); }
+.rail dt { color: var(--ink-3); }
+.rail dd { margin: 0; text-align: right; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rail .claim.external, .rail .claim.opinion { display: inline-block; padding: .1rem .5rem; border: 1px solid var(--ink-3); border-radius: 2px; }
+.rail .claim.official { font-weight: 700; color: var(--ink); }
+.rail .vf { color: var(--ink-3); }
+.rail ul { list-style: none; padding: 0; }
+.rail li { margin-bottom: .4rem; }
+.rail a { overflow-wrap: anywhere; }
+
+/* 실무 가이드 */
+.part { padding: 5rem 0 1rem; border-top: 3px solid var(--ink); }
+.part h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 800; margin: 0 0 .6rem; }
+.part p { margin: 0; color: var(--ink-2); font-size: 1.08rem; }
+.index-part { font-size: 1.3rem; font-weight: 800; margin: 2.4rem 0 .8rem; }
+.plabel { font-weight: 700; margin: 1.4rem 0 .4rem !important; }
+.trouble { margin: 0 0 1rem; }
+.trouble dt { font-weight: 700; margin-top: 1rem; }
+.trouble dd { margin: .2rem 0 0; color: var(--ink-2); }
+.rail .who { display: block; }
+.rail .who dd { text-align: left; font-weight: 400; color: var(--ink-2); margin-bottom: .6rem; }
+
+/* 수집 메모 */
+.memo { max-width: 72rem; margin: 2rem auto 0; padding: 2.5rem 0 5rem; border-top: 1.5px solid var(--ink); color: var(--ink-3); font-size: .88rem; }
+.memo h2 { font-size: 1.6rem; color: var(--ink); margin: 0 0 .8rem; }
+.memo ul { padding-left: 1.1rem; max-width: 52rem; }
+
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .mast { padding: 2.6rem 1.25rem 2rem; }
+  main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .memo { margin-inline: 1.25rem; }
+  .cols { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .rail { border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+  .index a { grid-template-columns: 2.4rem 1fr; }
+  .index .ol { grid-column: 2; }
+  .plate { padding-top: 3rem; }
+}
+@media print {
+  .copy { display: none; }
+  .chart .mark { stroke-dashoffset: 0 !important; }
+  .chart .lab { opacity: 1 !important; }
+  .plate { break-before: page; }
+}
+</style></head><body>
+<header class="mast"><h1>스킬 도감</h1><p class="dateline">2026년 11월 2일 월요일 · 6건</p><p class="lede">디자인 스킬 Hallmark가 한 주에 별 11,566개를 받아 GitHub 트렌딩 맨 앞에 섰다. 이번 호는 설치 급등 후보가 없어 트렌딩과 별 증가 상위에서 세션 기억, 개발 절차, 계획 검증 스킬을 함께 골랐다.</p>
+<nav aria-label="도판 목록"><ol class="index"><li><a href="#p1"><span class="tag">1</span><span class="nm">Hallmark</span><span class="ol">AI가 만든 티가 나는 웹 페이지를 걸러 내는 디자인 스킬</span></a></li><li><a href="#p2"><span class="tag">2</span><span class="nm">claude-mem</span><span class="ol">세션 기록을 요약해 다음 세션에 넣어 주는 기억 플러그인</span></a></li><li><a href="#p3"><span class="tag">3</span><span class="nm">Superpowers</span><span class="ol">설계부터 브랜치 마무리까지 단계별로 일하게 하는 스킬 묶음</span></a></li><li><a href="#p4"><span class="tag">4</span><span class="nm">ECC</span><span class="ol">에이전트 71개 · 스킬 314개를 묶은 작업 체계</span></a></li><li><a href="#p5"><span class="tag">5</span><span class="nm">grill-me (Matt Pocock)</span><span class="ol">계획의 모든 갈래가 정해질 때까지 캐묻는 스킬</span></a></li><li><a href="#p6"><span class="tag">6</span><span class="nm">interfaces (jakubkrehel/skills)</span><span class="ol">타이포 · 색 · 접근성 · 문구를 나눠 점검하는 UI 스킬 14개</span></a></li></ol></nav></header>
+<main><article class="plate" id="p1"><header><span class="tag">1</span><h2>Hallmark</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/Nutlope/hallmark" alt="Hallmark 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Together AI가 만든 웹 디자인 스킬이다. 모든 제목 위 작은 라벨, 제목 속 한 단어만 색칠하기, 실제로 제출되지 않는 폼 같은 기계적 흔적을 찾아낸다. 점검은 출시를 막는 Floor, 이유를 적으면 넘길 수 있는 Reflex, 막지 않는 Finish 세 단계로 나뉜다. 테마 50개와 프롬프트만으로 설계하는 custom 모드가 있다.</p><h3>왜 지금</h3><p>지난주 GitHub 트렌딩에서 별 11,566개를 받았다. 7일 별 증가도 10,163개로 별 상위 저장소 중 세 번째다. 누적 별은 43,923개다.</p><figure class="chart"><svg class="weeks" viewBox="0 0 520 190" role="img"><title>Hallmark 주간 설치 8주</title><style>.bar{fill:#9AA79D}.bar.last{fill:#E9C64B;stroke:#1D241F;stroke-width:1}.avg{stroke:#1D241F;stroke-dasharray:3 4;stroke-width:1}.mark{stroke:#1D241F;stroke-width:1.4;fill:none}.cap,.lab{font:500 12px "Pretendard","Noto Sans KR",sans-serif;fill:#3E4A42}.lab{font-weight:700;fill:#1D241F}.axis{stroke:#B9C2B9}@media (prefers-color-scheme:dark){.bar{fill:#4E5A52}.bar.last{stroke:#E9C64B}.avg,.mark{stroke:#DDE3DC}.cap{fill:#AEB8AF}.lab{fill:#EEF1EC}.axis{stroke:#3A433D}}</style><line class="axis" x1="8" x2="512" y1="164" y2="164"/><rect class="bar" x="19.3" y="108.5" width="40.3" height="55.5"><title>7주 전 2,638</title></rect><rect class="bar" x="82.3" y="118.9" width="40.3" height="45.1"><title>6주 전 2,143</title></rect><rect class="bar" x="145.3" y="120.9" width="40.3" height="43.1"><title>5주 전 2,047</title></rect><rect class="bar" x="208.3" y="118.5" width="40.3" height="45.5"><title>4주 전 2,162</title></rect><rect class="bar" x="271.3" y="118.5" width="40.3" height="45.5"><title>3주 전 2,165</title></rect><rect class="bar" x="334.3" y="120.0" width="40.3" height="44.0"><title>2주 전 2,094</title></rect><rect class="bar" x="397.3" y="110.3" width="40.3" height="53.7"><title>1주 전 2,555</title></rect><rect class="bar last" x="460.3" y="34.0" width="40.3" height="130.0"><title>지난주 6,181</title></rect><line class="avg" x1="8" x2="512" y1="116.2" y2="116.2"/><text class="cap" x="10" y="110.2">직전 3주 평균 2,271</text><path class="mark" d="M410.5 16 H472.5 L480.5 28.0"/><text class="lab" x="406.5" y="20" text-anchor="end">지난주 6,181 · 2.7배</text><text class="cap" x="8" y="182">7주 전</text><text class="cap" x="512" y="182" text-anchor="end">지난주</text></svg></figure><h3>설치</h3><div class="cmd"><pre><code>npx skills add nutlope/hallmark -g</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li><code>/hallmark audit ./index.html</code>로 기존 페이지의 문제만 리포트로 받는다. 파일은 바뀌지 않는다.</li><li><code>/hallmark &lt;만들 페이지 설명&gt;</code>으로 새 페이지를 만든다. 테마 세 개를 제안받고 상단 영역부터 렌더해 검토한다.</li><li>브라우저 점검까지 쓰려면 <code>npm i -g puppeteer-core</code>를 깔고 Chrome을 준비한다. 없으면 정적 점검만 돈다.</li></ol><figure class="diagram"><pre class="mermaid">flowchart LR
+  A[프로젝트 읽기] --&gt; B[테마 3개 제안]
+  B --&gt; C[상단 영역 먼저]
+  C --&gt; D[8개 폭 점검·리뷰]</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>/hallmark audit &lt;점검할 HTML 파일 경로&gt;</code></pre><p class="caution"><strong>주의.</strong> Node 18 이상이 필요하다. 브라우저 점검은 puppeteer-core와 Chrome이 있어야 하고, 없으면 정적 점검만 실행된다. 기존 디자인은 이름을 직접 지정해야만 손댄다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><dl><dt>지난주 설치</dt><dd>6,181</dd><dt>직전 3주 평균</dt><dd>2,271</dd><dt>배수</dt><dd>2.7배</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/Nutlope/hallmark">github.com/Nutlope/hallmark</a></li></ul></aside></div></article><article class="plate" id="p2"><header><span class="tag">2</span><h2>claude-mem</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/thedotmack/claude-mem" alt="claude-mem 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>에이전트가 도구로 한 일을 기록하고, AI 모델로 짧게 요약해 다음 세션 시작 때 필요한 부분을 넣어 준다. 세션 시작, 프롬프트 제출, 도구 실행 전후, 종료 등 6개 지점에 훅을 건다. 기록은 SQLite 전문 검색과 Chroma 벡터 검색으로 찾는다.</p><h3>왜 지금</h3><p>지난주 GitHub 트렌딩에서 별 5,852개를 받았다.</p><h3>설치</h3><div class="cmd"><pre><code>npx claude-mem install</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>설치 뒤 Claude Code를 다시 열고 평소처럼 작업한다. 다음 세션 시작 때 관련 맥락이 자동으로 들어온다.</li><li>지난 작업을 찾을 때는 <code>search</code>로 목록을 받고, <code>timeline</code>으로 앞뒤를 보고, <code>get_observations</code>로 고른 항목만 자세히 본다.</li><li>문제가 생기면 <code>npx claude-mem doctor</code>로 진단하고 <code>npx claude-mem repair</code>로 고친다.</li></ol><figure class="diagram"><pre class="mermaid">flowchart LR
+  A[세션 훅 6곳] --&gt; B[요약 모델]
+  B --&gt; C[SQLite·Chroma]
+  C --&gt; D[새 세션에 주입]</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>claude-mem에서 지난주에 &lt;기능 이름&gt; 관련해 고친 버그 기록을 찾아서, 그때 무엇을 바꿨는지 요약해 줘.</code></pre><p class="caution"><strong>주의.</strong> 세션 활동을 모두 기록하는 구조다. <code>&lt;private&gt;</code> 태그 안 내용만 저장에서 빠진다. 설치 때 브라우저 로그인을 하면 호스팅 요약 모델 30일 무료 체험이 시작되고, 끝나면 구독하지 않는 한 내 Anthropic 플랜 사용량을 쓴다. <code>npm install -g claude-mem</code>은 라이브러리만 깔고 훅은 설치하지 않는다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/thedotmack/claude-mem">github.com/thedotmack/claude-mem</a></li></ul></aside></div></article><article class="plate" id="p3"><header><span class="tag">3</span><h2>Superpowers</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/obra/superpowers" alt="Superpowers 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>코딩 에이전트가 바로 코드를 쓰지 않고, 먼저 목적을 묻고 명세로 정리해 확인받게 하는 스킬 묶음이다. 계획은 2~5분짜리 작업으로 쪼개고, 작업마다 새 서브에이전트를 띄워 리뷰하거나 한 세션에서 몰아 실행한다. 스킬은 상황에 맞춰 자동으로 켜진다.</p><h3>왜 지금</h3><p>지난주 GitHub 트렌딩에서 별 5,896개, 7일 별 증가 5,015개를 받았다. 누적 별은 310,059개로 오래된 대형 저장소가 다시 오르고 있다.</p><figure class="chart"><svg class="weeks" viewBox="0 0 520 190" role="img"><title>Superpowers 주간 설치 8주</title><style>.bar{fill:#9AA79D}.bar.last{fill:#E9C64B;stroke:#1D241F;stroke-width:1}.avg{stroke:#1D241F;stroke-dasharray:3 4;stroke-width:1}.mark{stroke:#1D241F;stroke-width:1.4;fill:none}.cap,.lab{font:500 12px "Pretendard","Noto Sans KR",sans-serif;fill:#3E4A42}.lab{font-weight:700;fill:#1D241F}.axis{stroke:#B9C2B9}@media (prefers-color-scheme:dark){.bar{fill:#4E5A52}.bar.last{stroke:#E9C64B}.avg,.mark{stroke:#DDE3DC}.cap{fill:#AEB8AF}.lab{fill:#EEF1EC}.axis{stroke:#3A433D}}</style><line class="axis" x1="8" x2="512" y1="164" y2="164"/><rect class="bar" x="19.3" y="51.6" width="40.3" height="112.4"><title>7주 전 8,072</title></rect><rect class="bar" x="82.3" y="54.1" width="40.3" height="109.9"><title>6주 전 7,891</title></rect><rect class="bar" x="145.3" y="46.1" width="40.3" height="117.9"><title>5주 전 8,462</title></rect><rect class="bar" x="208.3" y="50.8" width="40.3" height="113.2"><title>4주 전 8,129</title></rect><rect class="bar" x="271.3" y="64.2" width="40.3" height="99.8"><title>3주 전 7,166</title></rect><rect class="bar" x="334.3" y="66.0" width="40.3" height="98.0"><title>2주 전 7,033</title></rect><rect class="bar" x="397.3" y="34.0" width="40.3" height="130.0"><title>1주 전 9,334</title></rect><rect class="bar last" x="460.3" y="39.5" width="40.3" height="124.5"><title>지난주 8,941</title></rect><line class="avg" x1="8" x2="512" y1="54.7" y2="54.7"/><text class="cap" x="10" y="48.7">직전 3주 평균 7,844</text><path class="mark" d="M410.5 16 H472.5 L480.5 33.5"/><text class="lab" x="406.5" y="20" text-anchor="end">지난주 8,941 · 1.1배</text><text class="cap" x="8" y="182">7주 전</text><text class="cap" x="512" y="182" text-anchor="end">지난주</text></svg></figure><h3>설치</h3><div class="cmd"><pre><code>/plugin install superpowers@claude-plugins-official</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>만들고 싶은 기능을 평소 말투로 설명한다. brainstorming 스킬이 질문을 시작한다.</li><li>설계를 승인하면 워크트리에 새 브랜치가 생기고 계획 문서가 나온다. 계획의 작업 단위가 적당한지 본다.</li><li>세션이 엉뚱하게 흘렀으면 &quot;figure out what went wrong with superpowers in this session&quot;이라고 요청해 진단 스킬을 돌린다.</li></ol><figure class="diagram"><pre class="mermaid">flowchart TD
+  A[브레인스토밍] --&gt; B[워크트리 생성]
+  B --&gt; C[계획 작성]
+  C --&gt; D[서브에이전트 실행]
+  D --&gt; E[TDD]
+  E --&gt; F[코드 리뷰]
+  F --&gt; G[브랜치 마무리]</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>&lt;만들 기능 설명&gt;을 추가하고 싶어. 바로 코드 쓰지 말고 먼저 질문해서 설계부터 같이 정하자.</code></pre><p class="caution"><strong>주의.</strong> TDD 스킬은 테스트보다 먼저 쓴 코드를 지운다. 선택 기능인 visual companion은 버전 정보를 보내며, <code>SUPERPOWERS_DISABLE_TELEMETRY</code>로 끌 수 있다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><dl><dt>지난주 설치</dt><dd>8,941</dd><dt>직전 3주 평균</dt><dd>7,844</dd><dt>배수</dt><dd>1.1배</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/obra/superpowers">github.com/obra/superpowers</a></li></ul></aside></div></article><article class="plate" id="p4"><header><span class="tag">4</span><h2>ECC</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/affaan-m/ECC" alt="ECC 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Claude Code를 주 대상으로 한 작업 체계다. 에이전트 71개, 필요할 때만 불러오는 스킬 314개, 명령 98개, 훅, 언어별 규칙, 세션 요약 기억을 담았다. 계획, 테스트, 구현, 리뷰, 검증, 기억의 순환을 의도한다.</p><h3>왜 지금</h3><p>지난 7일 중 6일 GitHub 일간 트렌딩에 올랐다. 7일 별 증가는 5,210개다.</p><h3>설치</h3><div class="cmd"><pre><code>npx ecc-universal@2.2.3 install --profile minimal --target claude</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li><code>/plan</code> 계열 명령으로 기능 하나를 계획하게 한다. 플러그인으로 깔았다면 <code>/ecc:plan</code>이다.</li><li><code>/context-budget</code>으로 지금 컨텍스트 부담을 확인한다.</li><li>긴 작업은 <code>/save-session</code>으로 저장하고 다음에 <code>/resume-session</code>으로 잇는다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>/context-budget</code></pre><p class="caution"><strong>주의.</strong> 플러그인 방식은 설치된 목록 전체를 모델에 보여 주므로 컨텍스트가 든다. 크기가 걱정되면 minimal 프로필로 시작한다. 한 도구에 설치 방식은 하나만 쓴다. 겹치면 스킬과 훅이 중복된다. 공식 저장소와 npm 패키지 외의 미러는 악성 코드가 있을 수 있다고 README가 경고한다. <code>/astra-review</code>는 diff를 OpenAI로 보낸다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/affaan-m/ECC">github.com/affaan-m/ECC</a></li></ul></aside></div></article><article class="plate" id="p5"><header><span class="tag">5</span><h2>grill-me (Matt Pocock)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/mattpocock/skills" alt="grill-me (Matt Pocock) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>계획이나 설계를 두고 에이전트가 질문을 계속 던져, 설계 트리의 모든 갈래가 정해질 때까지 몰아붙인다. 작업 전에 사람과 에이전트의 생각 차이를 없애는 것이 목적이다. 코드 작업에는 용어집과 ADR을 함께 남기는 <code>/grill-with-docs</code>가 더 강한 버전이다.</p><h3>왜 지금</h3><p>skills.sh 종합 순위 4위다. 지난 7일 X 언급 81회로 소셜 화제 1위였고, 저장소 7일 별 증가는 5,142개다.</p><figure class="chart"><svg class="weeks" viewBox="0 0 520 190" role="img"><title>grill-me (Matt Pocock) 주간 설치 8주</title><style>.bar{fill:#9AA79D}.bar.last{fill:#E9C64B;stroke:#1D241F;stroke-width:1}.avg{stroke:#1D241F;stroke-dasharray:3 4;stroke-width:1}.mark{stroke:#1D241F;stroke-width:1.4;fill:none}.cap,.lab{font:500 12px "Pretendard","Noto Sans KR",sans-serif;fill:#3E4A42}.lab{font-weight:700;fill:#1D241F}.axis{stroke:#B9C2B9}@media (prefers-color-scheme:dark){.bar{fill:#4E5A52}.bar.last{stroke:#E9C64B}.avg,.mark{stroke:#DDE3DC}.cap{fill:#AEB8AF}.lab{fill:#EEF1EC}.axis{stroke:#3A433D}}</style><line class="axis" x1="8" x2="512" y1="164" y2="164"/><rect class="bar" x="19.3" y="34.0" width="40.3" height="130.0"><title>7주 전 62,524</title></rect><rect class="bar" x="82.3" y="45.4" width="40.3" height="118.6"><title>6주 전 57,027</title></rect><rect class="bar" x="145.3" y="52.5" width="40.3" height="111.5"><title>5주 전 53,625</title></rect><rect class="bar" x="208.3" y="63.9" width="40.3" height="100.1"><title>4주 전 48,139</title></rect><rect class="bar" x="271.3" y="63.4" width="40.3" height="100.6"><title>3주 전 48,386</title></rect><rect class="bar" x="334.3" y="41.5" width="40.3" height="122.5"><title>2주 전 58,939</title></rect><rect class="bar" x="397.3" y="55.1" width="40.3" height="108.9"><title>1주 전 52,386</title></rect><rect class="bar last" x="460.3" y="62.8" width="40.3" height="101.2"><title>지난주 48,664</title></rect><line class="avg" x1="8" x2="512" y1="53.3" y2="53.3"/><text class="cap" x="10" y="47.3">직전 3주 평균 53,237</text><path class="mark" d="M410.5 16 H472.5 L480.5 56.8"/><text class="lab" x="406.5" y="20" text-anchor="end">지난주 48,664 · 0.9배</text><text class="cap" x="8" y="182">7주 전</text><text class="cap" x="512" y="182" text-anchor="end">지난주</text></svg></figure><h3>설치</h3><div class="cmd"><pre><code>claude plugin install mattpocock-skills@claude-plugins-official</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>저장소마다 한 번 <code>/setup-matt-pocock-skills</code>를 돌려 이슈 트래커, 라벨, 문서 위치를 정한다.</li><li>다음 작업 계획을 적고 <code>/grill-me</code>를 부른다. 직접 불러야만 실행된다.</li><li>코드 변경이라면 <code>/grill-with-docs</code>로 바꿔 결정을 ADR로 남긴다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>/grill-me &lt;이번에 하려는 작업 계획을 몇 줄로&gt;</code></pre><p class="caution"><strong>주의.</strong> 플러그인과 skills.sh 방식을 같이 깔면 모든 스킬이 두 번 들어간다. 엔지니어링 스킬은 저장소마다 setup 스킬을 먼저 돌려야 한다.</p></div><aside class="rail"><p class="cls">상위권</p><dl><dt>지난주 설치</dt><dd>48,664</dd><dt>직전 3주 평균</dt><dd>53,237</dd><dt>배수</dt><dd>0.9배</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/mattpocock/skills">github.com/mattpocock/skills</a></li></ul></aside></div></article><article class="plate" id="p6"><header><span class="tag">6</span><h2>interfaces (jakubkrehel/skills)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/jakubkrehel/skills" alt="interfaces (jakubkrehel/skills) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>인터페이스 작업용 스킬 모음이다. better-interface는 화면이나 흐름을 접근성, 레이아웃, 문구, 글꼴, 색 기준으로 보고 순위가 매겨진 리포트 하나로 돌려준다. better-accessibility는 WCAG 2.2 기준으로 포커스, ARIA, 폼을 점검한다. interface-review는 브랜치나 PR이 새로 만든 UI 문제를 찾는다.</p><h3>왜 지금</h3><p>지난주 GitHub 트렌딩에서 별 1,607개를 받았다.</p><h3>설치</h3><div class="cmd"><pre><code>npx skills add jakubkrehel/skills</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>화면 하나를 정해 better-interface로 순위 리포트를 받는다.</li><li>PR을 올리기 전에 interface-review로 이번 변경이 만든 UI 문제만 본다.</li><li>variant로 컴포넌트 시안 여러 개를 만들어 비교한다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>better-interface 스킬로 &lt;화면 경로나 컴포넌트&gt;를 점검하고 고칠 순서대로 리포트해 줘.</code></pre><p class="caution"><strong>주의.</strong> break와 state-machine은 임시 페이지를 만들므로 끝나고 지워야 할 수 있다. README에 요구 사항과 지원 에이전트 설명은 없다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/jakubkrehel/skills">github.com/jakubkrehel/skills</a></li></ul></aside></div></article></main>
+<footer class="memo"><h2>수집 메모</h2><ul><li>스킬 순위 데이터: Best Skills (https://github.com/LinklyAI/best-skills) by @BlueeonY — CC BY 4.0</li><li>그림은 각 출처의 공개 미리보기 이미지(Open Graph)다. 막대 그림은 skills.sh 주간 설치 수로 그렸다.</li><li>&#x27;검증&#x27;은 설치 명령이 공식 문서 · README 본문에 글자 그대로 있는지 확인했다는 뜻이다. 실행해 본 것은 아니다.</li></ul></footer>
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.previousElementSibling.innerText);b.textContent='복사됨';}
+  catch(e){b.textContent='복사 안 됨';}
+  setTimeout(()=>b.textContent='복사',1600);}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.chart').forEach(c=>io.observe(c));
+</script>
+<script type="module">
+if(document.querySelector('.mermaid')){
+  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
+  try{const m=(await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')).default;
+    m.initialize({startOnLoad:false,theme:'base',flowchart:{useMaxWidth:false},themeVariables:{edgeLabelBackground:dark?'#1B201C':'#FBFCF9',fontFamily:'Pretendard, Noto Sans KR, sans-serif',fontSize:'14px',
+      primaryColor:dark?'#232A25':'#FBFCF9',primaryBorderColor:dark?'#DDE3DC':'#1D241F',primaryTextColor:dark?'#EEF1EC':'#1D241F',
+      lineColor:dark?'#AEB8AF':'#3E4A42',secondaryColor:dark?'#232A25':'#E6EAE3',tertiaryColor:dark?'#161A17':'#F1F3EE'}});
+    await m.run({querySelector:'.mermaid'});}catch(e){document.documentElement.classList.add('no-mermaid');}
+}
+</script></body></html>
