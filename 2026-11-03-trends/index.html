@@ -1,0 +1,181 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 트렌드 노트 — 11월 3일 (화)</title><style>/* 주간 보고서 — 도감(field guide) 도판. 방향: ../.impeccable/surfaces/02-report-css.md */
+:root {
+  --paper: #F1F3EE; --sheet: #FBFCF9; --ink: #1D241F; --ink-2: #3E4A42; --ink-3: #5E6A61;
+  --rule: #CBD2CA; --tag: #E9C64B; --tag-ink: #1D241F; --link: #1F5E7A;
+  --code-bg: #E6EAE3;
+  --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "D2Coding", Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151916; --sheet: #1B201C; --ink: #EEF1EC; --ink-2: #C9D1C8; --ink-3: #9AA59C;
+    --rule: #333C35; --link: #8CC4DB; --code-bg: #232A25;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); scrollbar-color: var(--ink-3) var(--paper); }
+body {
+  margin: 0; color: var(--ink); font: 400 17px/1.8 var(--sans);
+  word-break: keep-all; overflow-wrap: anywhere; text-align: left;
+  -webkit-font-smoothing: antialiased; caret-color: var(--tag);
+}
+::selection { background: var(--tag); color: var(--tag-ink); }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+code { font: 500 .88em/1.5 var(--mono); }
+strong { font-weight: 700; }
+
+/* 표제 — 도감의 속표지 */
+.mast { max-width: 76rem; margin: 0 auto; padding: 4.5rem 2rem 3rem; }
+.mast h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 .6rem; }
+.dateline { margin: 0 0 1.8rem; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.22rem; line-height: 1.7; color: var(--ink-2); max-width: 44rem; margin: 0 0 3rem; }
+
+/* 도판 목록 */
+.index { list-style: none; margin: 0; padding: .3rem 0 0; border-top: 1.5px solid var(--ink); max-width: 56rem; }
+.index a { display: grid; grid-template-columns: 2.6rem minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding: .85rem .25rem; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: .22em; }
+.index .nm { font-weight: 700; }
+.index .ol { color: var(--ink-3); font-size: .95rem; }
+
+/* 도판 번호표 — 노란 표지는 여기와 식별 포인트에만 쓴다 */
+.tag { display: inline-grid; place-items: center; min-width: 1.9rem; height: 1.9rem; padding: 0 .4rem;
+  background: var(--tag); color: var(--tag-ink); font: 800 .95rem/1 var(--sans); font-variant-numeric: tabular-nums; border-radius: 2px; }
+
+/* 도판 */
+main { max-width: 76rem; margin: 0 auto; padding: 0 2rem; }
+.plate { padding: 4.5rem 0 3.5rem; border-top: 1.5px solid var(--ink); scroll-margin-top: 1rem; }
+.plate > header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.plate h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.25; letter-spacing: -0.02em; font-weight: 800; margin: 0; }
+.cols { display: grid; grid-template-columns: minmax(0, 42rem) minmax(13rem, 17rem); gap: 4rem; }
+.main h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; margin: 2.4rem 0 .5rem; }
+.main p { margin: 0 0 1rem; }
+.summary { font-size: 1.08rem; }
+.summary.external, .summary.opinion { color: var(--ink-3); }
+.prov { font-weight: 700; color: var(--ink); margin-right: .5em; }
+
+/* 표본 사진 */
+.specimen { margin: 0 0 2rem; }
+.specimen img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  background: var(--code-bg); border: 1px solid var(--rule); border-radius: 3px; }
+figcaption { font-size: .8rem; color: var(--ink-3); margin-top: .5rem; }
+
+/* 식별 포인트 — 주간 설치 막대 */
+.chart { margin: 1.4rem 0 .4rem; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .mark { stroke-dasharray: 200; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .chart:not(.seen) .mark { stroke-dashoffset: 200; }
+  .chart .mark { transition: stroke-dashoffset 900ms cubic-bezier(.16, 1, .3, 1); }
+  .chart:not(.seen) .lab { opacity: 0; }
+  .chart .lab { transition: opacity 500ms 500ms ease-out; }
+}
+
+/* 설치 명령 */
+.cmd { position: relative; }
+pre { margin: 0 0 1rem; padding: 1rem 1.1rem; background: var(--code-bg); border-radius: 4px; overflow-x: auto; }
+pre code { font-size: .9rem; white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+.prompt code { font-family: var(--sans); }
+.cmd pre { padding-right: 5rem; }
+.copy { position: absolute; top: .55rem; right: .55rem; font: 700 .82rem/1 var(--sans); color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .7rem; cursor: pointer; }
+.copy:hover { border-color: var(--ink-3); }
+.copy:active { transform: translateY(1px); }
+.prompt { background: transparent; border: 1px dashed var(--rule); }
+
+.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+.steps li { margin-bottom: .45rem; padding-left: .2rem; }
+.steps li::marker { font-weight: 800; color: var(--ink-3); }
+.caution { margin-top: 1.6rem !important; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .95rem; }
+
+/* 다이어그램 */
+.diagram { margin: 1.8rem 0; padding: 1.4rem 1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
+.diagram pre.mermaid { background: none; margin: 0; padding: 0; text-align: center; font: 500 .85rem/1.5 var(--mono); color: var(--ink-3); }
+.diagram svg { display: block; margin: 0 auto; max-width: none; height: auto; }
+.diagram pre.mermaid:not([data-processed]) { visibility: hidden; }
+.no-mermaid .diagram { display: none; }
+
+/* 여백 난 — 숫자와 출처 */
+.rail { font-size: .88rem; line-height: 1.6; color: var(--ink-2); padding-top: .3rem; }
+.rail > * { margin: 0 0 1.1rem; }
+.rail .cls { font-weight: 800; color: var(--ink); font-size: .95rem; }
+.rail dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; padding: .9rem 0; border-block: 1px solid var(--rule); }
+.rail dt { color: var(--ink-3); }
+.rail dd { margin: 0; text-align: right; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rail .claim.external, .rail .claim.opinion { display: inline-block; padding: .1rem .5rem; border: 1px solid var(--ink-3); border-radius: 2px; }
+.rail .claim.official { font-weight: 700; color: var(--ink); }
+.rail .vf { color: var(--ink-3); }
+.rail ul { list-style: none; padding: 0; }
+.rail li { margin-bottom: .4rem; }
+.rail a { overflow-wrap: anywhere; }
+
+/* 실무 가이드 */
+.part { padding: 5rem 0 1rem; border-top: 3px solid var(--ink); }
+.part h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 800; margin: 0 0 .6rem; }
+.part p { margin: 0; color: var(--ink-2); font-size: 1.08rem; }
+.index-part { font-size: 1.3rem; font-weight: 800; margin: 2.4rem 0 .8rem; }
+.plabel { font-weight: 700; margin: 1.4rem 0 .4rem !important; }
+.trouble { margin: 0 0 1rem; }
+.trouble dt { font-weight: 700; margin-top: 1rem; }
+.trouble dd { margin: .2rem 0 0; color: var(--ink-2); }
+.rail .who { display: block; }
+.rail .who dd { text-align: left; font-weight: 400; color: var(--ink-2); margin-bottom: .6rem; }
+
+/* 수집 메모 */
+.memo { max-width: 72rem; margin: 2rem auto 0; padding: 2.5rem 0 5rem; border-top: 1.5px solid var(--ink); color: var(--ink-3); font-size: .88rem; }
+.memo h2 { font-size: 1.6rem; color: var(--ink); margin: 0 0 .8rem; }
+.memo ul { padding-left: 1.1rem; max-width: 52rem; }
+
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .mast { padding: 2.6rem 1.25rem 2rem; }
+  main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .memo { margin-inline: 1.25rem; }
+  .cols { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .rail { border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+  .index a { grid-template-columns: 2.4rem 1fr; }
+  .index .ol { grid-column: 2; }
+  .plate { padding-top: 3rem; }
+}
+@media print {
+  .copy { display: none; }
+  .chart .mark { stroke-dashoffset: 0 !important; }
+  .chart .lab { opacity: 1 !important; }
+  .plate { break-before: page; }
+}
+</style></head><body>
+<header class="mast"><h1>AI 트렌드 노트</h1><p class="dateline">2026년 11월 3일 화요일 · 5건</p><p class="lede">Claude Code 2.1.317이 클라우드 예약 작업에 원치 않는 커넥터가 붙으면 경고하고, 계정 이메일이 밖으로 나가기 전에 묻도록 바뀌었습니다. 이번 호 가이드는 /loop와 /schedule로 반복 작업을 Claude에게 맡기는 법을 다룹니다.</p>
+<nav aria-label="도판 목록"><ol class="index"><li><a href="#p1"><span class="tag">1</span><span class="nm">Claude Code 2.1.317: 예약 작업 커넥터 경고, 이메일 전송 전 확인, SDK 훅 실패 시 차단</span><span class="ol">예약 작업 커넥터 경고와 이메일 전송 확인 추가</span></a></li><li><a href="#p2"><span class="tag">2</span><span class="nm">Anthropic S-1: 9월 새 코드의 90% 이상을 Claude가 작성</span><span class="ol">내부 Claude 사용량, 1월 대비 250배 넘어</span></a></li><li><a href="#p3"><span class="tag">3</span><span class="nm">Postgres 19 출시 지연: LLM이 버그를 찾는 속도를 수정이 못 따라가다</span><span class="ol">AI가 찾은 버그, 사람의 검토가 병목</span></a></li><li><a href="#p4"><span class="tag">4</span><span class="nm">llm 0.37: OpenAI 호환 엔드포인트 등록 명령, 기본 모델 교체</span><span class="ol">터미널 LLM 도구에 엔드포인트 등록 명령 추가</span></a></li></ol><h2 class="index-part">실무 가이드</h2><ol class="index"><li><a href="#p5"><span class="tag">5</span><span class="nm">/loop · /schedule 사용법: 반복 확인 작업을 Claude에게 맡기기</span><span class="ol">세션 안은 /loop, 노트북 밖은 /schedule</span></a></li></ol></nav></header>
+<main><article class="plate" id="p1"><header><span class="tag">1</span><h2>Claude Code 2.1.317: 예약 작업 커넥터 경고, 이메일 전송 전 확인, SDK 훅 실패 시 차단</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/anthropics/claude-code" alt="Claude Code 2.1.317: 예약 작업 커넥터 경고, 이메일 전송 전 확인, SDK 훅 실패 시 차단 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><p class="summary official">새 클라우드 예약 작업에 요청하지 않은 커넥터가 붙으면 <code>/schedule</code>이 경고하고 빼는 방법을 알려 줍니다. 웹 · 셸 도구가 계정 이메일 주소를 네트워크로 보내기 전에 묻는 확인도 생겼습니다. Agent SDK 훅 콜백에 <code>onFailure: &quot;block&quot;</code>을 주면 콜백이 실패할 때 동작을 막습니다. Read 도구의 &quot;unchanged&quot; 축약이 없어져, 바뀌지 않은 파일을 다시 읽어도 내용이 돌아옵니다. <code>/loop</code> 깨우기가 예약되지 않던 문제도 고쳐졌습니다.</p><h3>그래서 무엇을 하나</h3><p><code>/schedule</code>로 만든 작업이 있다면 커넥터 목록을 열어 필요 없는 것을 뺍니다. SDK 훅으로 검사를 걸어 두었다면 <code>onFailure: &quot;block&quot;</code>을 붙여 검사 실패가 그냥 통과되지 않게 합니다.</p><ul class="steps"><li><code>/schedule update</code>로 기존 예약 작업의 커넥터를 확인하고 쓰지 않는 것을 뺀다.</li><li>Agent SDK 훅 콜백 설정에 <code>onFailure: &quot;block&quot;</code>을 추가한다.</li><li>self-hosted runner에서 예전처럼 <code>claude -p</code>가 바깥 세션 ID를 쓰게 하려면 <code>CLAUDE_CODE_DISABLE_NESTED_SESSION_ID=1</code>을 설정한다.</li></ul></div><aside class="rail"><p class="cls">출시 · 업데이트</p><p class="claim official">공식 발표</p><ul><li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code/blob/main/CHANGELOG.md</a></li><li><a href="https://code.claude.com/docs/en/routines">code.claude.com/docs/en/routines</a></li></ul></aside></div></article><article class="plate" id="p2"><header><span class="tag">2</span><h2>Anthropic S-1: 9월 새 코드의 90% 이상을 Claude가 작성</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://i.insider.com/6ae5023ed8cc18cf7950fbe3?width=1200&amp;format=jpeg" alt="Anthropic S-1: 9월 새 코드의 90% 이상을 Claude가 작성 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · i.insider.com</figcaption></figure><p class="summary external"><span class="prov">외부 측정 · 보도</span>Anthropic 상장 신고서(S-1)를 바탕으로 Business Insider가 내부 AI 사용 규모를 보도했습니다. 9월 내부 사용량은 1월의 250배를 넘었고, 9월에 새로 추가된 코드의 90% 이상을 Claude가 썼습니다. 4월에는 내부 사용량을 고객 요금으로 환산한 값이 주식 보상을 뺀 한 달 직원 보수를 넘었습니다. 실제 현금 지출이 아니라 판매가로 환산한 값이라는 점은 HN에서도 논란이 됐습니다.</p><h3>그래서 무엇을 하나</h3><p>숫자 자체보다 &quot;새 코드 대부분을 AI가 쓰고 사람은 검토한다&quot;는 분업이 회사 단위로 굳어지고 있다는 신호로 읽습니다. 내 작업에서 AI가 쓰는 몫과 내가 검토하는 몫을 나눠 적어 봅니다.</p></div><aside class="rail"><p class="cls">실무 · 관점</p><p class="claim external">외부 측정 · 보도</p><ul><li><a href="https://www.businessinsider.com/anthropic-claude-internal-ai-use-exceeds-employee-pay-tokens-2026-11">businessinsider.com/anthropic-claude-internal-ai-use-exceeds</a></li><li><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm">sec.gov/Archives/edgar/data/2130357/000162828026067168/anthr</a></li><li><a href="https://news.hada.io/topic?id=36479">news.hada.io/topic?id=36479</a></li><li><a href="https://news.ycombinator.com/item?id=50339494">news.ycombinator.com/item?id=50339494</a></li></ul></aside></div></article><article class="plate" id="p3"><header><span class="tag">3</span><h2>Postgres 19 출시 지연: LLM이 버그를 찾는 속도를 수정이 못 따라가다</h2></header><div class="cols"><div class="main"><p class="summary opinion"><span class="prov">의견 · 칼럼</span>PostgreSQL 커미터 Robert Haas가 19 버전이 늦어지는 이유를 LLM에서 찾았습니다. 지난 10년간 9월 중순~10월 중순에 나오던 메이저 버전이 올해는 11월 이후로 밀립니다. 이전 버전 브랜치로 역이식된 커밋이 1년 새 74% 이상 늘었습니다. LLM이 버그를 쉽게 찾게 됐지만 고치는 일은 그만큼 쉬워지지 않았고, AI가 쓴 수정도 사람이 검토해야 하기 때문입니다.</p><h3>그래서 무엇을 하나</h3><p>AI 코드 리뷰나 버그 탐색을 돌리면 처리할 일이 한꺼번에 쏟아질 수 있습니다. Lobste.rs 댓글의 한 메인테이너처럼 결과를 3~5건씩 끊어 처리하는 방식을 정해 둡니다.</p></div><aside class="rail"><p class="cls">실무 · 관점</p><p class="claim opinion">의견 · 칼럼</p><ul><li><a href="http://rhaas.blogspot.com/2026/10/postgres-19-is-late-and-its-ais-fault.html">rhaas.blogspot.com/2026/10/postgres-19-is-late-and-its-ais-f</a></li><li><a href="https://news.hada.io/topic?id=36491">news.hada.io/topic?id=36491</a></li><li><a href="https://lobste.rs/s/0yxkvs/postgres_19_is_late_it_s_ai_s_fault">lobste.rs/s/0yxkvs/postgres_19_is_late_it_s_ai_s_fault</a></li></ul></aside></div></article><article class="plate" id="p4"><header><span class="tag">4</span><h2>llm 0.37: OpenAI 호환 엔드포인트 등록 명령, 기본 모델 교체</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/simonw/llm" alt="llm 0.37: OpenAI 호환 엔드포인트 등록 명령, 기본 모델 교체 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><p class="summary official">Simon Willison의 터미널 도구 llm 0.37이 나왔습니다. <code>llm openai endpoint add</code>로 OpenAI 호환 엔드포인트 모델을 쉽게 등록할 수 있습니다. <code>gpt-6.1-sol</code>과 <code>gpt-6.1-terra</code>를 지원하고, 기본 모델은 이전 기본값의 절반 가격인 <code>gpt-6-luna</code>로 바뀌었습니다. Willison은 AI로 만든 PR 12명분을 Opus 5.5나 GPT-6 Astra로 분류했고, PR을 &quot;예시가 붙은 버그 리포트&quot;로 다뤘다고 적었습니다.</p><h3>그래서 무엇을 하나</h3><p>사내 · 로컬 모델이 OpenAI 호환 API를 낸다면 llm에 등록해 셸 파이프라인에서 써 봅니다. AI가 쓴 PR이 많다면 그대로 머지하기보다 버그 리포트로 읽는 Willison의 방식을 참고합니다.</p></div><aside class="rail"><p class="cls">도구 사용법</p><p class="claim official">공식 발표</p><ul><li><a href="https://github.com/simonw/llm/releases/tag/0.37">github.com/simonw/llm/releases/tag/0.37</a></li><li><a href="https://simonwillison.net/2026/Nov/2/llm/">simonwillison.net/2026/Nov/2/llm</a></li><li><a href="https://llm.datasette.io/en/stable/other-models.html#configure-an-openai-compatible-model">llm.datasette.io/en/stable/other-models.html#configure-an-op</a></li></ul></aside></div></article><header class="part" id="guides"><h2>실무 가이드</h2><p>이번 주 직접 해 볼 만한 것. 설치부터 실습, 막힐 때까지.</p></header><article class="plate" id="p5"><header><span class="tag">5</span><h2>/loop · /schedule 사용법: 반복 확인 작업을 Claude에게 맡기기</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://claude-code.mintlify.app/_mintlify/api/og/v2?division=Automation&amp;title=Run+prompts+on+a+schedule&amp;description=Use+%2Floop+and+the+cron+scheduling+tools+to+run+prompts+repeatedly%2C+poll+for+status%2C+or+set+one-time+reminders+within+a+Claude+Code+session.&amp;theme=8d9812df31da293aba4e8103&amp;signature=53913036c1d806cc295bf54881a77b148ac511fcbc1cc7e1646dd9e6db5aaeba" alt="/loop · /schedule 사용법: 반복 확인 작업을 Claude에게 맡기기 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · claude-code.mintlify.app</figcaption></figure><p class="summary">Claude Code에는 반복 작업을 맡기는 방법이 세 가지 있습니다. <code>/loop</code>는 열린 세션 안에서 최소 1분 간격으로, Desktop 예약 작업은 내 컴퓨터에서, 클라우드 예약 작업(<code>/schedule</code>)은 노트북을 꺼도 Anthropic 클라우드에서 최소 1시간 간격으로 돕니다. 2.1.317에서 <code>/loop</code> 깨우기 누락이 고쳐졌고, <code>/schedule</code>은 요청하지 않은 커넥터가 붙으면 경고하게 됐습니다. 맡길 일의 성격에 맞춰 고르는 것이 핵심입니다.</p><h3>설치 · 설정</h3><ol class="steps"><li>Claude Code를 2.1.317 이상으로 올린다.</li><li><code>/schedule</code>을 쓰려면 claude.ai 구독 계정(Pro, Max, Ultra, Team, Enterprise)으로 <code>/login</code> 한다.</li><li><code>ANTHROPIC_API_KEY</code>나 <code>ANTHROPIC_AUTH_TOKEN</code>이 설정돼 있으면 claude.ai 로그인보다 우선하므로 <code>/schedule</code>을 쓸 때는 끈다.</li><li>프로젝트 기본 루프 지시를 두려면 <code>.claude/loop.md</code>를, 모든 프로젝트 공통이면 <code>~/.claude/loop.md</code>를 만든다.</li></ol><h3>실습</h3><p>PR 관리 루프를 세션 안에서 돌리고, 매일 아침 요약을 클라우드 예약 작업으로 등록한다.</p><ol class="steps"><li><code>/loop 5m check if the deployment finished and tell me what happened</code>로 고정 간격 루프를 걸어 본다.</li><li><code>what scheduled tasks do I have?</code>로 작업 ID와 <code>next run</code> 시각을 확인한다.</li><li><code>cancel the deploy check loop</code>로 고정 간격 루프를 끈다. <code>Esc</code>로는 꺼지지 않는다.</li><li><code>.claude/loop.md</code>에 CI 실패 처리와 리뷰 코멘트 대응 지시를 몇 줄 적는다.</li><li>간격 없이 <code>/loop</code>만 입력해 Claude가 간격을 고르는 루프로 <code>loop.md</code>를 실행한다.</li><li>대기 중에 <code>Esc</code>를 눌러 루프를 멈추고 <code>Pending wakeup cancelled</code>가 뜨는지 본다.</li><li><code>/schedule tomorrow at 9am, summarize yesterday&#x27;s merged PRs</code>로 일회성 클라우드 작업을 만든다.</li><li>Claude가 묻는 저장소 · 프롬프트 질문에 답하고, 커넥터 경고가 뜨면 필요 없는 것을 뺀다.</li></ol><figure class="diagram"><pre class="mermaid">flowchart TD
+  A[반복 맡길 작업] --&gt; B{노트북 꺼도 돌아야?}
+  B --&gt;|예| C[클라우드 /schedule]
+  B --&gt;|아니오| D{세션 열어둘 수 있나}
+  D --&gt;|예| E[/loop · 최소 1분/]
+  D --&gt;|아니오| F[Desktop 예약 작업]
+  C --&gt; G[최소 1시간 · 로컬 파일 없음]</pre></figure><h3>바로 쓰는 프롬프트</h3><p class="plabel">세션 안에서 배포 · CI 짧게 감시</p><div class="cmd"><pre class="prompt"><code>/loop 10m &lt;배포 이름&gt; 배포가 끝났는지 확인하고, 끝났으면 결과를 세 줄로 알려줘. 실패면 로그에서 원인 후보만 짚고 수정은 하지 마.</code></pre><button type="button" class="copy">복사</button></div><p class="plabel">맨 /loop용 loop.md 만들기</p><div class="cmd"><pre class="prompt"><code>이 저장소에 .claude/loop.md를 만들어줘. 맨 /loop를 실행하면 &lt;브랜치 이름&gt; PR의 CI가 빨간지 보고, 빨가면 실패 로그를 읽어 최소 수정안을 제안하고, 새 리뷰 코멘트가 있으면 하나씩 답하게 해줘. 푸시는 하지 말고 나에게 먼저 묻게 하고, 아무 일이 없으면 한 줄로만 보고하게 해줘.</code></pre><button type="button" class="copy">복사</button></div><p class="plabel">노트북을 꺼도 도는 정기 요약</p><div class="cmd"><pre class="prompt"><code>/schedule 평일 아침 9시 7분, &lt;저장소 이름&gt;에서 전날 머지된 PR과 새로 열린 이슈를 요약해줘. 커넥터는 &lt;필요한 커넥터&gt;만 남기고 나머지는 빼줘.</code></pre><button type="button" class="copy">복사</button></div><h3>안 될 때</h3><dl class="trouble"><dt><code>/schedule</code>을 입력하면 <code>Unknown command: /schedule</code>이 나온다.</dt><dd>Console API 키나 <code>ANTHROPIC_API_KEY</code> · <code>ANTHROPIC_AUTH_TOKEN</code>이 claude.ai 로그인보다 우선하고 있을 수 있습니다. 이를 끄고 claude.ai 구독 계정으로 <code>/login</code> 합니다. 조직 소유자가 Scheduled tasks 토글을 껐다면 소유자에게 요청해야 합니다.</dd><dt><code>/loop 5m</code>으로 건 루프가 <code>Esc</code>나 <code>Ctrl+C</code>로 멈추지 않는다.</dt><dd>고정 간격 루프는 키로 멈추지 않습니다. <code>cancel the deploy check loop</code>처럼 Claude에게 취소를 요청합니다.</dd><dt>반복 작업이 일주일쯤 뒤 사라졌다.</dt><dd>세션 범위 반복 작업은 만든 지 7일 뒤 마지막으로 한 번 돌고 지워집니다. 만료 전에 다시 만들거나 클라우드 · Desktop 예약 작업으로 옮깁니다.</dd><dt>클라우드 작업의 cron이 예상과 다른 시각에 돈다.</dt><dd>다섯 필드 cron만 쓰면 시각은 UTC로 해석됩니다. UTC로 바꿔 쓰거나 <code>CRON_TZ=</code> 접두어를 유지한 채 그 시간대로 씁니다. 정각에는 몇 분 늦게 시작할 수 있으니 9:07처럼 정각을 피합니다.</dd></dl><p class="caution"><strong>주의.</strong> 클라우드 예약 작업은 연결된 커넥터를 모두 기본 포함하고, 실행 중 쓰기도 할 수 있습니다. 실행은 기본으로 auto mode에서 시작해 분류 모델이 승인 여부를 판단합니다. 실행마다 구독 사용량이 차감되고, 계정당 예약 실행은 시간당 100회로 제한됩니다. 클라우드 작업은 로컬 파일에 접근하지 못하고 저장소를 새로 클론하며, 아직 research preview라 동작과 한도가 바뀔 수 있습니다.</p></div><aside class="rail"><p class="cls">실무 가이드</p><dl class="who"><dt>이런 분께</dt><dd>배포 확인, PR 리뷰 대응, 아침 요약처럼 같은 지시를 매번 다시 입력하는 분께.</dd><dt>읽고 나면</dt><dd>반복 지시를 한 번 정해 두면 Claude가 정해진 간격이나 시각에 알아서 다시 실행합니다.</dd></dl><ul><li><a href="https://code.claude.com/docs/en/scheduled-tasks">code.claude.com/docs/en/scheduled-tasks</a></li><li><a href="https://code.claude.com/docs/en/routines">code.claude.com/docs/en/routines</a></li><li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code/blob/main/CHANGELOG.md</a></li></ul></aside></div></article></main>
+<footer class="memo"><h2>수집 메모</h2><ul><li>스킬 순위 데이터: Best Skills (https://github.com/LinklyAI/best-skills) by @BlueeonY — CC BY 4.0</li><li>그림은 각 출처의 공개 미리보기 이미지(Open Graph)다. 막대 그림은 skills.sh 주간 설치 수로 그렸다.</li><li>&#x27;검증&#x27;은 설치 명령이 공식 문서 · README 본문에 글자 그대로 있는지 확인했다는 뜻이다. 실행해 본 것은 아니다.</li></ul></footer>
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.previousElementSibling.innerText);b.textContent='복사됨';}
+  catch(e){b.textContent='복사 안 됨';}
+  setTimeout(()=>b.textContent='복사',1600);}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.chart').forEach(c=>io.observe(c));
+</script>
+<script type="module">
+if(document.querySelector('.mermaid')){
+  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
+  try{const m=(await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')).default;
+    m.initialize({startOnLoad:false,theme:'base',flowchart:{useMaxWidth:false},themeVariables:{edgeLabelBackground:dark?'#1B201C':'#FBFCF9',fontFamily:'Pretendard, Noto Sans KR, sans-serif',fontSize:'14px',
+      primaryColor:dark?'#232A25':'#FBFCF9',primaryBorderColor:dark?'#DDE3DC':'#1D241F',primaryTextColor:dark?'#EEF1EC':'#1D241F',
+      lineColor:dark?'#AEB8AF':'#3E4A42',secondaryColor:dark?'#232A25':'#E6EAE3',tertiaryColor:dark?'#161A17':'#F1F3EE'}});
+    await m.run({querySelector:'.mermaid'});}catch(e){document.documentElement.classList.add('no-mermaid');}
+}
+</script></body></html>
