@@ -1,0 +1,186 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스킬 도감 — 11월 5일 (목)</title><style>/* 주간 보고서 — 도감(field guide) 도판. 방향: ../.impeccable/surfaces/02-report-css.md */
+:root {
+  --paper: #F1F3EE; --sheet: #FBFCF9; --ink: #1D241F; --ink-2: #3E4A42; --ink-3: #5E6A61;
+  --rule: #CBD2CA; --tag: #E9C64B; --tag-ink: #1D241F; --link: #1F5E7A;
+  --code-bg: #E6EAE3;
+  --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "D2Coding", Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151916; --sheet: #1B201C; --ink: #EEF1EC; --ink-2: #C9D1C8; --ink-3: #9AA59C;
+    --rule: #333C35; --link: #8CC4DB; --code-bg: #232A25;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); scrollbar-color: var(--ink-3) var(--paper); }
+body {
+  margin: 0; color: var(--ink); font: 400 17px/1.8 var(--sans);
+  word-break: keep-all; overflow-wrap: anywhere; text-align: left;
+  -webkit-font-smoothing: antialiased; caret-color: var(--tag);
+}
+::selection { background: var(--tag); color: var(--tag-ink); }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+code { font: 500 .88em/1.5 var(--mono); }
+strong { font-weight: 700; }
+
+/* 표제 — 도감의 속표지 */
+.mast { max-width: 76rem; margin: 0 auto; padding: 4.5rem 2rem 3rem; }
+.mast h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 .6rem; }
+.dateline { margin: 0 0 1.8rem; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.22rem; line-height: 1.7; color: var(--ink-2); max-width: 44rem; margin: 0 0 3rem; }
+
+/* 도판 목록 */
+.index { list-style: none; margin: 0; padding: .3rem 0 0; border-top: 1.5px solid var(--ink); max-width: 56rem; }
+.index a { display: grid; grid-template-columns: 2.6rem minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding: .85rem .25rem; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: .22em; }
+.index .nm { font-weight: 700; }
+.index .ol { color: var(--ink-3); font-size: .95rem; }
+.index .when { margin-left: .6em; font-variant-numeric: tabular-nums; color: var(--ink-2); font-weight: 700; }
+.rail .when { font-weight: 700; color: var(--ink); }
+
+/* 도판 번호표 — 노란 표지는 여기와 식별 포인트에만 쓴다 */
+.tag { display: inline-grid; place-items: center; min-width: 1.9rem; height: 1.9rem; padding: 0 .4rem;
+  background: var(--tag); color: var(--tag-ink); font: 800 .95rem/1 var(--sans); font-variant-numeric: tabular-nums; border-radius: 2px; }
+
+/* 도판 */
+main { max-width: 76rem; margin: 0 auto; padding: 0 2rem; }
+.plate { padding: 4.5rem 0 3.5rem; border-top: 1.5px solid var(--ink); scroll-margin-top: 1rem; }
+.plate > header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.plate h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.25; letter-spacing: -0.02em; font-weight: 800; margin: 0; }
+.cols { display: grid; grid-template-columns: minmax(0, 42rem) minmax(13rem, 17rem); gap: 4rem; }
+.main h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; margin: 2.4rem 0 .5rem; }
+.main p { margin: 0 0 1rem; }
+.summary { font-size: 1.08rem; }
+.summary.external, .summary.opinion { color: var(--ink-3); }
+.prov { font-weight: 700; color: var(--ink); margin-right: .5em; }
+
+/* 표본 사진 */
+.specimen { margin: 0 0 2rem; }
+.specimen img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  background: var(--code-bg); border: 1px solid var(--rule); border-radius: 3px; }
+figcaption { font-size: .8rem; color: var(--ink-3); margin-top: .5rem; }
+
+/* 식별 포인트 — 주간 설치 막대 */
+.chart { margin: 1.4rem 0 .4rem; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .mark { stroke-dasharray: 200; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .chart:not(.seen) .mark { stroke-dashoffset: 200; }
+  .chart .mark { transition: stroke-dashoffset 900ms cubic-bezier(.16, 1, .3, 1); }
+  .chart:not(.seen) .lab { opacity: 0; }
+  .chart .lab { transition: opacity 500ms 500ms ease-out; }
+}
+
+/* 설치 명령 */
+.cmd { position: relative; }
+pre { margin: 0 0 1rem; padding: 1rem 1.1rem; background: var(--code-bg); border-radius: 4px; overflow-x: auto; }
+pre code { font-size: .9rem; white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+.prompt code { font-family: var(--sans); }
+.cmd pre { padding-right: 5rem; }
+.copy { position: absolute; top: .55rem; right: .55rem; font: 700 .82rem/1 var(--sans); color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .7rem; cursor: pointer; }
+.copy:hover { border-color: var(--ink-3); }
+.copy:active { transform: translateY(1px); }
+.prompt { background: transparent; border: 1px dashed var(--rule); }
+
+.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+.steps li { margin-bottom: .45rem; padding-left: .2rem; }
+.steps li::marker { font-weight: 800; color: var(--ink-3); }
+.caution { margin-top: 1.6rem !important; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .95rem; }
+
+/* 다이어그램 */
+.diagram { margin: 1.8rem 0; padding: 1.4rem 1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
+.diagram pre.mermaid { background: none; margin: 0; padding: 0; text-align: center; font: 500 .85rem/1.5 var(--mono); color: var(--ink-3); }
+.diagram svg { display: block; margin: 0 auto; max-width: none; height: auto; }
+.diagram pre.mermaid:not([data-processed]) { visibility: hidden; }
+.no-mermaid .diagram { display: none; }
+
+/* 여백 난 — 숫자와 출처 */
+.rail { font-size: .88rem; line-height: 1.6; color: var(--ink-2); padding-top: .3rem; }
+.rail > * { margin: 0 0 1.1rem; }
+.rail .cls { font-weight: 800; color: var(--ink); font-size: .95rem; }
+.rail dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; padding: .9rem 0; border-block: 1px solid var(--rule); }
+.rail dt { color: var(--ink-3); }
+.rail dd { margin: 0; text-align: right; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rail .claim.external, .rail .claim.opinion { display: inline-block; padding: .1rem .5rem; border: 1px solid var(--ink-3); border-radius: 2px; }
+.rail .claim.official { font-weight: 700; color: var(--ink); }
+.rail .vf { color: var(--ink-3); }
+.rail ul { list-style: none; padding: 0; }
+.rail li { margin-bottom: .4rem; }
+.rail a { overflow-wrap: anywhere; }
+
+/* 실무 가이드 */
+.part { padding: 5rem 0 1rem; border-top: 3px solid var(--ink); }
+.part h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 800; margin: 0 0 .6rem; }
+.part p { margin: 0; color: var(--ink-2); font-size: 1.08rem; }
+.index-part { font-size: 1.3rem; font-weight: 800; margin: 2.4rem 0 .8rem; }
+.plabel { font-weight: 700; margin: 1.4rem 0 .4rem !important; }
+.trouble { margin: 0 0 1rem; }
+.trouble dt { font-weight: 700; margin-top: 1rem; }
+.trouble dd { margin: .2rem 0 0; color: var(--ink-2); }
+.rail .who { display: block; }
+.rail .who dd { text-align: left; font-weight: 400; color: var(--ink-2); margin-bottom: .6rem; }
+
+/* 수집 메모 */
+.memo { max-width: 72rem; margin: 2rem auto 0; padding: 2.5rem 0 5rem; border-top: 1.5px solid var(--ink); color: var(--ink-3); font-size: .88rem; }
+.memo h2 { font-size: 1.6rem; color: var(--ink); margin: 0 0 .8rem; }
+.memo ul { padding-left: 1.1rem; max-width: 52rem; }
+
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .mast { padding: 2.6rem 1.25rem 2rem; }
+  main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .memo { margin-inline: 1.25rem; }
+  .cols { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .rail { border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+  .index a { grid-template-columns: 2.4rem 1fr; }
+  .index .ol { grid-column: 2; }
+  .plate { padding-top: 3rem; }
+}
+@media print {
+  .copy { display: none; }
+  .chart .mark { stroke-dashoffset: 0 !important; }
+  .chart .lab { opacity: 1 !important; }
+  .plate { break-before: page; }
+}
+</style></head><body>
+<header class="mast"><h1>스킬 도감</h1><p class="dateline">2026년 11월 5일 목요일 · 6건</p><p class="lede">11월 첫째 주에는 설계 문서를 맥락 없는 서브에이전트로 검토하는 구글의 Elephant-Goldfish Model이 7일 만에 별 7,048개를 모았어요. 영상 제작(HyperFrames · OpenMontage), 작업 기억(Beads), 병렬 워크트리(Worktrunk)처럼 에이전트에게 맡기는 일의 범위를 넓히는 도구가 함께 올랐어요.</p>
+<nav aria-label="도판 목록"><ol class="index"><li><a href="#p1"><span class="tag">1</span><span class="nm">Elephant-Goldfish Model</span><span class="ol">맥락 있는 작성자와 맥락 없는 검토자로 설계 검증</span></a></li><li><a href="#p2"><span class="tag">2</span><span class="nm">Ponytail</span><span class="ol">새 코드 전에 기존 코드 · 표준부터 찾게 하는 스킬</span></a></li><li><a href="#p3"><span class="tag">3</span><span class="nm">HyperFrames</span><span class="ol">HTML · CSS 애니메이션을 MP4 영상으로 렌더링</span></a></li><li><a href="#p4"><span class="tag">4</span><span class="nm">OpenMontage</span><span class="ol">조사부터 편집까지 에이전트가 영상 한 편 제작</span></a></li><li><a href="#p5"><span class="tag">5</span><span class="nm">Beads</span><span class="ol">에이전트의 할 일을 의존성 그래프로 기억</span></a></li><li><a href="#p6"><span class="tag">6</span><span class="nm">Worktrunk</span><span class="ol">브랜치 이름 하나로 워크트리 만들고 Claude 실행</span></a></li></ol></nav></header>
+<main><article class="plate" id="p1"><header><span class="tag">1</span><h2>Elephant-Goldfish Model</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/google/elephant-goldfish-model" alt="Elephant-Goldfish Model 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>AI 에이전트로 소프트웨어 설계를 쓰고 검토하는 구글의 오픈소스 스킬 묶음이에요. 프로젝트 맥락을 가진 Elephant가 명세를 쓰고, 이전 대화를 모르는 Goldfish가 초안을 읽어 숨은 가정을 드러내요. 아키텍처 결정과 구현 전 승인은 사람이 해요.</p><h3>왜 지금</h3><p>지난 7일 동안 별이 7,048개 늘어 누적 11,808개가 됐어요. 별 증가 상위 저장소 가운데 가장 새로운 프로젝트예요.</p><h3>설치</h3><div class="cmd"><pre><code>claude plugin marketplace add google/elephant-goldfish-model</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li><code>claude plugin install egm@egm</code>까지 실행해 플러그인을 설치해요.</li><li><code>/egm:egm-brainstorm</code>으로 아이디어를 정리해 콘셉트 요약을 만들어요.</li><li><code>/egm:egm-draft</code>로 설계 문서를 쓰고 <code>/egm:egm-review &lt;경로&gt;</code>로 다섯 단계 검토를 돌려요.</li></ol><figure class="diagram"><pre class="mermaid">flowchart LR
+  A[Elephant: 명세 작성] --&gt; B[Goldfish: 맥락 없이 검토]
+  B --&gt; C[가정 · 빈틈 드러남]
+  C --&gt; D[사람: 결정 · 승인]</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>/egm:egm-review docs/design/&lt;기능이름&gt;.md</code></pre><p class="caution"><strong>주의.</strong> Goldfish 검토는 새 서브에이전트 맥락이 필요해요. 에이전트가 이를 만들 수 없으면 검토가 멈춰요. 구글이 공식 지원하는 제품은 아니에요(Apache 2.0).</p></div><aside class="rail"><p class="cls">공식 마켓 신규</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/google/elephant-goldfish-model">github.com/google/elephant-goldfish-model</a></li></ul></aside></div></article><article class="plate" id="p2"><header><span class="tag">2</span><h2>Ponytail</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/DietrichGebert/ponytail" alt="Ponytail 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>에이전트가 &quot;가장 게으른 시니어 개발자&quot;처럼 생각하도록 가르치는 프롬프트 스킬이에요. 코드를 쓰기 전에 꼭 필요한지, 코드베이스에 이미 있는지, 표준 라이브러리 · 플랫폼 기능 · 기존 의존성으로 되는지, 한 줄로 되는지를 차례로 확인해요. 검증 · 보안 · 접근성은 줄이지 않는다고 적혀 있어요.</p><h3>왜 지금</h3><p>누적 별 184,543개인 대형 저장소인데 지난 7일에만 5,355개가 늘었어요.</p><figure class="chart"><svg class="weeks" viewBox="0 0 520 190" role="img"><title>Ponytail 주간 설치 8주</title><style>.bar{fill:#9AA79D}.bar.last{fill:#E9C64B;stroke:#1D241F;stroke-width:1}.avg{stroke:#1D241F;stroke-dasharray:3 4;stroke-width:1}.mark{stroke:#1D241F;stroke-width:1.4;fill:none}.cap,.lab{font:500 12px "Pretendard","Noto Sans KR",sans-serif;fill:#3E4A42}.lab{font-weight:700;fill:#1D241F}.axis{stroke:#B9C2B9}@media (prefers-color-scheme:dark){.bar{fill:#4E5A52}.bar.last{stroke:#E9C64B}.avg,.mark{stroke:#DDE3DC}.cap{fill:#AEB8AF}.lab{fill:#EEF1EC}.axis{stroke:#3A433D}}</style><line class="axis" x1="8" x2="512" y1="164" y2="164"/><rect class="bar" x="19.3" y="119.9" width="40.3" height="44.1"><title>7주 전 4,815</title></rect><rect class="bar" x="82.3" y="121.9" width="40.3" height="42.1"><title>6주 전 4,591</title></rect><rect class="bar" x="145.3" y="124.1" width="40.3" height="39.9"><title>5주 전 4,356</title></rect><rect class="bar" x="208.3" y="116.4" width="40.3" height="47.6"><title>4주 전 5,199</title></rect><rect class="bar" x="271.3" y="63.5" width="40.3" height="100.5"><title>3주 전 10,976</title></rect><rect class="bar" x="334.3" y="34.0" width="40.3" height="130.0"><title>2주 전 14,193</title></rect><rect class="bar" x="397.3" y="74.7" width="40.3" height="89.3"><title>1주 전 9,752</title></rect><rect class="bar last" x="460.3" y="79.0" width="40.3" height="85.0"><title>지난주 9,283</title></rect><line class="avg" x1="8" x2="512" y1="57.4" y2="57.4"/><text class="cap" x="10" y="51.4">직전 3주 평균 11,640</text><path class="mark" d="M410.5 16 H472.5 L480.5 73.0"/><text class="lab" x="406.5" y="20" text-anchor="end">지난주 9,283 · 0.8배</text><text class="cap" x="8" y="182">7주 전</text><text class="cap" x="512" y="182" text-anchor="end">지난주</text></svg></figure><h3>설치</h3><div class="cmd"><pre><code>/plugin marketplace add DietrichGebert/ponytail</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li><code>/plugin install ponytail@ponytail</code>까지 실행해 설치해요.</li><li><code>/ponytail lite</code>, <code>full</code>, <code>ultra</code>, <code>off</code>로 강도를 바꿔 가며 같은 요청의 결과를 비교해요.</li><li><code>/ponytail-review</code>로 지금 diff를, <code>/ponytail-audit</code>로 저장소 전체를 점검해요.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>/ponytail-audit 이 저장소에서 지워도 되는 코드와 표준 라이브러리로 바꿀 수 있는 코드를 심각도 순으로 알려줘.</code></pre><p class="caution"><strong>주의.</strong> README는 GitHub의 <code>DietrichGebert/ponytail</code> 또는 npm의 <code>@dietrichgebert/ponytail</code>에서만 설치하라고 안내해요.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><dl><dt>지난주 설치</dt><dd>9,283</dd><dt>직전 3주 평균</dt><dd>11,640</dd><dt>배수</dt><dd>0.8배</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/DietrichGebert/ponytail">github.com/DietrichGebert/ponytail</a></li></ul></aside></div></article><article class="plate" id="p3"><header><span class="tag">3</span><h2>HyperFrames</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/heygen-com/hyperframes" alt="HyperFrames 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>HTML, CSS, 미디어, 애니메이션을 MP4로 바꾸는 HeyGen의 프레임워크예요. 에이전트가 이미 잘 쓰는 HTML로 영상을 짜고, 헤드리스 Chrome과 FFmpeg로 렌더링해요. 같은 입력이면 같은 프레임이 나와요.</p><h3>왜 지금</h3><p>지난 7일 동안 별이 4,214개 늘었고, 같은 기간에 v0.9.12부터 v0.9.14까지 릴리스가 세 번 나왔어요.</p><figure class="chart"><svg class="weeks" viewBox="0 0 520 190" role="img"><title>HyperFrames 주간 설치 8주</title><style>.bar{fill:#9AA79D}.bar.last{fill:#E9C64B;stroke:#1D241F;stroke-width:1}.avg{stroke:#1D241F;stroke-dasharray:3 4;stroke-width:1}.mark{stroke:#1D241F;stroke-width:1.4;fill:none}.cap,.lab{font:500 12px "Pretendard","Noto Sans KR",sans-serif;fill:#3E4A42}.lab{font-weight:700;fill:#1D241F}.axis{stroke:#B9C2B9}@media (prefers-color-scheme:dark){.bar{fill:#4E5A52}.bar.last{stroke:#E9C64B}.avg,.mark{stroke:#DDE3DC}.cap{fill:#AEB8AF}.lab{fill:#EEF1EC}.axis{stroke:#3A433D}}</style><line class="axis" x1="8" x2="512" y1="164" y2="164"/><rect class="bar" x="19.3" y="126.1" width="40.3" height="37.9"><title>7주 전 46,204</title></rect><rect class="bar" x="82.3" y="94.2" width="40.3" height="69.8"><title>6주 전 85,128</title></rect><rect class="bar" x="145.3" y="103.9" width="40.3" height="60.1"><title>5주 전 73,279</title></rect><rect class="bar" x="208.3" y="84.9" width="40.3" height="79.1"><title>4주 전 96,486</title></rect><rect class="bar" x="271.3" y="43.7" width="40.3" height="120.3"><title>3주 전 146,752</title></rect><rect class="bar" x="334.3" y="34.0" width="40.3" height="130.0"><title>2주 전 158,584</title></rect><rect class="bar" x="397.3" y="45.2" width="40.3" height="118.8"><title>1주 전 144,957</title></rect><rect class="bar last" x="460.3" y="60.9" width="40.3" height="103.1"><title>지난주 125,767</title></rect><line class="avg" x1="8" x2="512" y1="41.0" y2="41.0"/><text class="cap" x="10" y="35.0">직전 3주 평균 150,098</text><path class="mark" d="M410.5 16 H472.5 L480.5 54.9"/><text class="lab" x="406.5" y="20" text-anchor="end">지난주 125,767 · 0.8배</text><text class="cap" x="8" y="182">7주 전</text><text class="cap" x="512" y="182" text-anchor="end">지난주</text></svg></figure><h3>설치</h3><div class="cmd"><pre><code>claude plugin marketplace add heygen-com/hyperframes</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li><code>claude plugin install hyperframes@hyperframes</code>까지 실행해 설치해요.</li><li><code>npx hyperframes preview</code>로 브라우저에서 바로 미리 봐요.</li><li><code>npx hyperframes render</code>로 MP4를 뽑아요.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>Using `/hyperframes`, create a 10-second product intro with a fade-in title, a background video, and subtle background music.</code></pre><p class="caution"><strong>주의.</strong> Node.js 22 이상과 FFmpeg가 필요해요.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><dl><dt>지난주 설치</dt><dd>125,767</dd><dt>직전 3주 평균</dt><dd>150,098</dd><dt>배수</dt><dd>0.8배</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/heygen-com/hyperframes">github.com/heygen-com/hyperframes</a></li></ul></aside></div></article><article class="plate" id="p4"><header><span class="tag">4</span><h2>OpenMontage</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/calesthio/OpenMontage" alt="OpenMontage 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>AI 코딩 도구를 영상 제작 스튜디오로 바꾸는 오픈소스 시스템이에요. 파이프라인 12개와 도구 100개 이상을 묶어, 에이전트가 조사 · 대본 · 소재 생성 · 편집 · 합성을 차례로 해요. Archive.org, Pexels, NASA 같은 무료 소스의 실제 영상을 받아 편집해요.</p><h3>왜 지금</h3><p>지난 7일 중 4일 GitHub 일간 트렌딩에 올랐고, 한 주 동안 별이 3,743개 늘었어요.</p><h3>설치</h3><div class="cmd"><pre><code>git clone https://github.com/calesthio/OpenMontage.git</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li><code>cd OpenMontage</code> 후 <code>make setup</code>으로 환경을 갖춰요.</li><li>Claude Code로 프로젝트를 열고 만들고 싶은 영상을 문장으로 말해요.</li><li>유튜브 · 릴스 링크를 붙여 넣어 콘셉트 2~3개부터 받아 봐요.</li></ol><figure class="diagram"><pre class="mermaid">flowchart TD
+  A[조사] --&gt; B[제안]
+  B --&gt; C[대본]
+  C --&gt; D[장면 계획]
+  D --&gt; E[소재 생성]
+  E --&gt; F[편집]
+  F --&gt; G[합성 · 렌더링]</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>Make a 60-second animated explainer about &lt;주제&gt;</code></pre><p class="caution"><strong>주의.</strong> Python 3.10 이상, FFmpeg, Node.js 18 이상이 필요해요. API 키는 모두 선택이고, 기본 예산 상한은 제작 한 편당 $10, 건당 $0.50을 넘으면 확인을 받아요. 라이선스는 AGPLv3예요.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/calesthio/OpenMontage">github.com/calesthio/OpenMontage</a></li></ul></aside></div></article><article class="plate" id="p5"><header><span class="tag">5</span><h2>Beads</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/gastownhall/beads" alt="Beads 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>코딩 에이전트에게 오래가는 구조화된 기억을 주는 이슈 트래커예요. 마크다운 계획 대신 의존성 그래프로 할 일을 관리해, 긴 작업에서도 맥락을 잃지 않게 해요. Dolt 기반이라 버전 관리가 되고, 에이전트용 JSON 출력을 내요.</p><h3>왜 지금</h3><p>지난 7일 중 3일 GitHub 일간 트렌딩에 올랐고, 이번 기간에 v1.3.4가 나왔어요.</p><h3>설치</h3><div class="cmd"><pre><code>curl -fsSL https://raw.githubusercontent.com/gastownhall/beads/main/scripts/install.sh | bash</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>프로젝트 폴더에서 <code>bd init</code>을 실행해요.</li><li><code>bd setup claude</code>로 Claude Code용 훅 · 설정을 깔아요.</li><li><code>bd create &quot;&lt;할 일&gt;&quot; -p 0</code>으로 작업을 만들고 <code>bd ready</code>로 막힌 것 없는 작업을 확인해요.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>`bd ready`로 지금 할 수 있는 작업을 보고, 하나를 `bd update &lt;id&gt; --claim`으로 맡은 뒤 끝나면 `bd close &lt;id&gt;`로 닫아줘.</code></pre><p class="caution"><strong>주의.</strong> 구버전 바이너리는 새 버전이 마이그레이션한 데이터베이스를 열지 못해요. HTTP 모드에서는 일부 동작이 거부되거나 줄어들어요.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/gastownhall/beads">github.com/gastownhall/beads</a></li></ul></aside></div></article><article class="plate" id="p6"><header><span class="tag">6</span><h2>Worktrunk</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/max-sixty/worktrunk" alt="Worktrunk 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>AI 에이전트를 병렬로 돌리기 위한 git 워크트리 관리 CLI예요. 워크트리를 브랜치 이름으로 부르고 경로는 자동으로 정해요. 만들기, 옮기기, 병합, 정리를 명령 하나로 줄여요.</p><h3>왜 지금</h3><p>Claude 스킬 · 플러그인 저장소 GitHub 트렌딩에 올라 한 주 동안 별이 1,261개 늘었어요.</p><h3>설치</h3><div class="cmd"><pre><code>brew install worktrunk &amp;&amp; wt config shell install</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li><code>wt switch -c &lt;브랜치&gt;</code>로 새 워크트리와 브랜치를 만들어요.</li><li><code>wt switch -x claude -c &lt;브랜치&gt; -- &#x27;&lt;작업 설명&gt;&#x27;</code>으로 그 워크트리에서 Claude를 바로 띄워요.</li><li><code>wt list</code>로 상태를 보고, 끝나면 <code>wt merge</code>로 합치고 정리해요.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>wt switch -x claude -c fix-login -- &#x27;&lt;로그인 오류 재현하고 고치기&gt;&#x27;</code></pre><p class="caution"><strong>주의.</strong> 빌드 캐시 공유는 APFS, btrfs, XFS 파일 시스템에서만 돼요.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/max-sixty/worktrunk">github.com/max-sixty/worktrunk</a></li></ul></aside></div></article></main>
+<footer class="memo"><h2>수집 메모</h2><ul><li>스킬 순위 데이터: Best Skills (https://github.com/LinklyAI/best-skills) by @BlueeonY — CC BY 4.0</li><li>그림은 각 출처의 공개 미리보기 이미지(Open Graph)다. 막대 그림은 skills.sh 주간 설치 수로 그렸다.</li><li>&#x27;검증&#x27;은 설치 명령이 공식 문서 · README 본문에 글자 그대로 있는지 확인했다는 뜻이다. 실행해 본 것은 아니다.</li></ul></footer>
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.previousElementSibling.innerText);b.textContent='복사됨';}
+  catch(e){b.textContent='복사 안 됨';}
+  setTimeout(()=>b.textContent='복사',1600);}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.chart').forEach(c=>io.observe(c));
+</script>
+<script type="module">
+if(document.querySelector('.mermaid')){
+  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
+  try{const m=(await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')).default;
+    m.initialize({startOnLoad:false,theme:'base',flowchart:{useMaxWidth:false},themeVariables:{edgeLabelBackground:dark?'#1B201C':'#FBFCF9',fontFamily:'Pretendard, Noto Sans KR, sans-serif',fontSize:'14px',
+      primaryColor:dark?'#232A25':'#FBFCF9',primaryBorderColor:dark?'#DDE3DC':'#1D241F',primaryTextColor:dark?'#EEF1EC':'#1D241F',
+      lineColor:dark?'#AEB8AF':'#3E4A42',secondaryColor:dark?'#232A25':'#E6EAE3',tertiaryColor:dark?'#161A17':'#F1F3EE'}});
+    await m.run({querySelector:'.mermaid'});}catch(e){document.documentElement.classList.add('no-mermaid');}
+}
+</script></body></html>
