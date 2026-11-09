@@ -1,0 +1,180 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 데일리 — 11월 9일 (월)</title><style>/* 주간 보고서 — 도감(field guide) 도판. 방향: ../.impeccable/surfaces/02-report-css.md */
+:root {
+  --paper: #F1F3EE; --sheet: #FBFCF9; --ink: #1D241F; --ink-2: #3E4A42; --ink-3: #5E6A61;
+  --rule: #CBD2CA; --tag: #E9C64B; --tag-ink: #1D241F; --link: #1F5E7A;
+  --code-bg: #E6EAE3;
+  --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "D2Coding", Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151916; --sheet: #1B201C; --ink: #EEF1EC; --ink-2: #C9D1C8; --ink-3: #9AA59C;
+    --rule: #333C35; --link: #8CC4DB; --code-bg: #232A25;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); scrollbar-color: var(--ink-3) var(--paper); }
+body {
+  margin: 0; color: var(--ink); font: 400 17px/1.8 var(--sans);
+  word-break: keep-all; overflow-wrap: anywhere; text-align: left;
+  -webkit-font-smoothing: antialiased; caret-color: var(--tag);
+}
+::selection { background: var(--tag); color: var(--tag-ink); }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+code { font: 500 .88em/1.5 var(--mono); }
+strong { font-weight: 700; }
+
+/* 표제 — 도감의 속표지 */
+.mast { max-width: 76rem; margin: 0 auto; padding: 4.5rem 2rem 3rem; }
+.mast h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 .6rem; }
+.dateline { margin: 0 0 1.8rem; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.22rem; line-height: 1.7; color: var(--ink-2); max-width: 44rem; margin: 0 0 3rem; }
+
+/* 도판 목록 */
+.index { list-style: none; margin: 0; padding: .3rem 0 0; border-top: 1.5px solid var(--ink); max-width: 56rem; }
+.index a { display: grid; grid-template-columns: 2.6rem minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding: .85rem .25rem; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: .22em; }
+.index .nm { font-weight: 700; }
+.index .ol { color: var(--ink-3); font-size: .95rem; }
+.index .when { margin-left: .6em; font-variant-numeric: tabular-nums; color: var(--ink-2); font-weight: 700; }
+.rail .when { font-weight: 700; color: var(--ink); }
+
+/* 도판 번호표 — 노란 표지는 여기와 식별 포인트에만 쓴다 */
+.tag { display: inline-grid; place-items: center; min-width: 1.9rem; height: 1.9rem; padding: 0 .4rem;
+  background: var(--tag); color: var(--tag-ink); font: 800 .95rem/1 var(--sans); font-variant-numeric: tabular-nums; border-radius: 2px; }
+
+/* 도판 */
+main { max-width: 76rem; margin: 0 auto; padding: 0 2rem; }
+.plate { padding: 4.5rem 0 3.5rem; border-top: 1.5px solid var(--ink); scroll-margin-top: 1rem; }
+.plate > header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.plate h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.25; letter-spacing: -0.02em; font-weight: 800; margin: 0; }
+.cols { display: grid; grid-template-columns: minmax(0, 42rem) minmax(13rem, 17rem); gap: 4rem; }
+.main h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; margin: 2.4rem 0 .5rem; }
+.main p { margin: 0 0 1rem; }
+.summary { font-size: 1.08rem; }
+.summary.external, .summary.opinion { color: var(--ink-3); }
+.prov { font-weight: 700; color: var(--ink); margin-right: .5em; }
+
+/* 표본 사진 */
+.specimen { margin: 0 0 2rem; }
+.specimen img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  background: var(--code-bg); border: 1px solid var(--rule); border-radius: 3px; }
+figcaption { font-size: .8rem; color: var(--ink-3); margin-top: .5rem; }
+
+/* 식별 포인트 — 주간 설치 막대 */
+.chart { margin: 1.4rem 0 .4rem; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .mark { stroke-dasharray: 200; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .chart:not(.seen) .mark { stroke-dashoffset: 200; }
+  .chart .mark { transition: stroke-dashoffset 900ms cubic-bezier(.16, 1, .3, 1); }
+  .chart:not(.seen) .lab { opacity: 0; }
+  .chart .lab { transition: opacity 500ms 500ms ease-out; }
+}
+
+/* 설치 명령 */
+.cmd { position: relative; }
+pre { margin: 0 0 1rem; padding: 1rem 1.1rem; background: var(--code-bg); border-radius: 4px; overflow-x: auto; }
+pre code { font-size: .9rem; white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+.prompt code { font-family: var(--sans); }
+.cmd pre { padding-right: 5rem; }
+.copy { position: absolute; top: .55rem; right: .55rem; font: 700 .82rem/1 var(--sans); color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .7rem; cursor: pointer; }
+.copy:hover { border-color: var(--ink-3); }
+.copy:active { transform: translateY(1px); }
+.prompt { background: transparent; border: 1px dashed var(--rule); }
+
+.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+.steps li { margin-bottom: .45rem; padding-left: .2rem; }
+.steps li::marker { font-weight: 800; color: var(--ink-3); }
+.caution { margin-top: 1.6rem !important; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .95rem; }
+
+/* 다이어그램 */
+.diagram { margin: 1.8rem 0; padding: 1.4rem 1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
+.diagram pre.mermaid { background: none; margin: 0; padding: 0; text-align: center; font: 500 .85rem/1.5 var(--mono); color: var(--ink-3); }
+.diagram svg { display: block; margin: 0 auto; max-width: none; height: auto; }
+.diagram pre.mermaid:not([data-processed]) { visibility: hidden; }
+.no-mermaid .diagram { display: none; }
+
+/* 여백 난 — 숫자와 출처 */
+.rail { font-size: .88rem; line-height: 1.6; color: var(--ink-2); padding-top: .3rem; }
+.rail > * { margin: 0 0 1.1rem; }
+.rail .cls { font-weight: 800; color: var(--ink); font-size: .95rem; }
+.rail dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; padding: .9rem 0; border-block: 1px solid var(--rule); }
+.rail dt { color: var(--ink-3); }
+.rail dd { margin: 0; text-align: right; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rail .claim.external, .rail .claim.opinion { display: inline-block; padding: .1rem .5rem; border: 1px solid var(--ink-3); border-radius: 2px; }
+.rail .claim.official { font-weight: 700; color: var(--ink); }
+.rail .vf { color: var(--ink-3); }
+.rail ul { list-style: none; padding: 0; }
+.rail li { margin-bottom: .4rem; }
+.rail a { overflow-wrap: anywhere; }
+
+/* 실무 가이드 */
+.part { padding: 5rem 0 1rem; border-top: 3px solid var(--ink); }
+.part h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 800; margin: 0 0 .6rem; }
+.part p { margin: 0; color: var(--ink-2); font-size: 1.08rem; }
+.index-part { font-size: 1.3rem; font-weight: 800; margin: 2.4rem 0 .8rem; }
+.plabel { font-weight: 700; margin: 1.4rem 0 .4rem !important; }
+.trouble { margin: 0 0 1rem; }
+.trouble dt { font-weight: 700; margin-top: 1rem; }
+.trouble dd { margin: .2rem 0 0; color: var(--ink-2); }
+.rail .who { display: block; }
+.rail .who dd { text-align: left; font-weight: 400; color: var(--ink-2); margin-bottom: .6rem; }
+
+/* 수집 메모 */
+.memo { max-width: 72rem; margin: 2rem auto 0; padding: 2.5rem 0 5rem; border-top: 1.5px solid var(--ink); color: var(--ink-3); font-size: .88rem; }
+.memo h2 { font-size: 1.6rem; color: var(--ink); margin: 0 0 .8rem; }
+.memo ul { padding-left: 1.1rem; max-width: 52rem; }
+
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .mast { padding: 2.6rem 1.25rem 2rem; }
+  main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .memo { margin-inline: 1.25rem; }
+  .cols { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .rail { border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+  .index a { grid-template-columns: 2.4rem 1fr; }
+  .index .ol { grid-column: 2; }
+  .plate { padding-top: 3rem; }
+}
+@media print {
+  .copy { display: none; }
+  .chart .mark { stroke-dashoffset: 0 !important; }
+  .chart .lab { opacity: 1 !important; }
+  .plate { break-before: page; }
+}
+</style></head><body>
+<header class="mast"><h1>AI 데일리</h1><p class="dateline">2026년 11월 9일 월요일 · 4건</p><p class="lede">Claude Code 2.1.319에서 오래 걸리는 MCP 작업이 바로 백그라운드로 넘어가고, 권한 확인 창 대신 바로 거절하는 설정이 생겼어요. 웹 검색 때 계정 이메일이 User-Agent 헤더에 실려 나간다는 이슈가 HN 1,601점을 받았고, 스킬 쪽에서는 microsoft-foundry 설치 수가 직전 3주 평균의 8.7배로 뛰었고 grill-with-docs가 상위 20위에 새로 들어왔어요.</p>
+<nav aria-label="도판 목록"><ol class="index"><li><a href="#p1"><span class="tag">1</span><span class="nm">Claude Code 2.1.319: MCP 작업 백그라운드 처리, 확인 대신 거절하는 권한 설정</span><span class="ol">오래 걸리는 MCP 작업은 뒤로, 확인 창은 거절로<span class="when">11월 6일</span></span></a></li><li><a href="#p2"><span class="tag">2</span><span class="nm">Claude Code가 웹 검색 때 계정 이메일을 보낸다는 이슈, HN 1,601점</span><span class="ol">User-Agent에 이메일, privacy mod 확인 필요<span class="when">11월 5일</span></span></a></li><li><a href="#p3"><span class="tag">3</span><span class="nm">grill-with-docs</span><span class="ol">계획을 따져 묻고 용어집 · ADR까지 남기는 스킬</span></a></li><li><a href="#p4"><span class="tag">4</span><span class="nm">microsoft-foundry</span><span class="ol">Azure Foundry 에이전트 배포 · 평가를 맡기는 스킬</span></a></li></ol></nav></header>
+<main><article class="plate" id="p1"><header><span class="tag">1</span><h2>Claude Code 2.1.319: MCP 작업 백그라운드 처리, 확인 대신 거절하는 권한 설정</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/anthropics/claude-code" alt="Claude Code 2.1.319: MCP 작업 백그라운드 처리, 확인 대신 거절하는 권한 설정 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><p class="summary official">MCP 서버가 도구 호출을 task로 실행하면 Claude Code가 이를 바로 백그라운드로 보내고, 끝나면 결과를 Claude에게 알려요. <code>permissions.denyInsteadOfPrompting</code>을 켜면 확인 창을 기다릴 도구 호출을 바로 거절하고 턴을 이어가요. 이 설정은 터미널 세션, 서브에이전트, 팀원 세션에 모두 적용돼요. Bash 권한 우회, sed 권한 확인 누락, 워크트리 생성 때 샌드박스 탈출 같은 보안 문제도 고쳤어요. 스스로 간격을 정하는 <code>/loop</code>는 이제 다음 실행을 잡지 않고 끝난 턴에서 멈춰요.</p><h3>그래서 무엇을 하나</h3><p>업데이트한 뒤 자리를 비우고 돌리는 세션에 <code>denyInsteadOfPrompting</code>을 켜 보세요. 확인 창 하나 때문에 밤새 멈춰 있던 일이 줄어요.</p><ul class="steps"><li><code>settings.json</code>의 <code>permissions</code>에 <code>&quot;denyInsteadOfPrompting&quot;: true</code>를 넣어요.</li><li>MCP 작업을 도구 호출 안에서 끝까지 기다리게 하려면 <code>CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND</code>를 설정해요.</li><li>MCP task 기능을 아예 끄려면 <code>CLAUDE_CODE_DISABLE_MCP_TASKS=1</code>을 설정해요.</li><li><code>/loop</code>의 예전 동작이 필요하면 <code>CLAUDE_CODE_LOOP_KEEPALIVE=1</code>을 설정해요.</li></ul></div><aside class="rail"><p class="cls">출시 · 업데이트</p><p class="when">원문 11월 6일</p><p class="claim official">공식 발표</p><ul><li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.319">github.com/anthropics/claude-code/releases/tag/v2.1.319</a></li><li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code/blob/main/CHANGELOG.md</a></li></ul></aside></div></article><article class="plate" id="p2"><header><span class="tag">2</span><h2>Claude Code가 웹 검색 때 계정 이메일을 보낸다는 이슈, HN 1,601점</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/anthropics/claude-code" alt="Claude Code가 웹 검색 때 계정 이메일을 보낸다는 이슈, HN 1,601점 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><p class="summary external"><span class="prov">외부 측정 · 보도</span>한 사용자가 2.1.318에서 Claude Code가 웹 검색을 하며 User-Agent 헤더에 자기 이메일을 실어 제3자 사이트에 보냈다고 이슈를 올렸어요. 이 글은 HN에서 1,601점, 댓글 532개를 받았어요. Anthropic 쪽 기여자는 2.1.317부터 기본으로 켜진 내장 mod <code>cc-plugin-privacy</code>가 이를 막는다고 답했고, 빠진 경우가 있으면 알려 달라고 했어요. 제보자가 그보다 새 버전을 쓰고 있어서, 모든 경우를 막는지는 아직 확인되지 않았어요. 이슈는 아직 열려 있어요.</p><h3>그래서 무엇을 하나</h3><p><code>/plugins</code>에서 <code>cc-plugin-privacy</code>가 켜져 있는지 확인하세요. 버전이 2.1.317보다 낮으면 먼저 업데이트하세요.</p><ul class="steps"><li><code>claude --version</code>으로 2.1.317 이상인지 확인해요.</li><li><code>/plugins</code>를 열어 <code>cc-plugin-privacy</code>가 켜져 있는지 봐요.</li></ul></div><aside class="rail"><p class="cls">실무 · 관점</p><p class="when">원문 11월 5일</p><p class="claim external">외부 측정 · 보도</p><ul><li><a href="https://github.com/anthropics/claude-code/issues/107757">github.com/anthropics/claude-code/issues/107757</a></li><li><a href="https://news.ycombinator.com/item?id=50385272">news.ycombinator.com/item?id=50385272</a></li></ul></aside></div></article><header class="part" id="skills"><h2>이번 주 써 볼 도구</h2><p>팀이 이번 주에 깔아서 덕을 볼 것.</p></header><article class="plate" id="p3"><header><span class="tag">3</span><h2>grill-with-docs</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/mattpocock/skills" alt="grill-with-docs 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Matt Pocock 스킬 모음에 든 스킬이에요. 계획이나 설계를 에이전트가 끝까지 질문으로 따져 묻는 grill-me에, 프로젝트 용어집과 ADR(결정 기록) 정리를 더했어요. 실제 동작은 grilling과 domain-modeling 두 스킬을 차례로 부르는 방식이에요.</p><h3>왜 지금</h3><p>skills.sh 종합 상위 20위에 4위로 새로 들어왔어요. 저장소 mattpocock/skills는 7일 동안 별이 9,275개 늘었고, 지난 7일 X 언급은 22건이에요.</p><figure class="chart"><svg class="weeks" viewBox="0 0 520 190" role="img"><title>grill-with-docs 주간 설치 8주</title><style>.bar{fill:#9AA79D}.bar.last{fill:#E9C64B;stroke:#1D241F;stroke-width:1}.avg{stroke:#1D241F;stroke-dasharray:3 4;stroke-width:1}.mark{stroke:#1D241F;stroke-width:1.4;fill:none}.cap,.lab{font:500 12px "Pretendard","Noto Sans KR",sans-serif;fill:#3E4A42}.lab{font-weight:700;fill:#1D241F}.axis{stroke:#B9C2B9}@media (prefers-color-scheme:dark){.bar{fill:#4E5A52}.bar.last{stroke:#E9C64B}.avg,.mark{stroke:#DDE3DC}.cap{fill:#AEB8AF}.lab{fill:#EEF1EC}.axis{stroke:#3A433D}}</style><line class="axis" x1="8" x2="512" y1="164" y2="164"/><rect class="bar" x="19.3" y="45.7" width="40.3" height="118.3"><title>7주 전 53,625</title></rect><rect class="bar" x="82.3" y="57.8" width="40.3" height="106.2"><title>6주 전 48,139</title></rect><rect class="bar" x="145.3" y="57.3" width="40.3" height="106.7"><title>5주 전 48,386</title></rect><rect class="bar" x="208.3" y="34.0" width="40.3" height="130.0"><title>4주 전 58,939</title></rect><rect class="bar" x="271.3" y="48.5" width="40.3" height="115.5"><title>3주 전 52,386</title></rect><rect class="bar" x="334.3" y="56.7" width="40.3" height="107.3"><title>2주 전 48,664</title></rect><rect class="bar" x="397.3" y="68.3" width="40.3" height="95.7"><title>1주 전 43,368</title></rect><rect class="bar last" x="460.3" y="73.0" width="40.3" height="91.0"><title>지난주 41,260</title></rect><line class="avg" x1="8" x2="512" y1="57.8" y2="57.8"/><text class="cap" x="10" y="51.8">직전 3주 평균 48,139</text><path class="mark" d="M410.5 16 H472.5 L480.5 67.0"/><text class="lab" x="406.5" y="20" text-anchor="end">지난주 41,260 · 0.9배</text><text class="cap" x="8" y="182">7주 전</text><text class="cap" x="512" y="182" text-anchor="end">지난주</text></svg></figure><h3>설치</h3><div class="cmd"><pre><code>npx skills add https://github.com/mattpocock/skills --skill grill-with-docs</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>새 기능을 시작하기 전에, 만들 내용을 한두 문단으로 적고 grill-with-docs를 불러 질문에 답해 보세요. 전에는 만들다가 빈틈을 발견했다면, 이제는 코드를 쓰기 전에 빈틈이 드러나요.</li><li>같은 것을 팀마다 다르게 부르는 말(예: 회원 · 사용자 · 계정)이 있으면, 질문 중에 하나로 정해 용어집 파일에 남겨요. 다음 세션의 에이전트도 같은 말을 써요.</li><li>왜 그렇게 정했는지 설명하기 어려운 결정은 ADR로 남겨요. 몇 달 뒤 누가 이유를 물어도 문서를 보면 돼요.</li></ol><figure class="diagram"><pre class="mermaid">flowchart LR
+  A[계획 설명] --&gt; B[코드 · 문서 읽기]
+  B --&gt; C[질문으로 따지기]
+  C --&gt; D[용어집 · ADR 갱신]</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>/grill-with-docs &lt;만들려는 기능 설명&gt;을 만들려고 해. 코드와 기존 용어집 · ADR을 먼저 읽고, 애매한 용어와 빠진 경우를 하나씩 질문해 줘.</code></pre><p class="caution"><strong>주의.</strong> README는 한 에이전트에 설치 방법을 하나만 쓰라고 해요. 플러그인과 npx를 같이 쓰면 스킬이 두 번씩 들어가요. 용어집 파일 이름은 지금 GLOSSARY.md이고, 예전 이름은 CONTEXT.md예요.</p></div><aside class="rail"><p class="cls">상위권</p><dl><dt>지난주 설치</dt><dd>41,260</dd><dt>직전 3주 평균</dt><dd>48,139</dd><dt>배수</dt><dd>0.9배</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/mattpocock/skills">github.com/mattpocock/skills</a></li><li><a href="https://www.skills.sh/mattpocock/skills/grill-with-docs">skills.sh/mattpocock/skills/grill-with-docs</a></li></ul></aside></div></article><article class="plate" id="p4"><header><span class="tag">4</span><h2>microsoft-foundry</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/microsoft/azure-skills" alt="microsoft-foundry 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Microsoft Foundry에서 AI 에이전트를 만들고 운영하는 일을 에이전트에게 맡기는 스킬이에요. 샘플로 시작해 컨테이너로 묶고, ACR에 올려 배포하고, 일괄 테스트와 프롬프트 개선까지 이어서 해요. 권한(RBAC), 할당량, 리전별 모델 배포 관리도 다뤄요.</p><h3>왜 지금</h3><p>지난주 설치가 75,545건으로 직전 3주 평균 8,693건의 8.7배예요. 누적 설치는 661,244건이에요.</p><figure class="chart"><svg class="weeks" viewBox="0 0 520 190" role="img"><title>microsoft-foundry 주간 설치 8주</title><style>.bar{fill:#9AA79D}.bar.last{fill:#E9C64B;stroke:#1D241F;stroke-width:1}.avg{stroke:#1D241F;stroke-dasharray:3 4;stroke-width:1}.mark{stroke:#1D241F;stroke-width:1.4;fill:none}.cap,.lab{font:500 12px "Pretendard","Noto Sans KR",sans-serif;fill:#3E4A42}.lab{font-weight:700;fill:#1D241F}.axis{stroke:#B9C2B9}@media (prefers-color-scheme:dark){.bar{fill:#4E5A52}.bar.last{stroke:#E9C64B}.avg,.mark{stroke:#DDE3DC}.cap{fill:#AEB8AF}.lab{fill:#EEF1EC}.axis{stroke:#3A433D}}</style><line class="axis" x1="8" x2="512" y1="164" y2="164"/><rect class="bar" x="19.3" y="143.7" width="40.3" height="20.3"><title>7주 전 11,809</title></rect><rect class="bar" x="82.3" y="141.5" width="40.3" height="22.5"><title>6주 전 13,054</title></rect><rect class="bar" x="145.3" y="142.5" width="40.3" height="21.5"><title>5주 전 12,467</title></rect><rect class="bar" x="208.3" y="143.6" width="40.3" height="20.4"><title>4주 전 11,845</title></rect><rect class="bar" x="271.3" y="147.1" width="40.3" height="16.9"><title>3주 전 9,841</title></rect><rect class="bar" x="334.3" y="150.9" width="40.3" height="13.1"><title>2주 전 7,630</title></rect><rect class="bar" x="397.3" y="149.2" width="40.3" height="14.8"><title>1주 전 8,608</title></rect><rect class="bar last" x="460.3" y="34.0" width="40.3" height="130.0"><title>지난주 75,545</title></rect><line class="avg" x1="8" x2="512" y1="149.0" y2="149.0"/><text class="cap" x="10" y="143.0">직전 3주 평균 8,693</text><path class="mark" d="M410.5 16 H472.5 L480.5 28.0"/><text class="lab" x="406.5" y="20" text-anchor="end">지난주 75,545 · 8.7배</text><text class="cap" x="8" y="182">7주 전</text><text class="cap" x="512" y="182" text-anchor="end">지난주</text></svg></figure><h3>설치</h3><div class="cmd"><pre><code>npx skills add https://github.com/microsoft/azure-skills --skill microsoft-foundry</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>Azure 포털에서 하나씩 누르던 배포를 말로 시켜요. 전에는 패키징, 레지스트리 업로드, 배포 설정을 각각 했다면, 이제는 한 대화 안에서 이어서 해요.</li><li>배포한 에이전트를 테스트 묶음으로 돌려 보고, 결과를 보며 프롬프트를 고치게 해요.</li><li>운영 중인 에이전트의 추적 기록을 읽혀 문제 원인을 찾게 해요.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>microsoft-foundry 스킬로 &lt;샘플 이름&gt; 에이전트를 내 Foundry 프로젝트 &lt;프로젝트 이름&gt;에 배포하고, 테스트 케이스 5개로 결과를 확인해 줘.</code></pre><p class="caution"><strong>주의.</strong> Azure 계정과 Foundry 프로젝트가 있어야 쓸모가 있어요. 작업 전에 의존성 점검 스크립트를 돌리고 빠진 것을 설치하며, 환경 설정은 <code>.foundry/agent-metadata.yaml</code> 파일에 둬요.</p></div><aside class="rail"><p class="cls">급상승</p><dl><dt>지난주 설치</dt><dd>75,545</dd><dt>직전 3주 평균</dt><dd>8,693</dd><dt>배수</dt><dd>8.7배</dd></dl><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/microsoft/azure-skills">github.com/microsoft/azure-skills</a></li><li><a href="https://www.skills.sh/microsoft/azure-skills/microsoft-foundry">skills.sh/microsoft/azure-skills/microsoft-foundry</a></li></ul></aside></div></article></main>
+<footer class="memo"><h2>수집 메모</h2><ul><li>스킬 순위 데이터: Best Skills (https://github.com/LinklyAI/best-skills) by @BlueeonY — CC BY 4.0</li><li>그림은 각 출처의 공개 미리보기 이미지(Open Graph)다. 막대 그림은 skills.sh 주간 설치 수로 그렸다.</li><li>&#x27;검증&#x27;은 설치 명령이 공식 문서 · README 본문에 글자 그대로 있는지 확인했다는 뜻이다. 실행해 본 것은 아니다.</li></ul></footer>
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.previousElementSibling.innerText);b.textContent='복사됨';}
+  catch(e){b.textContent='복사 안 됨';}
+  setTimeout(()=>b.textContent='복사',1600);}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.chart').forEach(c=>io.observe(c));
+</script>
+<script type="module">
+if(document.querySelector('.mermaid')){
+  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
+  try{const m=(await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')).default;
+    m.initialize({startOnLoad:false,theme:'base',flowchart:{useMaxWidth:false},themeVariables:{edgeLabelBackground:dark?'#1B201C':'#FBFCF9',fontFamily:'Pretendard, Noto Sans KR, sans-serif',fontSize:'14px',
+      primaryColor:dark?'#232A25':'#FBFCF9',primaryBorderColor:dark?'#DDE3DC':'#1D241F',primaryTextColor:dark?'#EEF1EC':'#1D241F',
+      lineColor:dark?'#AEB8AF':'#3E4A42',secondaryColor:dark?'#232A25':'#E6EAE3',tertiaryColor:dark?'#161A17':'#F1F3EE'}});
+    await m.run({querySelector:'.mermaid'});}catch(e){document.documentElement.classList.add('no-mermaid');}
+}
+</script></body></html>
