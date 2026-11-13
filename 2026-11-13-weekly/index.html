@@ -1,0 +1,210 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>트렌드 + AI 종합 — 11월 13일 (금)</title><style>/* 주간 보고서 — 도감(field guide) 도판. 방향: ../.impeccable/surfaces/02-report-css.md */
+:root {
+  --paper: #F1F3EE; --sheet: #FBFCF9; --ink: #1D241F; --ink-2: #3E4A42; --ink-3: #5E6A61;
+  --rule: #CBD2CA; --tag: #E9C64B; --tag-ink: #1D241F; --link: #1F5E7A;
+  --code-bg: #E6EAE3;
+  --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "D2Coding", Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151916; --sheet: #1B201C; --ink: #EEF1EC; --ink-2: #C9D1C8; --ink-3: #9AA59C;
+    --rule: #333C35; --link: #8CC4DB; --code-bg: #232A25;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); scrollbar-color: var(--ink-3) var(--paper); }
+body {
+  margin: 0; color: var(--ink); font: 400 17px/1.8 var(--sans);
+  word-break: keep-all; overflow-wrap: anywhere; text-align: left;
+  -webkit-font-smoothing: antialiased; caret-color: var(--tag);
+}
+::selection { background: var(--tag); color: var(--tag-ink); }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+code { font: 500 .88em/1.5 var(--mono); }
+strong { font-weight: 700; }
+
+/* 표제 — 도감의 속표지 */
+.mast { max-width: 76rem; margin: 0 auto; padding: 4.5rem 2rem 3rem; }
+.mast h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 .6rem; }
+.dateline { margin: 0 0 1.8rem; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.22rem; line-height: 1.7; color: var(--ink-2); max-width: 44rem; margin: 0 0 3rem; }
+
+/* 도판 목록 */
+.index { list-style: none; margin: 0; padding: .3rem 0 0; border-top: 1.5px solid var(--ink); max-width: 56rem; }
+.index a { display: grid; grid-template-columns: 2.6rem minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding: .85rem .25rem; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: .22em; }
+.index .nm { font-weight: 700; }
+.index .ol { color: var(--ink-3); font-size: .95rem; }
+.index .when { margin-left: .6em; font-variant-numeric: tabular-nums; color: var(--ink-2); font-weight: 700; }
+.rail .when { font-weight: 700; color: var(--ink); }
+
+/* 날짜 탭 — 매일 판은 한 주 한 페이지, 날마다 탭 하나 */
+.tabs { display: flex; flex-wrap: wrap; gap: .25rem 1rem; border-bottom: 1.5px solid var(--ink); }
+.tabs button { font: 700 1.05rem/1.3 var(--sans); color: var(--ink-3); background: none; border: 0; border-bottom: 3px solid transparent;
+  margin-bottom: -1.5px; padding: .7rem .1rem; cursor: pointer; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.tabs button span { font-weight: 400; font-variant-numeric: tabular-nums; }
+.day > .mast { padding-top: 2.5rem; padding-bottom: 2rem; }
+
+/* 도판 번호표 — 노란 표지는 여기와 식별 포인트에만 쓴다 */
+.tag { display: inline-grid; place-items: center; min-width: 1.9rem; height: 1.9rem; padding: 0 .4rem;
+  background: var(--tag); color: var(--tag-ink); font: 800 .95rem/1 var(--sans); font-variant-numeric: tabular-nums; border-radius: 2px; }
+
+/* 도판 */
+main { max-width: 76rem; margin: 0 auto; padding: 0 2rem; }
+.plate { padding: 4.5rem 0 3.5rem; border-top: 1.5px solid var(--ink); scroll-margin-top: 1rem; }
+.plate > header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.plate h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.25; letter-spacing: -0.02em; font-weight: 800; margin: 0; }
+.cols { display: grid; grid-template-columns: minmax(0, 42rem) minmax(13rem, 17rem); gap: 4rem; }
+.main h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; margin: 2.4rem 0 .5rem; }
+.main p { margin: 0 0 1rem; }
+.summary { font-size: 1.08rem; }
+.summary.external, .summary.opinion { color: var(--ink-3); }
+.prov { font-weight: 700; color: var(--ink); margin-right: .5em; }
+
+/* 표본 사진 */
+.specimen { margin: 0 0 2rem; }
+.specimen img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  background: var(--code-bg); border: 1px solid var(--rule); border-radius: 3px; }
+figcaption { font-size: .8rem; color: var(--ink-3); margin-top: .5rem; }
+
+/* 식별 포인트 — 주간 설치 막대 */
+.chart { margin: 1.4rem 0 .4rem; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .mark { stroke-dasharray: 200; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .chart:not(.seen) .mark { stroke-dashoffset: 200; }
+  .chart .mark { transition: stroke-dashoffset 900ms cubic-bezier(.16, 1, .3, 1); }
+  .chart:not(.seen) .lab { opacity: 0; }
+  .chart .lab { transition: opacity 500ms 500ms ease-out; }
+}
+
+/* 설치 명령 */
+.cmd { position: relative; }
+pre { margin: 0 0 1rem; padding: 1rem 1.1rem; background: var(--code-bg); border-radius: 4px; overflow-x: auto; }
+pre code { font-size: .9rem; white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+.prompt code { font-family: var(--sans); }
+.cmd pre { padding-right: 5rem; }
+.copy { position: absolute; top: .55rem; right: .55rem; font: 700 .82rem/1 var(--sans); color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .7rem; cursor: pointer; }
+.copy:hover { border-color: var(--ink-3); }
+.copy:active { transform: translateY(1px); }
+.prompt { background: transparent; border: 1px dashed var(--rule); }
+
+.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+.steps li { margin-bottom: .45rem; padding-left: .2rem; }
+.steps li::marker { font-weight: 800; color: var(--ink-3); }
+.caution { margin-top: 1.6rem !important; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .95rem; }
+
+/* 다이어그램 */
+.diagram { margin: 1.8rem 0; padding: 1.4rem 1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
+.diagram pre.mermaid { background: none; margin: 0; padding: 0; text-align: center; font: 500 .85rem/1.5 var(--mono); color: var(--ink-3); }
+.diagram svg { display: block; margin: 0 auto; max-width: none; height: auto; }
+.diagram pre.mermaid:not([data-processed]) { visibility: hidden; }
+.no-mermaid .diagram { display: none; }
+
+/* 여백 난 — 숫자와 출처 */
+.rail { font-size: .88rem; line-height: 1.6; color: var(--ink-2); padding-top: .3rem; }
+.rail > * { margin: 0 0 1.1rem; }
+.rail .cls { font-weight: 800; color: var(--ink); font-size: .95rem; }
+.rail dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; padding: .9rem 0; border-block: 1px solid var(--rule); }
+.rail dt { color: var(--ink-3); }
+.rail dd { margin: 0; text-align: right; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rail .claim.external, .rail .claim.opinion { display: inline-block; padding: .1rem .5rem; border: 1px solid var(--ink-3); border-radius: 2px; }
+.rail .claim.official { font-weight: 700; color: var(--ink); }
+.rail .vf { color: var(--ink-3); }
+.rail ul { list-style: none; padding: 0; }
+.rail li { margin-bottom: .4rem; }
+.rail a { overflow-wrap: anywhere; }
+
+/* 실무 가이드 */
+.part { padding: 5rem 0 1rem; border-top: 3px solid var(--ink); }
+.part h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 800; margin: 0 0 .6rem; }
+.part p { margin: 0; color: var(--ink-2); font-size: 1.08rem; }
+.index-part { font-size: 1.3rem; font-weight: 800; margin: 2.4rem 0 .8rem; }
+.plabel { font-weight: 700; margin: 1.4rem 0 .4rem !important; }
+.trouble { margin: 0 0 1rem; }
+.trouble dt { font-weight: 700; margin-top: 1rem; }
+.trouble dd { margin: .2rem 0 0; color: var(--ink-2); }
+.rail .who { display: block; }
+.rail .who dd { text-align: left; font-weight: 400; color: var(--ink-2); margin-bottom: .6rem; }
+
+/* 수집 메모 */
+.memo { max-width: 72rem; margin: 2rem auto 0; padding: 2.5rem 0 5rem; border-top: 1.5px solid var(--ink); color: var(--ink-3); font-size: .88rem; }
+.memo h2 { font-size: 1.6rem; color: var(--ink); margin: 0 0 .8rem; }
+.memo ul { padding-left: 1.1rem; max-width: 52rem; }
+
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .mast { padding: 2.6rem 1.25rem 2rem; }
+  main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .memo { margin-inline: 1.25rem; }
+  .cols { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .rail { border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+  .index a { grid-template-columns: 2.4rem 1fr; }
+  .index .ol { grid-column: 2; }
+  .plate { padding-top: 3rem; }
+}
+@media print {
+  .copy, .tabs { display: none; }
+  .day[hidden] { display: block; }
+  .chart .mark { stroke-dashoffset: 0 !important; }
+  .chart .lab { opacity: 1 !important; }
+  .plate { break-before: page; }
+}
+</style></head><body>
+<header class="mast"><h1>트렌드 + AI 종합</h1><p class="dateline">2026년 11월 13일 금요일 · 10건</p><p class="lede">Anthropic이 최상위 모델 Fable 5.2를 내고 Google이 Gemini 4 Carbon과 Hydrogen을 잇달아 열면서, 큰 모델이 계획하고 빠른 모델이 실행하는 분업이 도구 안으로 들어왔다. AWS 에뮬레이터는 에이전트에게 검증 수단부터 주라는 교훈을 남겼고, Notion AI 대화 노출과 공식 MCP 서버 보안 수정은 AI 도구 뒤의 데이터 경로를 다시 볼 이유가 됐다.</p>
+<nav aria-label="도판 목록"><ol class="index"><li><a href="#p1"><span class="tag">1</span><span class="nm">Anthropic 최상위 모델 Fable 새 판 출시, 코딩 시험에서 Opus를 앞섰다</span><span class="ol">가장 강한 Claude, 어려운 일에만 꺼내 쓰라는 권고<span class="when">11월 9일</span></span></a></li><li><a href="#p2"><span class="tag">2</span><span class="nm">Google, 큰 모델 Carbon을 모두에게 열고 이틀 뒤 빠른 모델 Hydrogen을 냈다</span><span class="ol">큰 모델은 계획, 빠른 모델은 실행으로 나눠 쓴다<span class="when">11월 10일</span></span></a></li><li><a href="#p3"><span class="tag">3</span><span class="nm">AWS, 에이전트가 만든 「내 PC 속 AWS」를 무료로 공개했다</span><span class="ol">계정 없이 AWS를 흉내 내는 도구, 만든 방식이 더 화제<span class="when">11월 11일</span></span></a></li><li><a href="#p4"><span class="tag">4</span><span class="nm">AI에 파일 · git을 열어 주는 공식 연결 서버, 보안 구멍 10개를 막았다</span><span class="ol">Claude에 붙여 쓰는 공식 MCP 서버, 오늘 올릴 것<span class="when">11월 11일</span></span></a></li><li><a href="#p5"><span class="tag">5</span><span class="nm">데이터를 안 남긴다던 AI 업체가 뚫려, Notion AI 대화 일부가 노출됐을 수 있다</span><span class="ol">AI 기능 뒤의 숨은 업체에서 새는 데이터<span class="when">11월 10일</span></span></a></li><li><a href="#p6"><span class="tag">6</span><span class="nm">Claude에 팀이 함께 쓰는 화이트보드와 시트가 생겼다</span><span class="ol">회의 메모를 담당자 · 날짜가 붙은 보드로<span class="when">11월 10일</span></span></a></li><li><a href="#p7"><span class="tag">7</span><span class="nm">improve (shadcn)</span><span class="ol">좋은 모델이 감사하고, 싼 모델이 따라 할 계획을 쓴다</span></a></li><li><a href="#p8"><span class="tag">8</span><span class="nm">modern-web-guidance (GoogleChrome)</span><span class="ol">에이전트가 낡은 웹 코드 대신 최신 표준으로 짜게 한다</span></a></li><li><a href="#p9"><span class="tag">9</span><span class="nm">T3 Code</span><span class="ol">휴대폰 · 웹에서 내 PC의 Claude Code를 부리는 화면</span></a></li></ol><h2 class="index-part">실무 가이드</h2><ol class="index"><li><a href="#p10"><span class="tag">10</span><span class="nm">클로드를 2024년처럼 쓰지 마라: Anthropic 엔지니어링 리드의 네 가지 습관</span><span class="ol">작은 일 말고 결과를 맡기고, 검사는 다른 세션에</span></a></li></ol></nav></header>
+<main><article class="plate" id="p1"><header><span class="tag">1</span><h2>Anthropic 최상위 모델 Fable 새 판 출시, 코딩 시험에서 Opus를 앞섰다</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://assets.claude.com/21b3240f9264f8e4c8ab1390e2702cf1401b2367.jpg" alt="Anthropic 최상위 모델 Fable 새 판 출시, 코딩 시험에서 Opus를 앞섰다 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · assets.claude.com</figcaption></figure><p class="summary official">Anthropic이 11월 9일 최상위 모델 Claude Fable 5.2와 Mythos 5.2를 내놓았다. 둘은 같은 모델이다. Fable은 사이버 공격 · 생물 연구 관련 안전장치를 더해 누구에게나 열고, Mythos는 심사를 통과한 보안 · 생명과학 조직에만 연다.</p><p>에이전트 코딩 시험 FrontierSWE v2에서 Fable 5.2는 69.9%로 Opus 5.5(62.3%)와 GPT-6 Astra(65.5%)를 앞섰다. Anthropic은 Fable 5.2 에이전트 약 1,000개가 페르마의 마지막 정리 증명을 Lean(수학 증명을 컴퓨터로 검증하는 언어)으로 30시간 만에 옮겼다고 밝혔다. 같은 설정에서 Opus 5.5는 18시간 동안 26%에 그쳤다. 그래도 Anthropic은 대부분의 코딩은 Opus 5.5로 시작하고, 가장 어렵고 답이 열린 일에만 Fable로 올리라고 권한다.</p><p>API 가격은 100만 토큰당 입력 8달러, 출력 40달러이고 빠른 모드는 16달러 · 80달러다. 고위험 보안 요청을 안전 분류기가 막으면 Opus 4.8이 대신 답하며, 이런 차단은 5.1보다 약 55% 줄었다고 한다. 외부 평가사 Artificial Analysis는 지능 지수 65로 74개 모델 중 1위로 매겼지만, 과제당 26.54달러 · 44.1분으로 가장 비싸고 느린 축이라고 평가했다.</p><h3>우리 팀에게는</h3><p>평소에는 Opus 5.5를 그대로 두고, 오래 안 풀리는 버그나 큰 설계처럼 어려운 일에만 Fable로 바꿔 결과와 사용량을 비교해 보자. Pro와 Team 표준 좌석은 주간 한도의 최대 50%까지 Fable에 쓸 수 있다.</p><ul class="steps"><li><code>claude update</code>로 Claude Code를 2.1.321 이상으로 올린다.</li><li><code>/model</code>에서 Fable을 고른다.</li><li>같은 과제를 Opus 5.5와 Fable 5.2로 한 번씩 돌리고, 결과와 <code>/usage</code> 사용량을 비교한다.</li></ul></div><aside class="rail"><p class="cls">머리기사</p><p class="when">원문 11월 9일</p><p class="claim official">공식 발표</p><ul><li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">anthropic.com/claude-fable-and-mythos-5-2</a></li><li><a href="https://artificialanalysis.ai/models/claude-fable-5-2">artificialanalysis.ai/models/claude-fable-5-2</a></li><li><a href="https://sdtimes.com/ai/anthropic-introduces-claude-fable-5-2-mythos-5-2/">sdtimes.com/ai/anthropic-introduces-claude-fable-5-2-mythos-</a></li><li><a href="https://news.ycombinator.com/item?id=50429906">news.ycombinator.com/item?id=50429906</a></li></ul></aside></div></article><article class="plate" id="p2"><header><span class="tag">2</span><h2>Google, 큰 모델 Carbon을 모두에게 열고 이틀 뒤 빠른 모델 Hydrogen을 냈다</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_carbon_key_art_16-9_lockup.width-1300.jpg" alt="Google, 큰 모델 Carbon을 모두에게 열고 이틀 뒤 빠른 모델 Hydrogen을 냈다 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · storage.googleapis.com</figcaption></figure><p class="summary official">Google이 11월 10일 최상위 모델 Gemini 4 Carbon을 개발자와 기업에 열었고, 12일에는 빠른 실행용 Gemini 4 Hydrogen을 냈다. Carbon은 2주 전까지 사이버 보안 방어자에게만 열려 있었다. Hydrogen은 깊은 추론은 Carbon에 맡기고 에이전트의 일상 작업을 빨리 처리하는 모델이다.</p><p>큰 모델과 빠른 모델을 섞어 쓰는 방식이 도구 안으로 들어왔다는 점이 핵심이다. Google의 코딩 도구 Antigravity에는 한 세션 안에서 Carbon과 Hydrogen을 번갈아 쓰는 Orchestrator가 붙었고, Google은 Carbon에 가까운 성공률을 내면서 할당량은 평균 24% 덜 쓰고 19% 빨리 끝냈다고 밝혔다. 같은 주 Anthropic도 Fable을 작은 모델에게 일을 나눠 주는 지휘자로 쓸 수 있다고 소개했다.</p><p>Carbon은 100만 토큰당 입력 2달러 · 출력 10달러의 도입가로 시작해 11월 30일 이후 4달러 · 20달러가 된다. Hydrogen은 입력 1.50달러 · 출력 7.50달러이고, Terminal-Bench 4.1에서 57%(이전 3.8 Flash 18.2%)에 작업을 2.5배 빨리 끝낸다고 한다. Carbon의 공격 시험 침투율은 3.1%에서 0.8%로 낮아졌지만, 외부 문서에 숨긴 지시(프롬프트 인젝션) 방어는 아직 개선할 영역이라고 Google 스스로 적었다. 수치는 모두 Google 발표다.</p><figure class="diagram"><pre class="mermaid">flowchart LR
+  A[큰 작업] --&gt; B[Orchestrator 배분]
+  B --&gt; C[Carbon 깊은 추론]
+  B --&gt; D[Hydrogen 빠른 실행]</pre></figure><h3>우리 팀에게는</h3><p>Claude로 어려웠던 코딩 · 조사 과제가 있으면 11월 30일 도입가가 끝나기 전에 Carbon과 나란히 돌려 비교해 볼 만하다. 웹 페이지나 외부 문서를 읽히는 에이전트에 붙일 때는 프롬프트 인젝션 한계를 감안한다.</p><ul class="steps"><li>Google AI Studio에서 Gemini 4 Carbon과 Hydrogen을 고르고, 지금 Claude에 맡기는 작업 하나를 같은 입력으로 돌려 본다.</li><li>Hydrogen은 생각 수준을 기본 high와 xhigh로 바꿔 가며 속도와 답의 질을 비교한다.</li><li>Claude Code에서도 서브에이전트마다 모델을 나눠, 계획은 큰 모델 · 반복 실행은 작은 모델에 맡기는 같은 분업을 시험해 본다.</li></ul></div><aside class="rail"><p class="cls">출시 · 업데이트</p><p class="when">원문 11월 10일</p><p class="claim official">공식 발표</p><ul><li><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">blog.google/innovation-and-ai/models-and-research/gemini-mod</a></li><li><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/">blog.google/innovation-and-ai/models-and-research/gemini-mod</a></li><li><a href="https://news.ycombinator.com/item?id=50442303">news.ycombinator.com/item?id=50442303</a></li></ul></aside></div></article><article class="plate" id="p3"><header><span class="tag">3</span><h2>AWS, 에이전트가 만든 「내 PC 속 AWS」를 무료로 공개했다</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://www.allthingsdistributed.com/images/aws-emulator-header.jpg" alt="AWS, 에이전트가 만든 「내 PC 속 AWS」를 무료로 공개했다 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · allthingsdistributed.com</figcaption></figure><p class="summary official">AWS가 11월 11일 계정 없이 내 PC에서 AWS API를 흉내 내는 aws-emulator를 공개했다. 오프라인으로 무료로 돌고, 공개 API 모델 400여 개로 서비스 200여 개를 다룬다. 라이선스는 누구나 제한 없이 쓰는 CC0다.</p><p>화제가 된 건 만든 방식이다. 에이전트가 실제 AWS에서 통과하는 시험을 먼저 쓰고, 에뮬레이터가 같은 시험을 통과할 때까지 고쳤다. 모든 변경은 보안 에이전트 여럿의 공격적 리뷰와 코드 리뷰, 손대면 안 되는 코드를 막는 검사를 거쳐야 합쳐진다. 글을 쓴 Swami Sivasubramanian은 엔지니어의 일이 코드를 쓰는 것에서, 언제 맞는지를 정하는 명세 · 시험 · 합치기 관문을 만드는 것으로 옮겨 간다고 정리했다.</p><p>그는 에이전트로 예전 시스템을 다시 만들 때 결과를 확인할 수단이 없어 나흘 밤을 감독했는데, 명세와 시험 환경을 주자 두 시간 만에 끝났다고 썼다. Simon Willison은 첫 3주 커밋이 29,684개였다고 전했다. 실제 AWS와 다르게 동작하는 부분은 저장소의 things-that-do-not-work 폴더에 모아 두었다.</p><figure class="diagram"><pre class="mermaid">flowchart TD
+  A[API 모델로 시험 작성] --&gt; B[실제 AWS에서 통과]
+  B --&gt; C[에뮬레이터 구현]
+  C --&gt; D{같은 시험 통과?}
+  D -- 아니오 --&gt; C
+  D -- 예 --&gt; E[보안 에이전트 리뷰]
+  E --&gt; F[합치기]</pre></figure><h3>우리 팀에게는</h3><p>AWS를 쓰면 클라우드 비용 없이 에이전트가 고친 코드를 바로 돌려 볼 수 있다. AWS를 안 써도 교훈은 같다. Claude에게 일을 맡기기 전에 결과를 확인할 테스트 · 실행 명령부터 알려 주자.</p><ul class="steps"><li>AWS CLI 2.35.0 이상에서 에이전트용 스킬로 설치한다: <code>aws agent-toolkit add-skill --skill-name aws-emulator --region us-east-1</code></li><li>macOS에서는 짧은 Dockerfile로 만든 컨테이너 안에서 돌리므로 Docker가 필요하다.</li><li>저장소 <code>issues/things-that-do-not-work</code> 폴더에서 실제 AWS와 다른 부분을 먼저 확인한다.</li><li>개발 · 테스트용이다. 운영이나 보안 테스트에는 쓰지 않는다.</li></ul></div><aside class="rail"><p class="cls">도구 사용법</p><p class="when">원문 11월 11일</p><p class="claim official">공식 발표</p><ul><li><a href="https://www.allthingsdistributed.com/2026/11/aws-emulator-and-the-engineers-job-when-agents-write-the-code.html">allthingsdistributed.com/2026/11/aws-emulator-and-the-engine</a></li><li><a href="https://github.com/aws/aws-emulator">github.com/aws/aws-emulator</a></li><li><a href="https://simonwillison.net/2026/Nov/11/aws-emulator/">simonwillison.net/2026/Nov/11/aws-emulator</a></li></ul></aside></div></article><article class="plate" id="p4"><header><span class="tag">4</span><h2>AI에 파일 · git을 열어 주는 공식 연결 서버, 보안 구멍 10개를 막았다</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/modelcontextprotocol/servers" alt="AI에 파일 · git을 열어 주는 공식 연결 서버, 보안 구멍 10개를 막았다 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><p class="summary official">MCP(AI가 외부 도구 · 데이터에 붙는 표준 연결 방식)의 공식 서버 묶음이 11월 11일 v2.4.0에서 filesystem · git · fetch 서버의 취약점 6개를 고쳤다. 다음 날 12일에는 MCP 서버를 시험하는 공식 도구 MCP Inspector가 2.15.0에서 취약점 4개를 고쳤다.</p><p>git 서버는 남의 저장소를 읽기만 해도 그 저장소 <code>.git/config</code>에 적힌 프로그램이 서버 권한으로 실행될 수 있었다. filesystem 서버는 검사하는 순간 폴더를 심볼릭 링크로 바꿔치기하면 허용 폴더 밖 파일을 읽을 수 있었다. Inspector는 클라우드 메타데이터 주소를 막지 못했고, 남이 준 server.json이 <code>NODE_OPTIONS</code> 같은 위험한 환경 변수를 미리 보기에서 숨길 수 있었다.</p><p>고친 버전은 filesystem 2.3.0, git · fetch 2026.11.11, Inspector 2.15.0이다. filesystem을 날짜 버전(2025.1.14~2026.8.31)으로 쓰던 사람은 패키지 관리자가 2.3.0을 업그레이드로 보여 주지 않아 직접 지정해야 한다. git 서버는 이제 Git 2.31 미만에서는 실행을 거부한다.</p><h3>우리 팀에게는</h3><p>Claude Code에 이 서버들을 붙여 쓰거나 Inspector로 남의 서버를 열어 본 적이 있다면 오늘 올리자. 특히 남의 저장소를 git 서버로 읽게 하는 경우가 위험했다.</p><ul class="steps"><li><code>claude mcp list</code>로 연결된 MCP 서버와 패키지 이름을 확인한다.</li><li>filesystem은 <code>npm install @modelcontextprotocol/server-filesystem@2.3.0</code>으로 버전을 직접 지정한다.</li><li><code>mcp-server-git</code> · <code>mcp-server-fetch</code>는 2026.11.11 이상으로 올리고, <code>git --version</code>으로 Git이 2.31 이상인지 먼저 본다.</li><li>Inspector는 <code>npx @modelcontextprotocol/inspector@latest</code>로 최신판을 받는다.</li></ul></div><aside class="rail"><p class="cls">출시 · 업데이트</p><p class="when">원문 11월 11일</p><p class="claim official">공식 발표</p><ul><li><a href="https://github.com/modelcontextprotocol/servers/releases/tag/v2.4.0">github.com/modelcontextprotocol/servers/releases/tag/v2.4.0</a></li><li><a href="https://github.com/modelcontextprotocol/inspector/releases/tag/2.15.0">github.com/modelcontextprotocol/inspector/releases/tag/2.15.</a></li></ul></aside></div></article><article class="plate" id="p5"><header><span class="tag">5</span><h2>데이터를 안 남긴다던 AI 업체가 뚫려, Notion AI 대화 일부가 노출됐을 수 있다</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://www.notion.com/front-static/meta/help-center.png" alt="데이터를 안 남긴다던 AI 업체가 뚫려, Notion AI 대화 일부가 노출됐을 수 있다 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · notion.com</figcaption></figure><p class="summary official">Notion이 AI 처리를 맡기던 업체 Fireworks AI의 보안 사고로 Notion AI 채팅 기록 일부가 노출됐을 수 있다고 공지했다. 영향은 워크스페이스 1% 미만이고, 대부분의 기록에는 워크스페이스 · 사용자 · 회사와 이어지는 정보가 없다. The Register는 11월 10일 Fireworks가 10월에만 두 번 공격당했다고 보도했다.</p><p>Fireworks는 계약상 데이터를 남기지 않기로 했지만, Notion 조사에서 쓰던 엔드포인트에 데이터가 남아 있던 것으로 드러났다. 우리가 쓰는 AI 기능 뒤에는 보이지 않는 모델 업체가 있고, 「저장 안 함」 약속도 사고가 나면 확인이 필요하다는 사례다. Notion은 Fireworks 연결을 끊고 데이터를 지웠으며, 관련 기능 Insights를 멈추고 주요 업체의 데이터 보존 감사를 시작했다.</p><p>Fireworks의 첫 사고(10월 6일 감지)에서는 일부 고객의 API 키와 토큰이 든 환경 변수가 노출됐다. 두 번째는 10월 23일 연구용 기기를 맡긴 클라우드 업체가 뚫리며 결제 정보와 일부 모델 가중치 · 데이터셋에 접근이 있었다. Bloomberg는 Fireworks가 Cursor · Harvey와도 영향을 확인 중이라고 보도했지만, 두 회사가 실제로 영향을 받았는지는 확인되지 않았다.</p><h3>우리 팀에게는</h3><p>AI 채팅에 비밀번호 · API 키 · 고객 정보를 붙여 넣지 말자. 붙여 넣은 적이 있다면 Notion 권고대로 바로 교체하고, 우리가 쓰는 AI 도구가 어느 모델 업체로 데이터를 보내는지 한 번 확인해 두자.</p><ul class="steps"><li>Notion 워크스페이스 소유자는 데스크톱 브라우저에서 사이드바 <code>?</code> → <code>Security incident review</code>로 영향 여부를 확인한다.</li><li>Notion에서 따로 연락이 없었다면 영향 대상이 아니다.</li><li>AI 채팅에 넣었던 비밀번호 · API 키가 떠오르면 바로 교체한다.</li></ul></div><aside class="rail"><p class="cls">실무 · 관점</p><p class="when">원문 11월 10일</p><p class="claim official">공식 발표</p><ul><li><a href="https://www.notion.com/help/security-incident-involving-a-third-party-ai-vendor">notion.com/help/security-incident-involving-a-third-party-ai</a></li><li><a href="https://www.theregister.com/a/5308722">theregister.com/a/5308722</a></li></ul></aside></div></article><article class="plate" id="p6"><header><span class="tag">6</span><h2>Claude에 팀이 함께 쓰는 화이트보드와 시트가 생겼다</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://claude.com/resources/articles/sheets-whiteboards-data/opengraph-image/og" alt="Claude에 팀이 함께 쓰는 화이트보드와 시트가 생겼다 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · claude.com</figcaption></figure><p class="summary official">Anthropic이 11월 10일 Claude Whiteboards와 Sheets를 베타로 내고, 10월 베타였던 Dashboards를 Claude Data라는 이름으로 정식 출시했다. 셋 다 모든 유료 플랜의 웹 · 데스크톱 · 모바일에서 쓴다.</p><p>전에는 Claude가 준 답을 사람이 Miro나 엑셀로 옮겼다. 이제는 Claude 안에서 팀이 함께 만든다. Whiteboards는 말로 한 계획을 담당자 · 날짜가 붙은 보드로 바꾸고, 메모를 주제별로 묶어 할 일 초안을 쓴다. 완성한 보드는 문서 · 슬라이드로 바꾸거나 Lucid · Miro로 옮긴다. Sheets는 탭 · 수식 · 서식 · 드롭다운이 있는 시트를 만들고, Claude가 고친 칸을 표시해 변경을 따라가게 한다.</p><p>Claude Data는 Redshift · BigQuery · ClickHouse 같은 데이터 창고에 질문해 대시보드를 만들고, 공유받은 사람은 주인이 승인한 쿼리 결과만 본다. Team 플랜은 셋 다 기본으로 켜져 있다. Enterprise는 Whiteboards · Sheets가 기본으로 꺼져 있고, Claude Data는 11월 19일부터 기본으로 켜진다. Sheets는 아직 기능이 단순하다고 Anthropic이 밝혔다.</p><h3>우리 팀에게는</h3><p>다음 회고나 회의 메모 하나를 Whiteboards에 넣어 담당자 · 날짜가 붙은 타임라인으로 바꿔 보자. 복잡한 계산이 필요한 표는 아직 <code>.xlsx</code>나 CSV로 내보내 다룬다.</p><ul class="steps"><li>관리자는 Organization settings &gt; Artifacts에서 세 도구가 켜져 있는지 확인한다.</li><li>대화에서 계획을 설명하고 보드로 만들어 달라고 한 뒤, 보드 일부를 골라 질문한다.</li><li>Claude Data는 데이터 창고나 CRM 커넥터를 먼저 연결한다.</li></ul></div><aside class="rail"><p class="cls">출시 · 업데이트</p><p class="when">원문 11월 10일</p><p class="claim official">공식 발표</p><ul><li><a href="https://claude.com/resources/articles/sheets-whiteboards-data">claude.com/resources/articles/sheets-whiteboards-data</a></li><li><a href="https://news.hada.io/topic?id=36958">news.hada.io/topic?id=36958</a></li></ul></aside></div></article><header class="part" id="skills"><h2>이번 주 써 볼 도구</h2><p>팀이 이번 주에 깔아서 덕을 볼 것.</p></header><article class="plate" id="p7"><header><span class="tag">7</span><h2>improve (shadcn)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/shadcn/improve" alt="improve (shadcn) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>코드베이스에 고칠 곳이 많다는 건 알아도, 무엇부터 어떻게 고칠지 정리하는 데 시간이 더 든다. improve는 가장 좋은 모델로 코드를 감사해 문제마다 근거 위치 · 영향 · 품 · 확신도를 매기고, 고칠 일마다 더 싼 모델이 그대로 따라 할 수 있는 계획서를 <code>plans/</code> 폴더에 마크다운으로 쓴다. 이름 그대로 개선할 거리를 찾아 계획만 만들고, 소스 코드는 직접 고치지 않는다.</p><h3>왜 지금</h3><p>11월 둘째 주 GitHub 별 증가 순위 6위(+361)로 올라왔다. 이 순위의 집계 출처는 확인하지 못했다. README 기준 별은 1.15만 개이고 MIT다. 같은 주 Anthropic과 Google이 함께 내세운 「비싼 모델은 계획, 싼 모델은 실행」 분업을 스킬 하나로 바로 해 볼 수 있다.</p><h3>설치</h3><div class="cmd"><pre><code>npx skills add shadcn/improve</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>며칠 걸릴 리팩터링을 앞두고 <code>/improve</code>로 전체 감사를 돌리면, 어디부터 손댈지 회의로 정하던 일이 파일 · 줄 근거가 붙은 문제 표와 우선순위 · 의존 순서가 적힌 계획 목록으로 바뀐다.</li><li>PR을 올리기 전에 <code>/improve branch</code>로 지금 브랜치가 바꾼 것만 감사하면, 리뷰어가 짚을 문제를 먼저 잡고 고칠 계획까지 손에 쥐고 리뷰에 들어간다.</li><li>보안이 걱정되는 저장소에 <code>/improve security</code>를 돌리면 비밀값은 내용 없이 위치와 종류만 적고 교체를 권하므로, 점검 결과를 팀 채널에 그대로 공유해도 키가 새지 않는다.</li><li><code>--issues</code>를 붙이면 계획이 GitHub 이슈로 올라가 칸반 보드에 카드를 붙이듯 바로 나눠 맡길 수 있다. 직접 맡길 때는 <code>/improve execute &lt;계획 파일&gt;</code>이 싼 모델을 일회용 worktree에서 돌리고 결과를 검토하며, 합치는 결정은 사람이 한다.</li></ol><figure class="diagram"><pre class="mermaid">flowchart LR
+  A[좋은 모델 감사] --&gt; B[plans/ 계획서]
+  B --&gt; C[싼 모델 실행]
+  C --&gt; D[사람이 검토 · 합침]</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>/improve branch 이번 브랜치에서 바뀐 코드만 봐 줘. 버그와 성능 문제를 우선으로 하고, 계획마다 확인 명령과 완료 기준을 넣어 plans/에 써 줘.</code></pre><p class="caution"><strong>주의.</strong> 분석은 읽기 전용이고 쓰는 곳은 <code>plans/</code>뿐이라고 README가 밝힌다. 하위 에이전트가 문제를 과하게 보고하는 경향이 있어 인용 위치를 다시 확인한다고 적었지만, 계획은 실행 전에 사람이 읽고 검토하는 것이 전제다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/shadcn/improve">github.com/shadcn/improve</a></li></ul></aside></div></article><article class="plate" id="p8"><header><span class="tag">8</span><h2>modern-web-guidance (GoogleChrome)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/GoogleChrome/modern-web-guidance" alt="modern-web-guidance (GoogleChrome) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>코딩 에이전트는 학습 때 본 낡은 웹 코드를 그대로 짠다. 모달 하나에도 브라우저에 이미 있는 기능 대신 자바스크립트 라이브러리를 끌어온다. modern-web-guidance는 최신 웹 플랫폼 모범 사례와 브라우저 호환성 데이터를 스킬로 넣어, 에이전트가 작업 중에 관련 가이드를 찾아 읽고 브라우저 기본 기능으로 짜게 한다. Google Chrome · Microsoft Edge · Mozilla Firefox · MDN 팀이 함께 관리하고, 검색은 내 컴퓨터에서 돌아 API 키가 필요 없다.</p><h3>왜 지금</h3><p>11월 10일 Show HN에 「코딩 에이전트를 2019년식 자바스크립트에서 꺼내기」로 올라와 209점을 받았다. 브라우저 회사 세 곳과 MDN이 같이 낸 드문 공동 작업이고, 별은 약 7,200개, 라이선스는 Apache-2.0이다. Claude Code · Codex · Gemini 등 여러 에이전트용으로 함께 설치된다.</p><h3>설치</h3><div class="cmd"><pre><code>npx modern-web-guidance@latest install</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>오래된 프론트엔드 프로젝트를 정리할 때 <code>npx modern-web-guidance@latest legacy-scan .</code>을 먼저 돌리면, 리팩터링 범위를 감으로 정하던 것이 바꿀 만한 낡은 패턴 목록으로 바뀐다.</li><li>라이브러리 도입을 검토할 때, 예를 들어 「모달을 열 때 배경을 흐리게 애니메이션」을 시키면 전에는 에이전트가 라이브러리를 끌어왔다. 이제는 <code>search</code>로 가이드를 찾고 <code>retrieve</code>로 읽은 뒤 브라우저 기본 기능으로 짜서 의존성이 하나 줄고 코드가 짧아진다.</li><li>다크 모드 · 글자 크기 · 색 대비 · 스크롤바 같은 흔한 화면 작업에서 가이드에 적힌 함정과 대체 방법, 브라우저 지원 범위까지 따르게 해, 특정 브라우저에서만 깨지는 일을 줄인다.</li><li>나온 지 석 달이 안 된 기능과 실험 API는 기본으로 막혀 있다. 팀이 쓰기로 합의했다면 프로젝트 루트의 <code>.mwgrc</code>에 켜 두고 커밋해, 모든 팀원의 에이전트가 같은 기준으로 짜게 한다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>modern-web-guidance 스킬로 &lt;src/components&gt; 폴더에서 최신 웹 표준으로 바꿀 수 있는 낡은 패턴을 찾아 줘. 항목마다 근거가 된 가이드 ID와 브라우저 지원 범위를 적고, 바꿀지 말지는 내가 고를게.</code></pre><p class="caution"><strong>주의.</strong> 설치 수, 호출한 에이전트 이름, 조회한 가이드 ID, 에이전트가 만든 검색어를 익명으로 수집한다. 원래 프롬프트는 모으지 않는다고 적혀 있다. 끄려면 셸 설정(<code>.zshrc</code> 등)에 <code>DISABLE_TELEMETRY=1</code>을 둔다.</p></div><aside class="rail"><p class="cls">신규 진입</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/GoogleChrome/modern-web-guidance">github.com/GoogleChrome/modern-web-guidance</a></li></ul></aside></div></article><article class="plate" id="p9"><header><span class="tag">9</span><h2>T3 Code</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/pingdotgg/t3code" alt="T3 Code 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>긴 작업을 에이전트에게 걸어 두고 자리를 뜨면, 결과를 보고 다음 지시를 하려고 PC 앞으로 돌아와야 한다. T3 Code는 내 컴퓨터에 깔린 Claude Code · Codex · Cursor · OpenCode 같은 코딩 에이전트를 데스크톱 앱, 브라우저, 휴대폰 앱(iOS · Android) 한 화면에서 부리는 오픈소스(MIT)다. 에이전트를 대신하지 않고, PC에서 도는 <code>t3</code> 서버가 이미 로그인된 에이전트와 기존 구독을 그대로 쓴다.</p><h3>왜 지금</h3><p>11월 둘째 주 스킬 순위 1위(주간 별 +17.1k)로 올라왔다. 이 순위의 집계 출처와 별 증가 수는 확인하지 못했다. 저장소 별은 약 5.83만 개다.</p><h3>설치</h3><div class="cmd"><pre><code>npx t3@latest</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>점심 전에 테스트 보강 같은 긴 작업을 맡겨 두면, 전에는 돌아와서야 중간에 멈춘 걸 알았다. 이제는 휴대폰 앱에서 진행 상황을 보고 막힌 곳에 바로 다음 지시를 보낸다. 집 밖에서 앱으로 로봇청소기를 돌리는 것과 같다.</li><li>회의실에 노트북 없이 들어갔을 때도 브라우저(app.t3.codes)로 내 PC의 세션을 열어, 방금 나온 질문을 에이전트에게 바로 확인시킨다.</li><li>Claude Code와 Codex를 함께 쓰는 사람은 터미널 탭을 오가던 일을 한 화면으로 모아, 같은 과제를 두 에이전트에 맡기고 결과를 나란히 본다.</li><li>다른 기기에서 붙는 방법은 같은 네트워크, Tailscale, T3 Connect 세 가지다. 저장소의 <code>docs/user/remote-access.md</code>를 따라 고른다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>https://github.com/pingdotgg/t3code 의 docs/user/remote-access.md를 읽고, 내 Mac에서 띄운 t3 서버에 휴대폰으로 안전하게 붙는 방법을 단계별로 정리해 줘. 외부에 포트를 여는 단계가 있으면 따로 표시하고, 실행은 하지 마.</code></pre><p class="caution"><strong>주의.</strong> 에이전트 하나 이상을 먼저 설치하고 로그인해 둬야 쓸 수 있다(예: <code>claude auth login</code>). 원격 접속은 밖에서 내 PC의 에이전트를 부리는 일이므로 접속 경로를 먼저 정한다. 설치 스크립트를 셸에 바로 넘기는 방법은 내용을 읽고 쓴다. 메인테이너의 리뷰 여력이 적다고 README가 밝힌다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/pingdotgg/t3code">github.com/pingdotgg/t3code</a></li></ul></aside></div></article><header class="part" id="guides"><h2>실무 가이드</h2><p>이번 주 직접 해 볼 만한 것. 설치부터 실습, 막힐 때까지.</p></header><article class="plate" id="p10"><header><span class="tag">10</span><h2>클로드를 2024년처럼 쓰지 마라: Anthropic 엔지니어링 리드의 네 가지 습관</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://img.youtube.com/vi/D-SVFneJ_Nk/maxresdefault.jpg" alt="클로드를 2024년처럼 쓰지 마라: Anthropic 엔지니어링 리드의 네 가지 습관 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · img.youtube.com</figcaption></figure><p class="summary">녹화 당시 Anthropic에서 Claude.ai · Cowork · Claude Code 데스크톱 엔지니어링을 이끈 Felix Rieseberg가 Silicon Valley Girl 팟캐스트(10월 20일, 53분)에서 한 말을 추렸다. 요지는 사람들이 AI에 너무 적게 요구한다는 것이다. 모델은 빠르게 좋아지는데 쓰는 습관은 그대로라, 예전 방식이 오히려 결과를 깎는다. 아래 네 가지는 오늘 바로 바꿀 수 있다.</p><h3>설치 · 설정</h3><ol class="steps"><li><strong>결과를 맡긴다.</strong> 전에는 크래시 하나, 이메일 하나씩 잘게 쪼개 넘겼다. 이제는 크래시 데이터 전부와 목표를 주고, 무엇을 고칠지 Claude가 정하게 한다. 미리 잘라 준 데이터보다 문서가 잘 된 도구를 쥐여 주라고 했다.</li><li><strong>역할극 대신 도구를 묻는다.</strong> 전에는 「넌 뛰어난 엔지니어야」로 시작했다. 이제는 「이 분야 최고 전문가라면 어떤 도구를 쓸지 말하고, 그걸 써」라고 한다. 3D · 모션 작업에 Blender를 쓰게 하자 나아졌다는 예를 들었다.</li><li><strong>예전 스킬은 꺼 두고 비교한다.</strong> 「좋은 스킬의 반감기는 아주 짧다」고 했다. 스킬을 빼면 결과가 더 나을 때도 있으니, 켠 것과 끈 것을 같은 일로 비교한다.</li><li><strong>검사는 다른 세션에 맡긴다.</strong> 방금 일한 세션이 스스로를 평가하게 하지 않는다. 별도 스레드 여러 개가 결과가 틀렸음을 증명하려 하고, 판정 세션이 어떤 지적이 맞는지 가린다. 1차 출처와 대조하는 단순 사실 확인은 에이전트 하나에 맡겨도 된다고 했다.</li></ol><h3>실습</h3><p>지금 하던 일 하나를 「결과 맡기기 + 다른 세션 검사」로 다시 해 본다.</p><ol class="steps"><li>최근 Claude에게 잘게 쪼개서 시킨 일 하나를 고른다.</li><li>아래 첫 번째 프롬프트로 바라는 결과와 자료 전체를 한 번에 맡긴다.</li><li>결과가 나오면 새 세션을 열고 세 번째 프롬프트로 결과를 반박하게 한다.</li><li>자주 쓰는 스킬 하나를 꺼 두고 같은 일을 다시 시켜, 켰을 때와 결과를 비교한다.</li></ol><h3>바로 쓰는 프롬프트</h3><p class="plabel">결과를 통째로 맡길 때</p><div class="cmd"><pre class="prompt"><code>&lt;바라는 결과&gt;를 원해. 관련 자료는 &lt;파일 · 폴더 · 데이터&gt;에 다 있어. 무엇부터 할지 네가 정하고, 계획을 먼저 보여 준 뒤 진행해.</code></pre><button type="button" class="copy">복사</button></div><p class="plabel">역할극 대신 도구를 물을 때</p><div class="cmd"><pre class="prompt"><code>&lt;분야&gt;에서 최고 수준의 전문가라면 이 일에 어떤 도구와 방법을 쓸지 먼저 말해 줘. 그다음 그 도구로 &lt;할 일&gt;을 해.</code></pre><button type="button" class="copy">복사</button></div><p class="plabel">새 세션에서 검사할 때</p><div class="cmd"><pre class="prompt"><code>아래 결과물이 틀렸다는 것을 증명해 봐. 사실 오류, 빠진 경우, 근거 없는 주장을 찾아 심각한 순서로 적어. &lt;결과물 또는 파일 경로&gt;</code></pre><button type="button" class="copy">복사</button></div><p class="caution"><strong>주의.</strong> Rieseberg의 직함은 녹화 당시 기준이다. 반박 검사는 세션을 여러 번 돌리므로 사용량이 늘어난다. 판단이 갈리는 결과물에 먼저 쓴다.</p></div><aside class="rail"><p class="cls">실무 가이드</p><dl class="who"><dt>이런 분께</dt><dd>Claude에게 일을 잘게 쪼개 주거나 「넌 최고의 전문가야」로 프롬프트를 시작하는 분.</dd><dt>읽고 나면</dt><dd>같은 일을 더 크게 맡기고, 결과 검사를 다른 세션에 따로 돌리는 습관이 생긴다.</dd></dl><ul><li><a href="https://marinamogilko.co/episode/D-SVFneJ_Nk/">marinamogilko.co/episode/D-SVFneJ_Nk</a></li><li><a href="https://eu.36kr.com/en/p/4043583087793792">eu.36kr.com/en/p/4043583087793792</a></li></ul></aside></div></article></main>
+<footer class="memo"><h2>수집 메모</h2><ul><li>스킬 순위 데이터: Best Skills (https://github.com/LinklyAI/best-skills) by @BlueeonY — CC BY 4.0</li><li>그림은 각 출처의 공개 미리보기 이미지(Open Graph)다. 막대 그림은 skills.sh 주간 설치 수로 그렸다.</li><li>&#x27;검증&#x27;은 설치 명령이 공식 문서 · README 본문에 글자 그대로 있는지 확인했다는 뜻이다. 실행해 본 것은 아니다.</li></ul></footer>
+<script>
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function show(t,focus){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+  document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});if(focus)t.focus();dispatchEvent(new Event('daychange'));}
+if(tabs.length){  // 주소의 #도판이 든 날을 연다. 없으면 가장 최근 날
+  const h=decodeURIComponent(location.hash.slice(1)),sec=h&&document.getElementById(h)?.closest('.day');
+  show(sec?tabs.find(t=>t.getAttribute('aria-controls')===sec.id):tabs[0]);
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>{show(t);history.replaceState(null,'','#'+t.getAttribute('aria-controls'));});
+    t.addEventListener('keydown',e=>{const k={ArrowRight:1,ArrowLeft:-1}[e.key];if(k)show(tabs[(i+k+tabs.length)%tabs.length],true);});});
+}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.previousElementSibling.innerText);b.textContent='복사됨';}
+  catch(e){b.textContent='복사 안 됨';}
+  setTimeout(()=>b.textContent='복사',1600);}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.chart').forEach(c=>io.observe(c));
+</script>
+<script type="module">
+if(document.querySelector('.mermaid')){
+  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
+  try{const m=(await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')).default;
+    m.initialize({startOnLoad:false,theme:'base',flowchart:{useMaxWidth:false},themeVariables:{edgeLabelBackground:dark?'#1B201C':'#FBFCF9',fontFamily:'Pretendard, Noto Sans KR, sans-serif',fontSize:'14px',
+      primaryColor:dark?'#232A25':'#FBFCF9',primaryBorderColor:dark?'#DDE3DC':'#1D241F',primaryTextColor:dark?'#EEF1EC':'#1D241F',
+      lineColor:dark?'#AEB8AF':'#3E4A42',secondaryColor:dark?'#232A25':'#E6EAE3',tertiaryColor:dark?'#161A17':'#F1F3EE'}});
+    // 숨은 탭 안의 그림은 크기를 못 재서 깨진다 — 보이는 것만 그리고, 탭을 열 때 마저 그린다
+    const run=()=>m.run({nodes:[...document.querySelectorAll('.mermaid:not([data-processed])')].filter(e=>e.offsetParent)});
+    await run();addEventListener('daychange',run);}catch(e){document.documentElement.classList.add('no-mermaid');}
+}
+</script></body></html>
