@@ -1,0 +1,209 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 데일리 — 11월 16일 (월)</title><style>/* 주간 보고서 — 도감(field guide) 도판. 방향: ../.impeccable/surfaces/02-report-css.md */
+:root {
+  --paper: #F1F3EE; --sheet: #FBFCF9; --ink: #1D241F; --ink-2: #3E4A42; --ink-3: #5E6A61;
+  --rule: #CBD2CA; --tag: #E9C64B; --tag-ink: #1D241F; --link: #1F5E7A;
+  --code-bg: #E6EAE3;
+  --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "D2Coding", Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151916; --sheet: #1B201C; --ink: #EEF1EC; --ink-2: #C9D1C8; --ink-3: #9AA59C;
+    --rule: #333C35; --link: #8CC4DB; --code-bg: #232A25;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); scrollbar-color: var(--ink-3) var(--paper); }
+body {
+  margin: 0; color: var(--ink); font: 400 17px/1.8 var(--sans);
+  word-break: keep-all; overflow-wrap: anywhere; text-align: left;
+  -webkit-font-smoothing: antialiased; caret-color: var(--tag);
+}
+::selection { background: var(--tag); color: var(--tag-ink); }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+code { font: 500 .88em/1.5 var(--mono); }
+strong { font-weight: 700; }
+
+/* 표제 — 도감의 속표지 */
+.mast { max-width: 76rem; margin: 0 auto; padding: 4.5rem 2rem 3rem; }
+.mast h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 .6rem; }
+.dateline { margin: 0 0 1.8rem; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.22rem; line-height: 1.7; color: var(--ink-2); max-width: 44rem; margin: 0 0 3rem; }
+
+/* 도판 목록 */
+.index { list-style: none; margin: 0; padding: .3rem 0 0; border-top: 1.5px solid var(--ink); max-width: 56rem; }
+.index a { display: grid; grid-template-columns: 2.6rem minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding: .85rem .25rem; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: .22em; }
+.index .nm { font-weight: 700; }
+.index .ol { color: var(--ink-3); font-size: .95rem; }
+.index .when { margin-left: .6em; font-variant-numeric: tabular-nums; color: var(--ink-2); font-weight: 700; }
+.rail .when { font-weight: 700; color: var(--ink); }
+
+/* 날짜 탭 — 매일 판은 한 주 한 페이지, 날마다 탭 하나 */
+.tabs { display: flex; flex-wrap: wrap; gap: .25rem 1rem; border-bottom: 1.5px solid var(--ink); }
+.tabs button { font: 700 1.05rem/1.3 var(--sans); color: var(--ink-3); background: none; border: 0; border-bottom: 3px solid transparent;
+  margin-bottom: -1.5px; padding: .7rem .1rem; cursor: pointer; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.tabs button span { font-weight: 400; font-variant-numeric: tabular-nums; }
+.day > .mast { padding-top: 2.5rem; padding-bottom: 2rem; }
+
+/* 도판 번호표 — 노란 표지는 여기와 식별 포인트에만 쓴다 */
+.tag { display: inline-grid; place-items: center; min-width: 1.9rem; height: 1.9rem; padding: 0 .4rem;
+  background: var(--tag); color: var(--tag-ink); font: 800 .95rem/1 var(--sans); font-variant-numeric: tabular-nums; border-radius: 2px; }
+
+/* 도판 */
+main { max-width: 76rem; margin: 0 auto; padding: 0 2rem; }
+.plate { padding: 4.5rem 0 3.5rem; border-top: 1.5px solid var(--ink); scroll-margin-top: 1rem; }
+.plate > header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.plate h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.25; letter-spacing: -0.02em; font-weight: 800; margin: 0; }
+.cols { display: grid; grid-template-columns: minmax(0, 42rem) minmax(13rem, 17rem); gap: 4rem; }
+.main h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; margin: 2.4rem 0 .5rem; }
+.main p { margin: 0 0 1rem; }
+.summary { font-size: 1.08rem; }
+.summary.external, .summary.opinion { color: var(--ink-3); }
+.prov { font-weight: 700; color: var(--ink); margin-right: .5em; }
+
+/* 표본 사진 */
+.specimen { margin: 0 0 2rem; }
+.specimen img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  background: var(--code-bg); border: 1px solid var(--rule); border-radius: 3px; }
+figcaption { font-size: .8rem; color: var(--ink-3); margin-top: .5rem; }
+
+/* 식별 포인트 — 주간 설치 막대 */
+.chart { margin: 1.4rem 0 .4rem; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .mark { stroke-dasharray: 200; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .chart:not(.seen) .mark { stroke-dashoffset: 200; }
+  .chart .mark { transition: stroke-dashoffset 900ms cubic-bezier(.16, 1, .3, 1); }
+  .chart:not(.seen) .lab { opacity: 0; }
+  .chart .lab { transition: opacity 500ms 500ms ease-out; }
+}
+
+/* 설치 명령 */
+.cmd { position: relative; }
+pre { margin: 0 0 1rem; padding: 1rem 1.1rem; background: var(--code-bg); border-radius: 4px; overflow-x: auto; }
+pre code { font-size: .9rem; white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+.prompt code { font-family: var(--sans); }
+.cmd pre { padding-right: 5rem; }
+.copy { position: absolute; top: .55rem; right: .55rem; font: 700 .82rem/1 var(--sans); color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .7rem; cursor: pointer; }
+.copy:hover { border-color: var(--ink-3); }
+.copy:active { transform: translateY(1px); }
+.prompt { background: transparent; border: 1px dashed var(--rule); }
+
+.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+.steps li { margin-bottom: .45rem; padding-left: .2rem; }
+.steps li::marker { font-weight: 800; color: var(--ink-3); }
+.caution { margin-top: 1.6rem !important; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .95rem; }
+
+/* 다이어그램 */
+.diagram { margin: 1.8rem 0; padding: 1.4rem 1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
+.diagram pre.mermaid { background: none; margin: 0; padding: 0; text-align: center; font: 500 .85rem/1.5 var(--mono); color: var(--ink-3); }
+.diagram svg { display: block; margin: 0 auto; max-width: none; height: auto; }
+.diagram pre.mermaid:not([data-processed]) { visibility: hidden; }
+.no-mermaid .diagram { display: none; }
+
+/* 여백 난 — 숫자와 출처 */
+.rail { font-size: .88rem; line-height: 1.6; color: var(--ink-2); padding-top: .3rem; }
+.rail > * { margin: 0 0 1.1rem; }
+.rail .cls { font-weight: 800; color: var(--ink); font-size: .95rem; }
+.rail dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; padding: .9rem 0; border-block: 1px solid var(--rule); }
+.rail dt { color: var(--ink-3); }
+.rail dd { margin: 0; text-align: right; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rail .claim.external, .rail .claim.opinion { display: inline-block; padding: .1rem .5rem; border: 1px solid var(--ink-3); border-radius: 2px; }
+.rail .claim.official { font-weight: 700; color: var(--ink); }
+.rail .vf { color: var(--ink-3); }
+.rail ul { list-style: none; padding: 0; }
+.rail li { margin-bottom: .4rem; }
+.rail a { overflow-wrap: anywhere; }
+
+/* 실무 가이드 */
+.part { padding: 5rem 0 1rem; border-top: 3px solid var(--ink); }
+.part h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 800; margin: 0 0 .6rem; }
+.part p { margin: 0; color: var(--ink-2); font-size: 1.08rem; }
+.index-part { font-size: 1.3rem; font-weight: 800; margin: 2.4rem 0 .8rem; }
+.plabel { font-weight: 700; margin: 1.4rem 0 .4rem !important; }
+.trouble { margin: 0 0 1rem; }
+.trouble dt { font-weight: 700; margin-top: 1rem; }
+.trouble dd { margin: .2rem 0 0; color: var(--ink-2); }
+.rail .who { display: block; }
+.rail .who dd { text-align: left; font-weight: 400; color: var(--ink-2); margin-bottom: .6rem; }
+
+/* 수집 메모 */
+.memo { max-width: 72rem; margin: 2rem auto 0; padding: 2.5rem 0 5rem; border-top: 1.5px solid var(--ink); color: var(--ink-3); font-size: .88rem; }
+.memo h2 { font-size: 1.6rem; color: var(--ink); margin: 0 0 .8rem; }
+.memo ul { padding-left: 1.1rem; max-width: 52rem; }
+
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .mast { padding: 2.6rem 1.25rem 2rem; }
+  main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .memo { margin-inline: 1.25rem; }
+  .cols { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .rail { border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+  .index a { grid-template-columns: 2.4rem 1fr; }
+  .index .ol { grid-column: 2; }
+  .plate { padding-top: 3rem; }
+}
+@media print {
+  .copy, .tabs { display: none; }
+  .day[hidden] { display: block; }
+  .chart .mark { stroke-dashoffset: 0 !important; }
+  .chart .lab { opacity: 1 !important; }
+  .plate { break-before: page; }
+}
+</style></head><body>
+<header class="mast"><h1>AI 데일리</h1><p class="dateline">2026년 11월 16일 월요일 · 이번 주 11건</p><p class="lede">Claude Code 2.1.325부터 샌드박스 Bash와 예약 작업 · /loop 속 스킬이 다시 권한을 묻는다. 무인 작업 설정을 손봐야 한다. 주말에 받은 오픈소스 4개(OpenRig · Hindsight · MinerU · Repolyze)와 지난주 별 순위에서 빠졌던 Astryx · ha-mcp 등을 함께 더했다.</p>
+<div class="tabs" role="tablist" aria-label="날짜"><button type="button" role="tab" id="t2026-11-16" aria-controls="d2026-11-16" aria-selected="true">11월 16일 (월) <span>11건</span></button></div></header>
+<section class="day" id="d2026-11-16" role="tabpanel" aria-labelledby="t2026-11-16"><nav class="mast" aria-label="11월 16일 (월) 도판 목록"><ol class="index"><li><a href="#d2026-11-16-p1"><span class="tag">1</span><span class="nm">Claude Code 2.1.325: 샌드박스 Bash도 다시 묻고, 실험 기능 Code Mode를 손봤다</span><span class="ol">샌드박스 Bash 자동 허용이 꺼졌다, 설정 한 줄로 되돌린다<span class="when">11월 13일</span></span></a></li><li><a href="#d2026-11-16-p2"><span class="tag">2</span><span class="nm">OpenRig (에이전트 팀을 상주시키기)</span><span class="ol">YAML 한 장으로 역할별 에이전트 팀을 띄운다</span></a></li><li><a href="#d2026-11-16-p3"><span class="tag">3</span><span class="nm">Hindsight (저장소별 장기 기억)</span><span class="ol">git 기록 · 지난 세션으로 저장소 기억을 만든다</span></a></li><li><a href="#d2026-11-16-p4"><span class="tag">4</span><span class="nm">MinerU (문서를 AI가 읽는 마크다운으로)</span><span class="ol">PDF · 오피스 · 스캔을 마크다운으로, 공식 스킬 생김</span></a></li><li><a href="#d2026-11-16-p5"><span class="tag">5</span><span class="nm">Repolyze (공개 저장소 채점)</span><span class="ol">GitHub 저장소를 0~100점으로 채점하는 웹 도구</span></a></li><li><a href="#d2026-11-16-p6"><span class="tag">6</span><span class="nm">Plannotator (계획 · 코드 리뷰를 브라우저에서)</span><span class="ol">Claude의 계획에 줄마다 메모해 돌려보낸다</span></a></li><li><a href="#d2026-11-16-p7"><span class="tag">7</span><span class="nm">LoopForge (Tencent, 사람 승인이 낀 에이전트 작업 절차)</span><span class="ol">에이전트 단계와 사람 승인을 묶어 반복 작업을 돌린다</span></a></li><li><a href="#d2026-11-16-p8"><span class="tag">8</span><span class="nm">Astryx (Meta 오픈소스 디자인 시스템)</span><span class="ol">사람과 에이전트가 같이 쓰게 만든 React 디자인 시스템</span></a></li><li><a href="#d2026-11-16-p9"><span class="tag">9</span><span class="nm">ha-mcp (Claude로 Home Assistant 다루기)</span><span class="ol">Claude가 스마트홈 자동화를 만들고 고친다</span></a></li><li><a href="#d2026-11-16-p10"><span class="tag">10</span><span class="nm">daily_stock_analysis (LLM 주식 일일 분석)</span><span class="ol">여러 시장 주식을 매일 LLM으로 분석해 알린다</span></a></li><li><a href="#d2026-11-16-p11"><span class="tag">11</span><span class="nm">Sure (Maybe Finance를 잇는 개인 재무 앱)</span><span class="ol">AI 도우미가 붙은 셀프 호스팅 가계부</span></a></li></ol></nav><main><article class="plate" id="d2026-11-16-p1"><header><span class="tag">1</span><h2>Claude Code 2.1.325: 샌드박스 Bash도 다시 묻고, 실험 기능 Code Mode를 손봤다</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/anthropics/claude-code" alt="Claude Code 2.1.325: 샌드박스 Bash도 다시 묻고, 실험 기능 Code Mode를 손봤다 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><p class="summary official">11/13 나온 Claude Code 2.1.325는 권한 동작 두 가지를 바꿨다. 샌드박스 안의 Bash 명령도 이제 기본으로 일반 권한 확인을 거친다. 예전처럼 묻지 않게 하려면 <code>sandbox.autoAllowBashIfSandboxed: true</code>를 둔다. 예약 작업과 <code>/loop</code>은 <code>allowed-tools</code>나 훅을 선언한 스킬을 돌리기 전에 묻는다. 바로 앞 2.1.323(11/12)에 나온 실험 기능 Code Mode(Claude가 JavaScript를 써서 도구 여러 개를 한 번에 부른다)의 버그도 여럿 고쳤고, zstd 응답 해석의 보안 문제와 서브에이전트 모델 선택 버그도 고쳤다.</p><figure class="diagram"><pre class="mermaid">flowchart LR
+  A[작업 요청] --&gt; B[Claude가 JS 작성]
+  B --&gt; C[도구 여러 개 실행]
+  C --&gt; D[필요한 결과만 반환]</pre></figure><h3>그래서 무엇을 하나</h3><p>우리 팀에게는: 업데이트 뒤 샌드박스 작업에서 확인 창이 늘거나, 밤에 돌던 <code>/loop</code> · 예약 작업이 스킬 앞에서 멈춰 있을 수 있다. → 무인 작업에 쓰는 스킬을 <code>permissions.allow</code>에 <code>Skill(이름)</code>으로 등록하고, 여러 파일에 같은 수정을 하는 일에 Code Mode를 한 번 시험한다.</p><ul class="steps"><li><code>claude --version</code>으로 2.1.325 이상인지 확인하고, 아니면 <code>claude update</code>를 실행한다.</li><li>샌드박스 Bash를 예전처럼 묻지 않게 하려면 설정에 <code>sandbox.autoAllowBashIfSandboxed: true</code>를 넣는다.</li><li>예약 작업 · <code>/loop</code>에서 스킬을 묻지 않고 돌리려면 <code>permissions.allow</code>에 <code>Skill(&lt;스킬 이름&gt;)</code>을 더한다.</li><li>Code Mode는 <code>CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1 claude</code>로 시작하고, 처음 묻는 창에서 「Yes, turn on Code Mode」를 고른다.</li><li>Claude가 쓴 코드는 <code>Ctrl+O</code>로 기록 화면을 열고 Code 줄을 펼쳐 본다.</li><li>Code Mode 세션을 <code>claude --continue</code>로 이어 열 때도 변수를 <code>1</code>로 둔다. 끄면 그 세션을 이어 열 수 없다.</li><li>Code Mode 제약: 터미널의 대화형 <code>claude</code>에서만 된다(<code>-p</code> · SDK · VS Code · 데스크톱 앱 불가). 게이트웨이 · Bedrock · Foundry 경유, <code>DISABLE_TELEMETRY</code>, 에이전트 팀이 켜져 있으면 시작하지 않는다. 기다리는 코드는 10분에 멈춘다.</li></ul></div><aside class="rail"><p class="cls">출시 · 업데이트</p><p class="when">원문 11월 13일</p><p class="claim official">공식 발표</p><ul><li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.325">github.com/anthropics/claude-code/releases/tag/v2.1.325</a></li><li><a href="https://code.claude.com/docs/en/code-mode">code.claude.com/docs/en/code-mode</a></li><li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code/blob/main/CHANGELOG.md</a></li></ul></aside></div></article><header class="part" id="d2026-11-16-skills"><h2>이날 써 볼 도구</h2><p>팀이 이번 주에 깔아서 덕을 볼 것.</p></header><article class="plate" id="d2026-11-16-p2"><header><span class="tag">2</span><h2>OpenRig (에이전트 팀을 상주시키기)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/mvschwarz/openrig" alt="OpenRig (에이전트 팀을 상주시키기) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>OpenRig는 여러 코딩 에이전트 세션을 역할 · 공유 맥락 · 맡은 일이 있는 한 팀으로 묶어 계속 돌리는 오픈소스다(Apache 2.0). 팀 구성은 RigSpec이라는 YAML에 적고, <code>rig up</code>이 tmux 세션들을 띄우고 시작 파일 적용과 준비 점검까지 한다. Claude Code와 Codex를 한 팀에 섞을 수 있고, pi는 RPC 러너로 붙는다.</p><h3>왜 지금</h3><p>11/15에 받은 「Claude Code에 붙이는 오픈소스 4개」 중 하나다. 지금 README의 설치 명령은 v0.7.16 기준이다(제보 이미지의 v0.6.1보다 새 판). 「Claude 로그인 하나면 된다」는 팀원이 모두 Claude Code일 때만 맞고, README는 Claude Code나 Codex 중 하나만 로그인돼 있으면 된다고 적는다. 「2~7명 템플릿」은 README에서 확인하지 못했다. 대신 starter · workshop · factory와 code-review · research · pm 같은 내장 팀이 있다.</p><h3>설치</h3><div class="cmd"><pre><code>npm install -g @openrig/cli</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 터미널 창 서너 개에 Claude를 따로 열고, 창마다 할 일을 손으로 나눠 붙여 넣었다. 후: 리드 에이전트에게만 말하면 구현 담당 · 검토 담당에게 일이 나뉜다.</li><li>먼저 <code>rig setup --dry-run</code>으로 무엇을 바꾸는지 본다. 바뀌는 파일은 미리 백업한다.</li><li>내장 팀 <code>starter</code>로 시작하고, 익숙해지면 <code>code-review</code> 같은 전문 팀을 써 본다.</li><li>Superpowers와 비교: Superpowers는 에이전트 하나가 「묻기 → 계획 → TDD → 작업마다 새 서브에이전트 + 2단계 리뷰」 순서로 일하게 하는 스킬 묶음이다. OpenRig는 그 바깥의 상주 팀이다. 겹치는 곳은 OpenRig의 구현 · 검토 담당과 Superpowers의 서브에이전트 리뷰 정도라 둘을 함께 쓸 수 있다.</li></ol><figure class="diagram"><pre class="mermaid">flowchart TD
+  A[나] --&gt; B[리드 에이전트]
+  B --&gt; C[구현 담당]
+  B --&gt; D[검토 담당]
+  C --&gt; D</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>OpenRig README를 읽고 이 저장소에 맞는 RigSpec 초안을 만들어 줘. 리드 1명, 구현 1명, 검토 1명으로 하고, 실행 전에 바뀌는 설정 파일 목록부터 보여 줘.</code></pre><p class="caution"><strong>주의.</strong> 설정 · 실행 때 <code>~/.tmux.conf</code>, <code>~/.claude.json</code>, <code>~/.codex/config.toml</code>, <code>AGENTS.md</code> · <code>CLAUDE.md</code>, 훅 설정을 고친다. README는 이 파일들을 보존하거나 되돌린다고 보장하지 않으니 먼저 백업한다. Node.js 22 또는 24와 tmux가 필요하다. <code>workshop</code> 팀은 권한이 넓다. 활발히 개발 중인 0.x 판이다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/mvschwarz/openrig">github.com/mvschwarz/openrig</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p3"><header><span class="tag">3</span><h2>Hindsight (저장소별 장기 기억)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/vectorize-io/hindsight" alt="Hindsight (저장소별 장기 기억) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Hindsight는 에이전트가 지난 대화를 떠올리는 데서 그치지 않고 시간이 지나며 배우게 하는 오픈소스 기억 시스템이다(MIT). 코딩 에이전트용 패키지는 git 기록과 지난 세션으로 저장소마다 기억 은행을 자동으로 만들고, 작업을 시작할 때 그 맥락을 넣어 준다. 구조 · 규칙 · 진행 중인 일을 정리한 페이지도 따로 관리한다.</p><h3>왜 지금</h3><p>11/15 제보다. 제보 이미지의 「교정 57% 감소」는 README에서 찾지 못해 확인 안 됨이다. README가 내세우는 근거는 LongMemEval 벤치마크(2026년 1월 기준 최고 성적, 외부 기관 재현)다. 11/02 판에 실린 claude-mem과 하는 일이 겹친다.</p><h3>설치</h3><div class="cmd"><pre><code>npx @vectorize-io/hindsight-coding-agents install claude-code</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 새 세션마다 「이 저장소는 이런 규칙이야」를 다시 설명하거나 CLAUDE.md를 손으로 늘렸다. 후: 지난 세션과 커밋에서 뽑은 규칙 · 진행 중인 일이 세션 시작 때 들어온다.</li><li>설치 전에 <code>~/.claude/settings.json</code>을 백업하고, 설치 뒤 무엇이 바뀌었는지 비교한다.</li><li>기억을 만들 LLM이 필요하다. API 키를 넣거나 Ollama 같은 로컬 모델을 고른다.</li><li>claude-mem을 이미 쓰고 있다면 둘을 같이 켜지 말고, 한 저장소에서 하나씩 써 보고 고른다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>Hindsight가 이 저장소에 대해 기억하는 규칙과 진행 중인 일을 보여 줘. 틀린 것이 있으면 어느 세션이나 커밋에서 나왔는지도 알려 줘.</code></pre><p class="caution"><strong>주의.</strong> 기억을 만들 때 LLM을 부르므로 API 비용이 든다. 로컬 모델을 쓰면 피할 수 있다. 권장 실행 방식은 Docker이고, Intel Mac은 <code>hindsight-all-slim</code>을 쓰라고 한다. 기억을 만들 때 저장소 내용이 설정한 LLM 공급자에게 가므로 사내 저장소는 공급자를 먼저 정한다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/vectorize-io/hindsight">github.com/vectorize-io/hindsight</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p4"><header><span class="tag">4</span><h2>MinerU (문서를 AI가 읽는 마크다운으로)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/opendatalab/MinerU" alt="MinerU (문서를 AI가 읽는 마크다운으로) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>MinerU는 PDF · Office · 스캔 이미지 같은 복잡한 문서를 LLM이 읽기 좋은 마크다운 · JSON으로 바꾼다. 저장소에 공식 <code>mineru</code> 스킬이 생겨, 에이전트가 문서를 페이지나 블록 단위로 이어 읽고 인용용 위치표(<code>doc:…/page:…/block:…</code>)를 남긴다. 최신은 MinerU 4.2다.</p><h3>왜 지금</h3><p>11/15 제보다. 제보 때는 「공식 스킬 없음, 커뮤니티 래퍼만」이었지만 지금 README에는 공식 스킬과 설치 명령이 있다. 「페이지 단위로 이어 읽고 출처를 남긴다」도 README의 에이전트 안내에서 확인했다.</p><h3>설치</h3><div class="cmd"><pre><code>npx skills add opendatalab/MinerU --skill mineru --global --yes</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 스캔 PDF를 통째로 올리면 표가 깨지거나 긴 문서는 앞부분만 읽혔다. 후: 페이지 · 블록 단위로 나눠 읽고, 답마다 몇 쪽 어느 블록인지 위치가 붙는다.</li><li>스킬 없이 직접 쓸 때는 <code>mineru-kit parse document.pdf -o document.md --tier standard</code>로 바꾼다.</li><li>가벼운 문서는 basic 단계(RAM 2GB), 표 · 수식이 많으면 standard 이상(RAM 8GB)을 쓴다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>mineru 스킬로 &lt;파일 경로&gt;를 마크다운으로 바꾸고, 표가 있는 페이지만 골라 요약해 줘. 요약 문장마다 위치표를 붙여 줘.</code></pre><p class="caution"><strong>주의.</strong> 기본은 로컬 처리이고, <code>--remote</code>를 붙일 때만 문서가 원격 파싱으로 간다. 사내 문서에는 <code>--remote</code>를 쓰지 않는다. 텔레메트리가 처음에 켜져 있다(문서 내용 · 파일명은 빠진다고 한다). <code>mineru telemetry disable</code> 또는 <code>MINERU_TELEMETRY_DISABLED=1</code>로 끈다. 라이선스는 Apache 2.0에 조건을 더한 MinerU 자체 라이선스다. 커뮤니티 래퍼 중 일부는 문서를 MinerU 호스팅 API로 보내니 공식 스킬을 쓴다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/opendatalab/MinerU">github.com/opendatalab/MinerU</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p5"><header><span class="tag">5</span><h2>Repolyze (공개 저장소 채점)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/OssiumOfficial/Repolyze" alt="Repolyze (공개 저장소 채점) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Repolyze는 GitHub 저장소를 AI로 분석해 0~100 종합 점수와 코드 품질 · 문서 · 보안 · 유지보수성 · 테스트 · 의존성 점수를 낸다. 구조 · 데이터 흐름 그림, 기술 스택 감지, 개선 권고도 만들고 PDF · 마크다운으로 내보낸다. OssiumOfficial이 만든 웹앱이고 MIT다.</p><h3>왜 지금</h3><p>11/15 제보다. 이름이 같은 프로젝트가 둘이다. 제보 이미지 설명(공개 저장소 → 100점 점수)에 맞는 것은 OssiumOfficial/Repolyze이고, lirantal/repolyze는 별개 CLI다. 항목별 가중치는 README에 없다. 제보 때 점수 공식 오류가 의심됐으니 점수는 참고로만 본다.</p><h3>설치</h3><div class="cmd"><pre><code>git clone https://github.com/OssiumOfficial/Repolyze.git</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 새 오픈소스를 들이기 전에 README · 이슈 · 커밋을 직접 훑었다. 후: 저장소 주소를 넣으면 항목별 점수와 구조 그림이 한 화면에 나온다.</li><li><code>pnpm install</code> 뒤 <code>.env.local</code>에 <code>GITHUB_TOKEN</code>과 <code>OPENROUTER_API_KEY</code>를 넣고 <code>pnpm dev</code>로 띄운다.</li><li>후보 오픈소스 2~3개를 같은 기준으로 돌려 비교표의 출발점으로 쓴다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>Repolyze가 &lt;저장소 주소&gt;에 매긴 리포트를 읽고, 점수가 낮은 항목이 실제로 그런지 저장소를 직접 열어 확인해 줘.</code></pre><p class="caution"><strong>주의.</strong> README는 <code>repo</code> · <code>read:user</code> 범위의 classic GitHub 토큰을 권한다. 분석할 저장소 내용이 OpenRouter의 모델로 가고, 호출 비용이 든다. Node.js 18 이상과 pnpm이 필요하다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/OssiumOfficial/Repolyze">github.com/OssiumOfficial/Repolyze</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p6"><header><span class="tag">6</span><h2>Plannotator (계획 · 코드 리뷰를 브라우저에서)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/backnotprop/plannotator" alt="Plannotator (계획 · 코드 리뷰를 브라우저에서) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Plannotator는 코딩 에이전트의 계획 · 문서 · 코드 변경을 브라우저에서 보며 메모를 달고, 그 메모를 에이전트에게 돌려보내는 로컬 도구다. Claude Code가 계획 모드를 끝낼 때(<code>ExitPlanMode</code>) 훅이 계획을 브라우저에 연다. 승인하거나 메모와 함께 거절하면 Claude가 계획을 고치고, 바뀐 곳은 diff로 보인다. <code>/plannotator-review</code>로 커밋 전 변경이나 PR도 줄 단위로 리뷰한다.</p><h3>왜 지금</h3><p>GitHub 트렌딩에 올라 지난주 별이 818개 늘었다. 텔레메트리를 모으지 않는다고 밝히고, Apache 2.0 또는 MIT 중 고르는 이중 라이선스다.</p><h3>설치</h3><div class="cmd"><pre><code>/plugin marketplace add backnotprop/plannotator</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 계획 모드의 긴 계획을 터미널에서 읽고 「3번은 빼고 5번은 이렇게」를 다시 타이핑했다. 후: 브라우저에서 그 줄에 바로 메모하고 거절하면, 메모가 정리된 피드백으로 Claude에게 간다.</li><li>README 순서대로 <code>curl -fsSL https://plannotator.ai/install.sh | bash</code>, 위 명령, <code>/plugin install plannotator@plannotator</code>를 실행하고 Claude Code를 재시작한다.</li><li><code>/plannotator-last</code>로 Claude의 마지막 답에도 메모를 단다.</li><li><code>/plannotator-review &lt;PR 주소&gt;</code>로 PR을 리뷰하고 줄 메모를 Claude에게 넘긴다.</li></ol><figure class="diagram"><pre class="mermaid">flowchart TD
+  A[계획 모드 종료] --&gt; B[브라우저 리뷰]
+  B --&gt;|승인| C[작업 시작]
+  B --&gt;|메모와 거절| D[Claude가 계획 수정]
+  D --&gt; B</pre></figure><h3>예시 프롬프트</h3><pre class="prompt"><code>이 기능을 계획 모드로 먼저 설계해 줘: &lt;기능 설명&gt;. 단계마다 바꿀 파일과 돌릴 테스트를 적어 줘.</code></pre><p class="caution"><strong>주의.</strong> 작은 공유 링크는 URL에 압축만 되고 암호화되지 않아, 링크를 가진 누구나 읽는다. <code>PLANNOTATOR_SHARE=disabled</code>로 공유를 끈다. 리뷰 화면을 열 때마다 GitHub에서 새 판을 확인하며, 이 확인은 끌 수 없다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/backnotprop/plannotator">github.com/backnotprop/plannotator</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p7"><header><span class="tag">7</span><h2>LoopForge (Tencent, 사람 승인이 낀 에이전트 작업 절차)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/Tencent/LoopForge" alt="LoopForge (Tencent, 사람 승인이 낀 에이전트 작업 절차) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>LoopForge는 Tencent가 공개한 셀프 호스팅 작업 공간이다(MIT). 채팅 도우미에게 일을 말하면 Docker 샌드박스에 저장소를 열고 역할별로 나눠 PR까지 연다. 반복하는 흐름은 에이전트 단계 · 스크립트 · 사람 승인 관문을 묶은 SOP로 저장한다. Claude Code · Codex · CodeBuddy 등 코딩 에이전트 CLI 10가지를 실행기로 그대로 쓴다.</p><h3>왜 지금</h3><p>지난 7일 중 4일 GitHub 일간 트렌딩에 올랐다. 승인 관문에서 사람이 승인, 맥락을 더해 다시 실행, 앞 단계로 되돌리기 중 하나를 고른다.</p><h3>설치</h3><div class="cmd"><pre><code>npx -y loopforge-cli@latest install claude</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 「이슈 읽기 → 구현 → 테스트 → 리뷰 → PR」을 매번 Claude에게 순서대로 말했다. 후: 한 번 SOP로 그려 두면 같은 순서로 돌고, 사람 확인이 필요한 곳에서만 멈춘다.</li><li>가볍게는 LoopForge Local부터: 대상 프로젝트에서 위 명령을 실행하면 Claude Code 안에서 내장 워크플로를 쓴다(Node.js 20+, Python 3.8+).</li><li>서버판은 <code>git clone https://github.com/Tencent/LoopForge.git</code> 뒤 <code>./start.sh</code>로 띄운다(Docker 필요).</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>이 저장소에서 SOP로 만들 만한 반복 작업 세 개를 골라 줘. 각각 어느 단계에 사람 승인을 둘지도 적어 줘.</code></pre><p class="caution"><strong>주의.</strong> 에이전트 단계에는 모델 API 키가 필요하고, 비용은 연결한 서비스 요금대로다. 내장 역할의 기본 실행기는 CodeBuddy라서 Claude Code를 쓰려면 역할마다 실행기를 바꾼다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/Tencent/LoopForge">github.com/Tencent/LoopForge</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p8"><header><span class="tag">8</span><h2>Astryx (Meta 오픈소스 디자인 시스템)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/meta/astryx" alt="Astryx (Meta 오픈소스 디자인 시스템) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Astryx는 Meta가 공개한 React 19 · StyleX 기반 디자인 시스템이다(MIT, 베타). 접근성을 갖춘 컴포넌트 150개 이상, 테마 7종과 다크 모드, 문서 · 템플릿 · 코드 변환을 다루는 CLI가 있다. 저장소에 <code>AGENTS.md</code> · <code>CLAUDE.md</code> · Claude 플러그인 폴더가 들어 있어 사람과 AI가 같은 방식으로 화면을 짜게 한다.</p><h3>왜 지금</h3><p>지난주 별이 13,660개 늘어 GitHub 트렌딩 맨 위에 있다. 11/13 제보 순위에서도 1위(+2,776)였는데 지난주 판에 싣지 못해 오늘 더한다.</p><h3>설치</h3><div class="cmd"><pre><code>npm install @astryxdesign/core @astryxdesign/theme-neutral @stylexjs/stylex</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: Claude에게 화면을 맡기면 매번 다른 버튼 · 여백이 나와 「AI 티」가 났다. 후: 정해진 컴포넌트 · 테마 안에서만 조립하게 해 화면이 한 벌로 맞는다.</li><li><code>npm i -g @astryxdesign/cli</code>로 CLI를 깔고, 에이전트가 컴포넌트 문서를 직접 찾게 한다.</li><li>테마는 CSS 변수 덮어쓰기라 컴포넌트를 고치지 않고 색과 분위기를 바꾼다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>이 페이지를 Astryx 컴포넌트만으로 다시 짜 줘. 쓸 컴포넌트를 Astryx CLI 문서에서 먼저 찾아 목록으로 보여 줘.</code></pre><p class="caution"><strong>주의.</strong> 아직 베타라 API가 바뀔 수 있다. React 19 이상과 StyleX가 필요하다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/meta/astryx">github.com/meta/astryx</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p9"><header><span class="tag">9</span><h2>ha-mcp (Claude로 Home Assistant 다루기)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/homeassistant-ai/ha-mcp" alt="ha-mcp (Claude로 Home Assistant 다루기) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>ha-mcp는 Claude · ChatGPT 같은 AI가 Home Assistant를 설정 · 자동화 · 디버깅하게 하는 MCP 서버다(MIT, 도구 86개). 기기 조작을 넘어 자동화 · 스크립트 · 대시보드를 만들고 고치며, 실행 기록 · 로그를 읽고 백업도 다룬다. Home Assistant 본 조직이 아니라 <code>homeassistant-ai</code> 조직에서 내고, README는 공식 여부를 밝히지 않는다.</p><h3>왜 지금</h3><p>지난 7일 중 4일 GitHub 일간 트렌딩에 올랐고, 11/13 제보 순위 5위(+645)였다. 11/15에도 9.3.0 개발판이 나왔다.</p><h3>설치</h3><div class="cmd"><pre><code>curl -LsSf https://raw.githubusercontent.com/homeassistant-ai/ha-mcp/master/scripts/install.sh | sh -s -- --claude-code</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 「저녁에 현관 불 켜기」 자동화를 YAML 문서를 찾아 가며 직접 썼다. 후: Claude에게 말로 시키고, 실행 기록을 읽혀 왜 안 켜졌는지까지 찾는다.</li><li>설치 뒤 <code>claude</code>를 열고 <code>/mcp</code>로 연결을 확인한다.</li><li>처음에는 Read Only Mode로 읽기만 시켜 본다. 설정을 바꾸는 도구는 하나씩 연다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>Home Assistant에서 지난 24시간 동안 실패한 자동화를 찾아 원인을 설명해 줘. 고치는 건 내가 확인한 뒤에 해.</code></pre><p class="caution"><strong>주의.</strong> 관리자 본인 계정 말고 「로컬 접근만」을 켠 전용 계정을 쓰라고 README가 권한다. 장기 토큰이 새면 어디서나 관리자 권한으로 쓰인다. 설치 방법은 서버당 하나만 쓴다(둘이면 연결이 멈출 수 있다). Home Assistant 2026.8.0 이상이 필요하고, README는 Claude Code 경로에 유료 Claude 요금제가 필요하다고 적는다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/homeassistant-ai/ha-mcp">github.com/homeassistant-ai/ha-mcp</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p10"><header><span class="tag">10</span><h2>daily_stock_analysis (LLM 주식 일일 분석)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/ZhuLinsen/daily_stock_analysis" alt="daily_stock_analysis (LLM 주식 일일 분석) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>LLM으로 시세 · 뉴스를 모아 매일 판단 리포트를 만들고 메신저로 보내는 Python 도구다(MIT). 중국 A주 · 홍콩 · 미국 · 일본 · 한국 · 대만 주식과 ETF를 다룬다. Claude(Anthropic 키) · Gemini · OpenAI 호환 API · Ollama를 쓰고, Telegram · Discord · Slack · 이메일 등으로 알린다.</p><h3>왜 지금</h3><p>지난 7일 중 5일 GitHub 일간 트렌딩에 올랐고 지난주 별이 4,526개 늘었다. 11/13 제보 순위 7위였는데 지난주 판에 싣지 못해 오늘 더한다. 11/09 v3.34.0에서 Claude 등의 기본 모델을 새로 바꿨다.</p><h3>설치</h3><div class="cmd"><pre><code>git clone https://github.com/ZhuLinsen/daily_stock_analysis.git &amp;&amp; cd daily_stock_analysis</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 아침마다 관심 종목의 뉴스 · 시세를 여러 사이트에서 따로 봤다. 후: 정해진 시간에 종목별 요약 리포트가 메신저로 온다.</li><li>서버 없이 돌리려면 저장소를 fork하고 API 키 · 종목 목록을 Secrets에 넣은 뒤 GitHub Actions를 켠다(평일 베이징 시각 18:00 실행).</li><li>로컬에서는 <code>pip install -r requirements.txt</code> 뒤 <code>python main.py --dry-run</code>으로 먼저 돌려 본다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>이 저장소의 GitHub Actions 워크플로를 읽고, 한국 시장 종목만 Claude로 분석해 Discord로 보내려면 어디를 바꾸면 되는지 알려 줘.</code></pre><p class="caution"><strong>주의.</strong> README는 학습 · 연구용이며 투자 조언이 아니라고 밝힌다. 기본 데이터 소스(AkShare · YFinance 등)는 무료지만 안정성이 보장되지 않는다. LLM 호출 비용은 쓰는 키의 요금대로다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/ZhuLinsen/daily_stock_analysis">github.com/ZhuLinsen/daily_stock_analysis</a></li></ul></aside></div></article><article class="plate" id="d2026-11-16-p11"><header><span class="tag">11</span><h2>Sure (Maybe Finance를 잇는 개인 재무 앱)</h2></header><div class="cols"><div class="main"><figure class="specimen"><img src="https://opengraph.githubassets.com/1/we-promise/sure" alt="Sure (Maybe Finance를 잇는 개인 재무 앱) 미리보기 이미지" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>출처 미리보기 · opengraph.githubassets.com</figcaption></figure><h3>무엇인가</h3><p>Sure는 보관 처리된 Maybe Finance를 커뮤니티가 이어 가는 개인 재무 앱이다(AGPLv3). 브라우저 · macOS 앱 · 모바일 앱 · API와 LLM 에이전트에서 쓸 수 있다. 원클릭 배포에는 OpenAI 토큰으로 켜는 「Simple AI」와 외부 게이트웨이에 붙는 「External AI」 구성이 있다.</p><h3>왜 지금</h3><p>11/13 제보 순위 2위(+1,078)였다. 제보 때는 AI 기능이 있는지 확인되지 않았는데, README에서 AI 도우미 구성을 확인해 싣는다. AI 기능이 무엇을 하는지는 README에 자세히 없다.</p><h3>설치</h3><div class="cmd"><pre><code>bin/setup</code></pre><button type="button" class="copy">복사</button></div><h3>활용법</h3><ol class="steps"><li>전: 은행 · 카드 내역을 엑셀에 모아 손으로 분류했다. 후: 내 서버에 내역을 모으고 AI 도우미에게 지출을 묻는다.</li><li>가장 쉬운 길은 README의 Docker 안내(<code>docs/hosting/docker.md</code>)나 원클릭 배포다.</li><li>개발 환경은 Ruby · PostgreSQL · Redis가 필요하다. <code>cp .env.local.example .env.local</code>, <code>bin/setup</code>, <code>bin/dev</code> 순서로 띄우고 <code>http://localhost:3000</code>을 연다.</li></ol><h3>예시 프롬프트</h3><pre class="prompt"><code>Sure 저장소에서 AI 도우미 관련 코드와 `compose.example.ai.yml`을 읽고, AI를 켜면 어떤 데이터가 OpenAI로 가는지 정리해 줘.</code></pre><p class="caution"><strong>주의.</strong> Simple AI 구성은 OpenAI 토큰을 쓰므로, 켜기 전에 어떤 금융 데이터가 OpenAI로 가는지 확인한다. 셀프 호스팅이라 접근 제한과 백업은 직접 챙긴다. AGPLv3라 고쳐서 서비스로 내면 소스를 공개해야 한다.</p></div><aside class="rail"><p class="cls">GitHub 트렌딩</p><p class="vf">설치 명령을 출처 본문과 대조함</p><ul><li><a href="https://github.com/we-promise/sure">github.com/we-promise/sure</a></li></ul></aside></div></article></main></section>
+<footer class="memo"><h2>수집 메모</h2><ul><li>스킬 순위 데이터: Best Skills (https://github.com/LinklyAI/best-skills) by @BlueeonY — CC BY 4.0</li><li>그림은 각 출처의 공개 미리보기 이미지(Open Graph)다. 막대 그림은 skills.sh 주간 설치 수로 그렸다.</li><li>&#x27;검증&#x27;은 설치 명령이 공식 문서 · README 본문에 글자 그대로 있는지 확인했다는 뜻이다. 실행해 본 것은 아니다.</li></ul></footer>
+<script>
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function show(t,focus){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+  document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});if(focus)t.focus();dispatchEvent(new Event('daychange'));}
+if(tabs.length){  // 주소의 #도판이 든 날을 연다. 없으면 가장 최근 날
+  const h=decodeURIComponent(location.hash.slice(1)),sec=h&&document.getElementById(h)?.closest('.day');
+  show(sec?tabs.find(t=>t.getAttribute('aria-controls')===sec.id):tabs[0]);
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>{show(t);history.replaceState(null,'','#'+t.getAttribute('aria-controls'));});
+    t.addEventListener('keydown',e=>{const k={ArrowRight:1,ArrowLeft:-1}[e.key];if(k)show(tabs[(i+k+tabs.length)%tabs.length],true);});});
+}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.previousElementSibling.innerText);b.textContent='복사됨';}
+  catch(e){b.textContent='복사 안 됨';}
+  setTimeout(()=>b.textContent='복사',1600);}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.chart').forEach(c=>io.observe(c));
+</script>
+<script type="module">
+if(document.querySelector('.mermaid')){
+  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
+  try{const m=(await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')).default;
+    m.initialize({startOnLoad:false,theme:'base',flowchart:{useMaxWidth:false},themeVariables:{edgeLabelBackground:dark?'#1B201C':'#FBFCF9',fontFamily:'Pretendard, Noto Sans KR, sans-serif',fontSize:'14px',
+      primaryColor:dark?'#232A25':'#FBFCF9',primaryBorderColor:dark?'#DDE3DC':'#1D241F',primaryTextColor:dark?'#EEF1EC':'#1D241F',
+      lineColor:dark?'#AEB8AF':'#3E4A42',secondaryColor:dark?'#232A25':'#E6EAE3',tertiaryColor:dark?'#161A17':'#F1F3EE'}});
+    // 숨은 탭 안의 그림은 크기를 못 재서 깨진다 — 보이는 것만 그리고, 탭을 열 때 마저 그린다
+    const run=()=>m.run({nodes:[...document.querySelectorAll('.mermaid:not([data-processed])')].filter(e=>e.offsetParent)});
+    await run();addEventListener('daychange',run);}catch(e){document.documentElement.classList.add('no-mermaid');}
+}
+</script></body></html>
